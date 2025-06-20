@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "question": "Which of the following correctly declares an integer variable in Java?",
+    "options": {
+      "A": "int age;",
+      "B": "integer age;",
+      "C": "num age;",
+      "D": "var age;"
+    }
+  },
+  {
+    "id": 2,
+    "question": "What is the size of an `int` in Java?",
+    "options": {
+      "A": "2 bytes",
+      "B": "4 bytes",
+      "C": "8 bytes",
+      "D": "Depends on the system"
+    }
+  },
+  {
+    "id": 3,
+    "question": "Which data type would you use to store a single character?",
+    "options": {
+      "A": "char",
+      "B": "string",
+      "C": "text",
+      "D": "Character"
+    }
+  },
+  {
+    "id": 4,
+    "question": "How do you declare a floating-point number in Java?",
+    "options": {
+      "A": "float number = 3.14;",
+      "B": "float number = 3.14f;",
+      "C": "float number = 3,14;",
+      "D": "float number = '3.14';"
+    }
+  },
+  {
+    "id": 5,
+    "question": "What will be the output of: `System.out.println(10 + 20);`",
+    "options": {
+      "A": "1020",
+      "B": "30",
+      "C": "10 + 20",
+      "D": "Error"
+    }
+  },
+  {
+    "id": 6,
+    "question": "Which of these is a valid boolean declaration?",
+    "options": {
+      "A": "bool isTrue = true;",
+      "B": "boolean isTrue = true;",
+      "C": "Boolean isTrue = 1;",
+      "D": "boolean isTrue = 'true';"
+    }
+  },
+  {
+    "id": 7,
+    "question": "Which keyword is used to define a constant in Java?",
+    "options": {
+      "A": "const",
+      "B": "static",
+      "C": "final",
+      "D": "immutable"
+    }
+  },
+  {
+    "id": 8,
+    "question": "What is the output of: `System.out.println(\"Hello\" + \"World\");`",
+    "options": {
+      "A": "Hello World",
+      "B": "HelloWorld",
+      "C": "Hello+World",
+      "D": "Error"
+    }
+  },
+  {
+    "id": 9,
+    "question": "Which of these is the correct way to initialize a `double` variable?",
+    "options": {
+      "A": "double pi = 3.14159;",
+      "B": "double pi = \"3.14\";",
+      "C": "double pi = '3.14';",
+      "D": "double pi = 3,14;"
+    }
+  },
+  {
+    "id": 10,
+    "question": "How do you declare a variable that cannot be reassigned?",
+    "options": {
+      "A": "static int age;",
+      "B": "final int age;",
+      "C": "const int age;",
+      "D": "immutable int age;"
+    }
+  },
+  {
+    "id": 11,
+    "question": "Which primitive data type is used to store true/false values?",
+    "options": {
+      "A": "boolean",
+      "B": "bit",
+      "C": "truth",
+      "D": "yesno"
+    }
+  },
+  {
+    "id": 12,
+    "question": "What is the default value of an `int` in Java?",
+    "options": {
+      "A": "null",
+      "B": "0",
+      "C": "undefined",
+      "D": "false"
+    }
+  },
+  {
+    "id": 13,
+    "question": "How do you store the letter `A` in a variable?",
+    "options": {
+      "A": "char letter = 'A';",
+      "B": "char letter = \"A\";",
+      "C": "char letter = A;",
+      "D": "char letter = 65;"
+    }
+  },
+  {
+    "id": 14,
+    "question": "Which of these is NOT a primitive data type in Java?",
+    "options": {
+      "A": "int",
+      "B": "float",
+      "C": "String",
+      "D": "boolean"
+    }
+  },
+  {
+    "id": 15,
+    "question": "How do you assign a value to a variable in Java?",
+    "options": {
+      "A": "int age == 20;",
+      "B": "int age = 20;",
+      "C": "int = 20 age;",
+      "D": "age int = 20;"
+    }
+  },
+  {
+    "id": 16,
+    "question": "Which data type is used for decimal numbers with higher precision?",
+    "options": {
+      "A": "int",
+      "B": "float",
+      "C": "double",
+      "D": "short"
+    }
+  },
+  {
+    "id": 17,
+    "question": "What will be the output of: `System.out.println(5.0 / 2);`",
+    "options": {
+      "A": "2",
+      "B": "2.5",
+      "C": "2.0",
+      "D": "Error"
+    }
+  },
+  {
+    "id": 18,
+    "question": "Which keyword is used to create a variable?",
+    "options": {
+      "A": "define",
+      "B": "new",
+      "C": "var",
+      "D": "int"
+    }
+  },
+  {
+    "id": 19,
+    "question": "What will be printed? `System.out.println(\"2\" + 2);`",
+    "options": {
+      "A": "4",
+      "B": "22",
+      "C": "Error",
+      "D": "2 2"
+    }
+  },
+  {
+    "id": 20,
+    "question": "What is the correct way to declare a string in Java?",
+    "options": {
+      "A": "String name = 'John';",
+      "B": "String name = \"John\";",
+      "C": "string name = \"John\";",
+      "D": "str name = \"John\";"
+    }
+  }
+]
