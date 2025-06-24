@@ -74,7 +74,7 @@ export default function Float() {
             </ul>
 
             <h3 className="text-lg font-semibold text-gray-800 mb-2">Sample Code</h3>
-            <pre className="bg-gray-100 p-2 rounded mb-6 text-sm overflow-x-auto">
+            <pre className="bg-gray-200 p-2 rounded mb-4">
                 <code>
         // Adding two floats<br />
                     float a = 2.5;<br />

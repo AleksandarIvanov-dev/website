@@ -35,9 +35,14 @@ export default function AllTutorials() {
                     <li>
                         <Link to="/tutorials/bool">Type: Boolean</Link>
                     </li>
-
                     <li>
                         <Link to="/exams">Exam</Link>
+                    </li>
+                    <li>
+                        <Link to="/settings">Settings</Link>
+                    </li>
+                    <li>
+                        <Link to="/home">Settings</Link>
                     </li>
                 </ul>
             </div>

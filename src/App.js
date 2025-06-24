@@ -12,16 +12,20 @@ import Integer from './Components/Tutorials/Integer';
 import Float from './Components/Tutorials/Float';
 import DataVariablesExamIntro from './Components/Exams/DataVariablesExamIntro';
 import VariablesExam from './Components/Exams/VariablesExam';
+import DropDownMenuSettings from './Components/Settings/DropDownMenuSettings';
 // import String from './Components/Tutorials/String';
 // import Bool from './Components/Tutorials/Bool';
-// import LogInPage from './Components/LogInPage/LogInPage'; // Uncomment if you have a LogInPage component
+import LogInPage from './Components/LogInPage/LogIn';
+import Home from './Components/HomePageLoggedIn/Home';
+import withAuth from './Components/withAuth';
 
 function App() {
+  const ProtectedDashboard = withAuth(Home);
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/logIn" />
+        <Route path="/logIn" element={<LogInPage/>}/>
         <Route path="/signUp" element={<SignUpPage />} />
         <Route path="/tutorials" element={<AllTutorials />} />
         <Route path="/code-editor" element={<TextEditor />} />
@@ -36,6 +40,8 @@ function App() {
         <Route path="/tutorials/bool" />
         <Route path="/exams" element={<DataVariablesExamIntro />} />
         <Route path="/exams/start"  element={<VariablesExam/>}/>
+        <Route path='/settings' element={<DropDownMenuSettings/>}/>
+        <Route path="/home" element={<ProtectedDashboard />} />
         {/* Add more routes as needed */}
       </Routes>
     </Router>
