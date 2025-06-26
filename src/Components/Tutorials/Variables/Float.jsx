@@ -1,13 +1,13 @@
 import React from "react";
-import HeaderHomePage from "../HomePage/HeaderHomePage";
-import FooterHomePage from "../HomePage/FooterHomePage";
+import Header from "../../HeaderForTutorials/HeaderComponent";
+import FooterHomePage from "../../HomePage/FooterHomePage";
 import { Link } from "react-router-dom";
 
 
 export default function Float() {
     return (
         <div className="w-full min-h-screen bg-gray-100 p-6 rounded-lg shadow-inner">
-            <HeaderHomePage />
+            <Header />
             <h2 className="text-2xl font-bold text-blue-800 mb-4">📘 Float</h2>
 
             <p className="text-gray-700 mb-6">

@@ -8,7 +8,7 @@ const FooterHomePage = () => {
             &copy; {new Date().getFullYear()} Coding Self-Learning Platform. All rights reserved.
             </p>
             <p className="text-xs mt-2">
-            Made with ❤️ by the Coding Team
+            Made with ❤️ by Sahkobg
             </p>
         </div>
         </footer>

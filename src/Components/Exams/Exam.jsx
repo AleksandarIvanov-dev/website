@@ -43,19 +43,11 @@ export default function DataVariablesExam() {
 
         // Validate answers
         let correctCount = 0;
-        //console.log("Correct answers:", correctAnswers);
-        //console.log("User answers:", userAnswers);
         Object.entries(userAnswers).forEach(([id, answer]) => {
-            //console.log(correctAnswers[id].answer );
             const isCorrect = correctAnswers[id].answer === answer;
             if (isCorrect) {
                 correctCount++;
             }
-            // console.log(`Question ${qid} answer is ${isCorrect ? "correct" : "incorrect",
-            //     ` Correct answer: ${correctAnswers[qid].answer}, Your answer: ${answer}`}`,
-            //     correctAnswers[qid],
-            //     correctCount
-            // );
         });
 
         // TO DO: Replace with actual user ID from authentication context or state
@@ -65,21 +57,25 @@ export default function DataVariablesExam() {
         fetch("http://localhost:5000/exam/results", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
+            credentials: "include", // 👈 Important: sends JWT cookie
             body: JSON.stringify({
-                language, answers: userAnswers, correctCount, totalQuestions: questions.length
-            }),
-        })
-            .then(res => res.json())
-            .then(data => {
-                // data.html contains the rendered page as HTML string
-                document.body.innerHTML = data.html;
+                language,
+                answers: userAnswers,
+                correctCount,
+                totalQuestions: questions.length
             })
-            .catch(err => console.error("Error submitting test:", err));
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("Exam result submitted:", data);
+                // Optionally show grade or redirect to a summary page
+            })
+            .catch((err) => {
+                console.error("Error submitting exam result:", err);
+            });
         // */
-
-
     };
 
     if (!language) {

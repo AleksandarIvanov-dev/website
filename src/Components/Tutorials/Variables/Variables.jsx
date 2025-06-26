@@ -1,12 +1,12 @@
 import React from "react";
-import HeaderHomePage from "../HomePage/HeaderHomePage";
-import FooterHomePage from "../HomePage/FooterHomePage";
+import Header from "../../HeaderForTutorials/HeaderComponent";
+import FooterHomePage from "../../HomePage/FooterHomePage";
 import { Link } from "react-router-dom";
 
 export default function Variables() {
     return (
         <div className="w-full lg:w-1/3 bg-gray-100 p-4 rounded-lg shadow-inner h-full">
-            <HeaderHomePage />
+            <Header />
             <h2 className="text-xl font-semibold text-blue-700 mb-4">📘 Variables in Programming</h2>
             <p className="text-gray-700 mb-4">
                 Variables are fundamental building blocks in programming. They allow you to store and manipulate data within your code.

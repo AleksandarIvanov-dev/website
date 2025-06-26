@@ -1,9 +1,11 @@
 import React from "react";
+import Header from "../HeaderForTutorials/HeaderComponent";
 import { Link } from "react-router-dom";
 
 export default function AllTutorials() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+            <Header />
             <h1 className="text-3xl font-bold text-blue-700 mb-6">All Tutorials</h1>
             <p className="text-lg text-gray-700 mb-4">
                 Explore our comprehensive tutorials to enhance your programming skills.

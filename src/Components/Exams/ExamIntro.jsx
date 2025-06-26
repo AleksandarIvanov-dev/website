@@ -7,7 +7,7 @@ export default function DataVariablesExamIntro() {
     return (
         <div className="w-full min-h-screen bg-gray-100 p-6 rounded-lg shadow-inner">
             <HeaderHomePage />
-            <h2 className="text-2xl font-bold text-blue-800 mb-4">📚 Data Variables Exam</h2>
+            <h2 className="text-2xl font-bold text-blue-800 mb-4">📚 Variables Exam</h2>
             <p className="text-gray-700 mb-6">
                 This exam will test your understanding of data variables, their types, and how to use them effectively in programming.
             </p>

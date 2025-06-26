@@ -1,12 +1,12 @@
 import React from "react";
 import FooterHomePage from "../HomePage/FooterHomePage";
-import HeaderHomePage from "../HomePage/HeaderHomePage";
+import Header from "../HeaderForTutorials/HeaderComponent";
 import { Link } from "react-router-dom";
 
 export default function ProgrammingVSCoding() {
     return (
         <div className="w-full lg:w-1/3 bg-gray-100 p-4 rounded-lg shadow-inner h-full">
-            <HeaderHomePage />
+            <Header />
             <h2 className="text-xl font-semibold text-blue-700 mb-4">📘 Programming vs Coding</h2>
             <p className="text-gray-700 mb-4">
                 <span>

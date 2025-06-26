@@ -88,7 +88,7 @@ export default function LogIn() {
                                     onChange={e => { setPassword(e.target.value) }}
                                     required
                                     autoComplete="current-password"
-                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-300 placeholder:text-gray-400 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 sm:text-sm"
                                 />
                             </div>
                         </div>
@@ -100,6 +100,15 @@ export default function LogIn() {
                             >
                                 Sign in
                             </button>
+                            <p className="text-sm text-gray-600 mt-4">
+                                Don't have an account?{" "}
+                                <a
+                                    href="/signUp"
+                                    className="text-blue-600 hover:underline hover:text-blue-800 font-medium"
+                                >
+                                    Create a new one here!
+                                </a>
+                            </p>
                         </div>
                     </form>
                 </div>

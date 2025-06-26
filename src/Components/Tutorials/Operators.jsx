@@ -1,12 +1,12 @@
 import React from "react";
-import HeaderHomePage from "../HomePage/HeaderHomePage";
+import Header from "../HeaderForTutorials/HeaderComponent";
 import FooterHomePage from "../HomePage/FooterHomePage";
 import { Link } from "react-router-dom";
 
 export default function Operators() {
     return (
         <div className="w-full lg:w-1/3 bg-gray-100 p-4 rounded-lg shadow-inner h-full">
-            <HeaderHomePage />
+            <Header />
             <h2 className="text-xl font-semibold text-blue-700 mb-4">📘 Operators</h2>
             <p className="text-gray-700 mb-4">
                 Operators are symbols that perform operations on variables and values. They are essential in programming for manipulating data and controlling the flow of execution.

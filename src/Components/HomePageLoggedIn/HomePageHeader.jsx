@@ -49,7 +49,7 @@ export default function HomePageHeader() {
             });
 
             if (res.status === 200) {
-                navigate("/login");
+                navigate("/");
             } else {
                 console.error("Logout failed");
             }
