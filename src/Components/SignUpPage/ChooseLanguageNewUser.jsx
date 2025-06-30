@@ -17,12 +17,23 @@ const LanguageSelector = () => {
         { name: 'JavaScript', icon: '🌐' },
     ];
 
-    const handleSelectLanguage = (languageName) => {
-        let selectedLang = languageName.toLowerCase();
-        console.log(selectedLang)
-        console.log(languageName)
+    const handleSelectLanguage = async (languageName) => {
         setSelectedLanguage(languageName);
-        navigate(`/home?lang=${encodeURIComponent(selectedLang)}`);
+
+        try {
+            await fetch('http://localhost:5000/updateLanguage', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include', // sends the JWT cookie
+                body: JSON.stringify({ languages: [languageName.toLowerCase()] })
+            });
+
+            navigate(`/home?lang=${encodeURIComponent(languageName.toLowerCase())}`);
+        } catch (error) {
+            console.error('Failed to update preferred language:', error);
+        }
     };
 
     return (
@@ -53,14 +64,6 @@ const LanguageSelector = () => {
                         </div>
                     ))}
                 </div>
-
-                {selectedLanguage && (
-                    <div className="mt-10 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-md shadow-md">
-                        <p className="text-lg">
-                            You've chosen to start with <span className="font-bold">{selectedLanguage}</span>! Great choice!
-                        </p>
-                    </div>
-                )}
 
                 {!selectedLanguage && (
                     <div className="mt-10 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-md shadow-md">

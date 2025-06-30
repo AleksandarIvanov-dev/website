@@ -14,10 +14,10 @@ export default function AllTutorials() {
                 <ul className="space-y-4">
                     {/* Example tutorial links */}
                     <li>
-                        <Link to="/tutorials/programming-vs-coding">Programming VS Coding</Link>
+                        <Link to="/tutorials/programming-vs-coding">Програмиране vs кодиране</Link>
                     </li>
                     <li>
-                        <Link to="/tutorials/hello-world">Your first line of code</Link>
+                        <Link to="/tutorials/python/intro">Въведение в Python</Link>
                     </li>
                     <li>
                         <Link to="/tutorials/variables">Variables and Data Types</Link>

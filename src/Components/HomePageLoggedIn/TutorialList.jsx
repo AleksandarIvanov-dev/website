@@ -9,7 +9,7 @@ export default function TutorialList() {
 
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const selectedLanguage = queryParams.get("lang");
+    const selectedLanguage = queryParams.get("lang") || "c#";
 
     useEffect(() => {
         async function fetchTutorials() {

@@ -5,16 +5,18 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUpPage from './Components/SignUpPage/SignUpPage';
 import AllTutorials from './Components/Tutorials/AllTutorials';
 import ProgrammingVSCoding from './Components/Tutorials/ProgrammingVSCoding';
-import HelloWorld from './Components/Tutorials/HelloWorld';
+//import HelloWorld from './Components/Tutorials/HelloWorld';
 import Variables from './Components/Tutorials/Variables/Variables';
 import Operators from './Components/Tutorials/Operators';
 import Integer from './Components/Tutorials/Variables/Integer';
 import Float from './Components/Tutorials/Variables/Float';
 import ExamIntro from './Components/Exams/ExamIntro';
 import Exam from './Components/Exams/Exam';
+//Python Tutorial imports
+import IntroPython from './Components/Tutorials/PythonTutorials/Introduction';
+import InputAndOutput from './Components/Tutorials/PythonTutorials/InputAndOutput'
+
 import DropDownMenuSettings from './Components/Settings/DropDownMenuSettings';
-// import String from './Components/Tutorials/String';
-// import Bool from './Components/Tutorials/Bool';
 import LogInPage from './Components/LogInPage/LogIn';
 import Home from './Components/HomePageLoggedIn/Home';
 import withAuth from './Components/withAuth';
@@ -26,22 +28,23 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/logIn" element={<LogInPage/>}/>
+        <Route path="/logIn" element={<LogInPage />} />
         <Route path="/signUp" element={<SignUpPage />} />
         <Route path="/tutorials" element={<AllTutorials />} />
         <Route path="/code-editor" element={<TextEditor />} />
         <Route path="/tutorials" element={<AllTutorials />} />
         <Route path="/tutorials/programming-vs-coding" Component={withAuth(ProgrammingVSCoding)} />
-        <Route path="/tutorials/hello-world" Component={withAuth(HelloWorld)} />
+        <Route path="/tutorials/python/intro" Component={withAuth(IntroPython)} />
+        <Route path="/tutorials/python/io" Component={withAuth(InputAndOutput)} />
         <Route path="/tutorials/variables" Component={withAuth(Variables)} />
         <Route path="/tutorials/operators" Component={withAuth(Operators)} />
-        <Route path="/tutorials/integers"  Component={withAuth(Integer)}/>
-        <Route path="/tutorials/float"  Component={withAuth(Float)}/>
+        <Route path="/tutorials/integers" Component={withAuth(Integer)} />
+        <Route path="/tutorials/float" Component={withAuth(Float)} />
         <Route path="/tutorials/string" />
         <Route path="/tutorials/bool" />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
-        <Route path="/exams/start"  Component={withAuth(Exam)}/>
-        <Route path='/settings' element={<DropDownMenuSettings/>}/>
+        <Route path="/exams/start" Component={withAuth(Exam)} />
+        <Route path='/settings' element={<DropDownMenuSettings />} />
         <Route path="/home" Component={withAuth(Home)} />
         <Route path="/home/lang" Component={withAuth(LanguageSelector)} />
         {/* Add more routes as needed */}

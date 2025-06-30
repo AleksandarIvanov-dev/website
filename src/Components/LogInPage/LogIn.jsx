@@ -5,44 +5,37 @@ import { useState } from "react";
 export default function LogIn() {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const bodyObject = {
-        email,
-        password
-    }
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
-        fetch("http://localhost:5000/loginUser", {
-            method: "POST",
-            body: JSON.stringify(bodyObject),
-            credentials: "include",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => {
-            if (res.status === 200) {
-                navigate("/home")
+        try {
+            const response = await fetch("http://localhost:5000/logIn", {
+                method: "POST",
+                credentials: "include",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                const preferredLang = data.user.languages?.[0] || "c#"; // default to csharp if none
+                navigate(`/home?lang=${preferredLang}`);
             } else {
-                const error = new Error(res.error);
-                throw error;
+                setError(data.error);
             }
-        }).catch(error => {
-            console.error(error);
-            alert('Error logging in please try again');
-        })
+
+        } catch (err) {
+            setError("Login failed. Try again.");
+
+            console.log(error)
+        }
     }
 
     return (
         <>
-            {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
@@ -75,6 +68,7 @@ export default function LogIn() {
                                     Password
                                 </label>
                                 <div className="text-sm">
+                                    
                                     <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                                         Forgot password?
                                     </a>
