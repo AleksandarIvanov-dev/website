@@ -26,12 +26,18 @@ export default function withAuth(ComponentToProtect) {
                 });
         }, []);
 
+        useEffect(() => {
+            if (!isLoading && !isAuthenticated) {
+                navigate("/logIn");
+            }
+        }, [isLoading, isAuthenticated, navigate]);
+
         if (isLoading) {
-            return <div>Loading...</div>; // Or a spinner
+            return <div>Loading...</div>;
         }
 
+        // Only render protected component if authenticated
         if (!isAuthenticated) {
-            navigate("/logIn"); // Redirect to login
             return null;
         }
 

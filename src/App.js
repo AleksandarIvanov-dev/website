@@ -18,6 +18,7 @@ import DropDownMenuSettings from './Components/Settings/DropDownMenuSettings';
 import LogInPage from './Components/LogInPage/LogIn';
 import Home from './Components/HomePageLoggedIn/Home';
 import withAuth from './Components/withAuth';
+import LanguageSelector from "./Components/SignUpPage/ChooseLanguageNewUser"
 
 function App() {
   //const ProtectedDashboard = withAuth(Home);
@@ -42,6 +43,7 @@ function App() {
         <Route path="/exams/start"  Component={withAuth(Exam)}/>
         <Route path='/settings' element={<DropDownMenuSettings/>}/>
         <Route path="/home" Component={withAuth(Home)} />
+        <Route path="/home/lang" Component={withAuth(LanguageSelector)} />
         {/* Add more routes as needed */}
       </Routes>
     </Router>
