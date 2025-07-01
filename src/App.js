@@ -4,8 +4,7 @@ import HomePage from './Components/HomePage/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUpPage from './Components/SignUpPage/SignUpPage';
 import AllTutorials from './Components/Tutorials/AllTutorials';
-import ProgrammingVSCoding from './Components/Tutorials/ProgrammingVSCoding';
-import Float from './Components/Tutorials/Variables/Float';
+import ProgrammingVSCoding from './Components/Tutorials/ProgrammingVSCoding'; 
 import ExamIntro from './Components/Exams/ExamIntro';
 import Exam from './Components/Exams/Exam';
 //Python Tutorial imports
@@ -14,6 +13,8 @@ import InputAndOutput from './Components/Tutorials/PythonTutorials/InputAndOutpu
 import Conventions from './Components/Tutorials/PythonTutorials/Conventions'
 import Variales from './Components/Tutorials/PythonTutorials/Variables'
 import Numbers from './Components/Tutorials/PythonTutorials/Numbers'
+import Strings from './Components/Tutorials/PythonTutorials/Strings'
+import Operators from './Components/Tutorials/PythonTutorials/Operators';
 
 import DropDownMenuSettings from './Components/Settings/DropDownMenuSettings';
 import LogInPage from './Components/LogInPage/LogIn';
@@ -37,8 +38,8 @@ function App() {
         <Route path="/tutorials/python/conventions" Component={withAuth(Conventions)} />
         <Route path="/tutorials/python/variables" Component={withAuth(Variales)} />
         <Route path="/tutorials/python/numbers" Component={withAuth(Numbers)} />
-        <Route path="/tutorials/float" Component={withAuth(Float)} />
-        <Route path="/tutorials/string" />
+        <Route path="/tutorials/python/string" Component={withAuth(Strings)} />
+        <Route path="/tutorials/python/operators" Component={withAuth(Operators)}/>
         <Route path="/tutorials/bool" />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
         <Route path="/exams/start" Component={withAuth(Exam)} />

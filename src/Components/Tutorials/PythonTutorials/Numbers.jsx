@@ -3,7 +3,7 @@ import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import { Link } from "react-router-dom";
 
-export default function IntroPython() {
+export default function Numbers() {
     return (
         <div>
             <HomePageHeader />
@@ -68,13 +68,12 @@ export default function IntroPython() {
                     </div>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/str"} className="text-blue-600 underline">String в Python!</Link>
+                        Следващ урок е <Link to={"/tutorials/python/string"} className="text-blue-600 underline">String в Python!</Link>
 
                     </p>
                 </div>
             </div>
             <FooterHomePage />
         </div>
-
     )
 }
