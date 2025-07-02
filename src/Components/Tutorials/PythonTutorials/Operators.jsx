@@ -31,7 +31,7 @@ export default function Operators() {
                         <div className="bg-blue-100 border-l-4 border-blue-500 rounded shadow-md p-4">
                             <img
                                 src={OperatorsImage}
-                                alt="Илюстрация на индексиране на низове в Python"
+                                alt="Наличните оператори в Python"
                                 className="w-full max-w-xl rounded-md h-auto"
                             />
                         </div>

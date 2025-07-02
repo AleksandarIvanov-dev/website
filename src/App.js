@@ -15,6 +15,7 @@ import Variales from './Components/Tutorials/PythonTutorials/Variables'
 import Numbers from './Components/Tutorials/PythonTutorials/Numbers'
 import Strings from './Components/Tutorials/PythonTutorials/Strings'
 import Operators from './Components/Tutorials/PythonTutorials/Operators';
+import IFStatement from './Components/Tutorials/PythonTutorials/IFStatement'
 
 import DropDownMenuSettings from './Components/Settings/DropDownMenuSettings';
 import LogInPage from './Components/LogInPage/LogIn';
@@ -40,7 +41,7 @@ function App() {
         <Route path="/tutorials/python/numbers" Component={withAuth(Numbers)} />
         <Route path="/tutorials/python/string" Component={withAuth(Strings)} />
         <Route path="/tutorials/python/operators" Component={withAuth(Operators)}/>
-        <Route path="/tutorials/bool" />
+        <Route path="/tutorials/python/conditions" Component={withAuth(IFStatement)}/>
         <Route path="/exams" Component={withAuth(ExamIntro)} />
         <Route path="/exams/start" Component={withAuth(Exam)} />
         <Route path='/settings' element={<DropDownMenuSettings />} />
