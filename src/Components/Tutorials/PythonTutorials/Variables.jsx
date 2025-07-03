@@ -96,11 +96,11 @@ export default function IntroPython() {
                     </div>
 
                     <div className="mt-12">
-                        <CodeEditor height="150px" initialCode={`n = 42\nf=3.14\ns="Hello, World!"\nprint(type(n))\nprint(type(f))\nprint(type(s))`} />
+                        <CodeEditor height="150px" initialCode={`n = 42\nf = 3.14\ns = "Hello, World!"\nprint(type(n))\nprint(type(f))\nprint(type(s))`} />
                     </div>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/io"} className="text-blue-600 underline">Входни и изходни данни!</Link>
+                        Следващ урок е <Link to={"/tutorials/python/numbers"} className="text-blue-600 underline">Числа в Python</Link>
 
                     </p>
                 </div>

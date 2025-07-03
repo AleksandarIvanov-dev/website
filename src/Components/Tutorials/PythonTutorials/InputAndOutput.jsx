@@ -55,7 +55,7 @@ export default function InputOutputPython() {
                     </p>
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок е <Link to={"/tutorials/python/variables"} className="text-blue-600 underline">Променливи в Python</Link>.
+                        Следващ урок е <Link to={"/tutorials/python/conventions"} className="text-blue-600 underline">Правила за писане в Python</Link>.
                     </p>
                 </div>
             </div>

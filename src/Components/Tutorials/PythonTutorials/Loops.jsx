@@ -106,7 +106,7 @@ for i in range(0, counter):
                     </div>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/functions"} className="text-blue-600 underline">Създаване на функции в Python</Link>
+                        Следващ урок е <Link to={"/tutorials/python/lists"} className="text-blue-600 underline">Списъци в Python</Link>
                     </p>
                 </div>
             </div>

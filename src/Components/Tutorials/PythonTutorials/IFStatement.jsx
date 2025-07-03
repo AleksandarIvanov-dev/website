@@ -84,24 +84,14 @@ else:
 
                     <div className="mt-12">
                         <CodeEditor
-                            height="330px"
-                            initialCode={`i = 25
+                            height="160px"
+                            initialCode={`i = 20
 
-# Checking if i is equal to 10
-if i == 10:
-    print("i is 10")
-
-# Checking if i is equal to 15
-elif i == 15:
-    print("i is 15")
-
-# Checking if i is equal to 20
-elif i == 20:
-    print("i is 20")
-
-# If none of the above conditions are true
+ # Checking if i is greater than 0
+if (i > 0):
+    print("i is positive")
 else:
-    print("i is not present")`}
+    print("i is 0 or Negative")`}
                         />
                     </div>
 
