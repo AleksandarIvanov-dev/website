@@ -93,8 +93,7 @@ export default function Strings() {
                     </div>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/operators"} className="text-blue-600 underline">Оператори в Python!</Link>
-
+                        Следващ урок е <Link to={"/tutorials/python/lists"} className="text-blue-600 underline">Оператори в Python!</Link>
                     </p>
                 </div>
             </div>

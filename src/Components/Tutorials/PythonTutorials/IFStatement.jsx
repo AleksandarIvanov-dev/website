@@ -154,7 +154,7 @@ else:
                     </div>
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок е <Link to={"/tutorials/python/conditions"} className="text-blue-600 underline">Цикли в Python</Link>
+                        Следващ урок е <Link to={"/tutorials/python/cycles"} className="text-blue-600 underline">Цикли в Python</Link>
                     </p>
                 </div>
             </div>
