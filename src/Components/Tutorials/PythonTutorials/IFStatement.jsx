@@ -5,6 +5,7 @@ import CodeEditor from '../CodeEditor'
 import IfStatement from '../Images/if-statement.webp'
 import IfElseStatement from '../Images/if-else-statement.webp'
 import NestedStatements from '../Images/Nested-statement.webp'
+import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 export default function Operators() {
@@ -143,8 +144,14 @@ else:
                         />
                     </div>
 
+                    <Quiz
+                        question="Какъв е операторът, който се използва за проверка на условие в Python?"
+                        options={["else", "elif", "if"]}
+                        correctAnswer={"if"}
+                    />
+
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок е <Link to={"/tutorials/python/cycles"} className="text-blue-600 underline">Цикли в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/cycles"} className="text-blue-600 underline">Цикли в Python</Link>
                     </p>
                 </div>
             </div>

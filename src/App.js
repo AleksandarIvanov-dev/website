@@ -16,10 +16,10 @@ import Numbers from './Components/Tutorials/PythonTutorials/Numbers'
 import Strings from './Components/Tutorials/PythonTutorials/Strings'
 import Operators from './Components/Tutorials/PythonTutorials/Operators';
 import IFStatement from './Components/Tutorials/PythonTutorials/IFStatement'
-import VariablesQuizPython from './Components/Exercise/VariablesQuizPython';
 import Loops from './Components/Tutorials/PythonTutorials/Loops';
 import Functions from './Components/Tutorials/PythonTutorials/Functions'
 import Lists from './Components/Tutorials/PythonTutorials/Lists'
+import Dictionaries from './Components/Tutorials/PythonTutorials/Dictionaries';
 
 import DropDownMenuSettings from './Components/Settings/DropDownMenuSettings';
 import LogInPage from './Components/LogInPage/LogIn';
@@ -49,7 +49,7 @@ function App() {
         <Route path="/tutorials/python/cycles" Component={withAuth(Loops)} />
         <Route path="/tutorials/python/functions" Component={withAuth(Functions)} />
         <Route path="/tutorials/python/lists" Component={withAuth(Lists)} />
-        <Route path="/tutorials/python/exercise1" Component={withAuth(VariablesQuizPython)} />
+        <Route path="/tutorials/python/dict" Component={withAuth(Dictionaries)} />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
         <Route path="/exams/start" Component={withAuth(Exam)} />
         <Route path='/settings' element={<DropDownMenuSettings />} />

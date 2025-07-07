@@ -3,6 +3,7 @@ import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import DeclaringFunction from '../Images/DeclaringFunction.png';
+import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 export default function Loops() {
@@ -116,8 +117,14 @@ print(evenOdd(14))
 print(evenOdd(7))`} />
                     </div>
 
+                    <Quiz
+                        question="Какъв е операторът, който се използва за връщане на стойност от функция в Python?"
+                        options={["return", "break", "continue"]}
+                        correctAnswer={"return"}
+                    />
+
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/functions"} className="text-blue-600 underline">Създаване на функции в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/functions"} className="text-blue-600 underline">Създаване на функции в Python</Link>
                     </p>
                 </div>
             </div>

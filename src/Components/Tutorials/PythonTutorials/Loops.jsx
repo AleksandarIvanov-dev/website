@@ -2,6 +2,7 @@ import React from "react";
 import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
+import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 export default function Loops() {
@@ -98,6 +99,28 @@ for i in range(0, counter):
                         </p>
                     </div>
 
+                    <h2 className="text-2xl font-semibold text-blue-600 mb-2">Оператор continue в Python</h2>
+                    <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                        Операторът continue в Python е оператор за управление на цикъл, който принуждава изпълнението на следващата итерация на цикъла,
+                        като пропуска останалата част от кода в цикъла само за текущата итерация. Т.е., когато операторът continue се изпълни в цикъла,
+                        кодът в цикъла след оператора continue ще бъде пропуснат за текущата итерация и ще започне следващата итерация на цикъла.
+                    </p>
+
+                    <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-800 p-4 mb-6 rounded">
+                        <pre className="mt-2 bg-white p-3 rounded text-sm text-black font-mono">
+                            {`for i in range(1, 11):
+    if i == 6:
+        continue
+    print(i)`}
+                        </pre>
+
+                        <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                            Този код ще итерира от числото 1 до 11 (без 11) и ще принтира числата от 1 до 10, като пропуска числото 6.
+                            Когато i е равно на 6, операторът continue ще пропусне принтирането на 6 и ще премине към следващата интерация на цикъла.
+                        </p>
+
+                    </div>
+
                     <div className="mt-12">
                         <CodeEditor height="120px" initialCode={`for i in range(10):
     print(i)
@@ -105,8 +128,14 @@ for i in range(0, counter):
         break`} />
                     </div>
 
+                    <Quiz
+                        question="Какъв е операторът, който се използва за излизане от цикъл в Python?"
+                        options={["continue", "exit", "break"]}
+                        correctAnswer={"break"}
+                    />
+
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/lists"} className="text-blue-600 underline">Списъци в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/lists"} className="text-blue-600 underline">Списъци в Python</Link>
                     </p>
                 </div>
             </div>

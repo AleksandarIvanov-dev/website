@@ -2,6 +2,7 @@ import React from "react";
 import CodeEditor from '../CodeEditor';
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
+import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 export default function InputOutputPython() {
@@ -50,12 +51,14 @@ export default function InputOutputPython() {
                         <CodeEditor height="150px" initialCode={`name = input();\nprint("Hello, ", name)`} />
                     </div>
 
-                    <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Сега вече знаете как да комуникирате с потребителя чрез въвеждане и извеждане на данни. Това е основа за изграждане на интерактивни програми.
-                    </p>
+                    <Quiz
+                        question="Коя функция се използва за извеждане на текст на екрана в Python?"
+                        options={["input()", "output()", "print()"]}
+                        correctAnswer={"print()"}
+                    />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок е <Link to={"/tutorials/python/conventions"} className="text-blue-600 underline">Правила за писане в Python</Link>.
+                        Следващ урок <Link to={"/tutorials/python/conventions"} className="text-blue-600 underline">Правила за писане в Python</Link>.
                     </p>
                 </div>
             </div>

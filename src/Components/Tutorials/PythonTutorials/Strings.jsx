@@ -3,6 +3,7 @@ import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import StringIndexing from '../Images/Python_String_index.png'
 import CodeEditor from '../CodeEditor'
+import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 export default function Strings() {
@@ -92,8 +93,14 @@ export default function Strings() {
                         <CodeEditor height="100px" initialCode={`my_string = "hello"\nmy_string[0] = "H"`} />
                     </div>
 
+                    <Quiz
+                        question="Могат ли Strings да бъдат променяни след тяхното деклариране?"
+                        options={["True", "False"]}
+                        correctAnswer={"False"}
+                    />
+
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/operators"} className="text-blue-600 underline">Оператори в Python!</Link>
+                        Следващ урок <Link to={"/tutorials/python/operators"} className="text-blue-600 underline">Оператори в Python!</Link>
                     </p>
                 </div>
             </div>

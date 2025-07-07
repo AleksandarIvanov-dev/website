@@ -1,6 +1,7 @@
 import React from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
+import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 export default function Numbers() {
@@ -54,22 +55,27 @@ export default function Numbers() {
                     </div>
                     <h2 className="text-2xl font-semibold text-blue-600 mb-2">Python Complex</h2>
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                        Комплексното число е число, което се състои от реална и имагинерна част. 
+                        Комплексното число е число, което се състои от реална и имагинерна част.
                         Например, 2 + 3j е комплексно число, където 2 е реалната компонента, а 3, умножено по j, е имагинерна част.
                     </p>
 
                     <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-800 p-4 mb-6 rounded">
                         <p className="font-semibold">Пример:</p>
                         <pre className="mt-2 bg-white p-3 rounded text-sm text-black font-mono">
-                            {`a = 3 + 3j`} 
-                            {`\nb = 5 + 25j`} 
+                            {`a = 3 + 3j`}
+                            {`\nb = 5 + 25j`}
                             {`\nc = 4 + 0j`}
                         </pre>
                     </div>
 
-                    <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/string"} className="text-blue-600 underline">String в Python!</Link>
+                    <Quiz
+                        question="Може ли число от тип int да бъде с плаваща запетая?"
+                        options={["Да", "Не"]}
+                        correctAnswer={"Не"}
+                    />
 
+                    <p className="text-gray-700 text-lg leading-relaxed">
+                        Следващ урок <Link to={"/tutorials/python/string"} className="text-blue-600 underline">String в Python!</Link>
                     </p>
                 </div>
             </div>

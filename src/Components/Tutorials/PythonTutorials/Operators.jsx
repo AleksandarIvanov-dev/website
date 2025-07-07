@@ -3,6 +3,7 @@ import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from '../CodeEditor'
 import OperatorsImage from '../Images/OperatorsInPython.png'
+import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 export default function Operators() {
@@ -161,8 +162,14 @@ export default function Operators() {
                         <CodeEditor height="120px" initialCode={`a = 10\nb = 3\nprint(a + b)\nprint(a ** b)`} />
                     </div>
 
+                    <Quiz
+                        question="Кой оператор се използва за присвояване на стойност в Python?"
+                        options={["==", "=>", "="]}
+                        correctAnswer={"="}
+                    />
+
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок е <Link to={"/tutorials/python/conditions"} className="text-blue-600 underline">Условни оператори в Python!</Link>
+                        Следващ урок <Link to={"/tutorials/python/conditions"} className="text-blue-600 underline">Условни оператори в Python!</Link>
                     </p>
                 </div>
             </div>

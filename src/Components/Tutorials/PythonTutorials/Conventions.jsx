@@ -1,6 +1,7 @@
 import React from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
+import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 export default function InputOutputPython() {
@@ -97,8 +98,14 @@ export default function InputOutputPython() {
                         Добрата практика е да се придържате към препоръките на <Link to={"https://realpython.com/python-pep8/"} className="text-blue-600 underline">PEP 8</Link> – официалният стилов гайд за Python, който обобщава всички основни правила за писане на чист и подреден код.
                     </p>
 
+                    <Quiz
+                        question="Какъв е основният принцип за именуване на променливи в Python?"
+                        options={["CamelCase", "snake_case", "PascalCase"]}
+                        correctAnswer={"scake_case"}
+                    />
+
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок е <Link to={"/tutorials/python/variables"} className="text-blue-600 underline">Променливи в Python</Link>.
+                        Следващ урок <Link to={"/tutorials/python/variables"} className="text-blue-600 underline">Променливи в Python</Link>.
                     </p>
                 </div>
             </div>

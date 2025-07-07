@@ -2,6 +2,7 @@ import React from "react";
 import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
+import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 export default function IntroPython() {
@@ -99,8 +100,14 @@ export default function IntroPython() {
                         <CodeEditor height="150px" initialCode={`n = 42\nf = 3.14\ns = "Hello, World!"\nprint(type(n))\nprint(type(f))\nprint(type(s))`} />
                     </div>
 
+                    <Quiz
+                        question="Може ли число от тип int да бъде преобразувано в тип str?"
+                        options={["Да", "Не"]}
+                        correctAnswer={"Да"}
+                    />
+
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/numbers"} className="text-blue-600 underline">Числа в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/numbers"} className="text-blue-600 underline">Числа в Python</Link>
 
                     </p>
                 </div>

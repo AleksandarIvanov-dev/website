@@ -59,7 +59,7 @@ export default function IntroPython() {
                     </ul>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/io"} className="text-blue-600 underline">Входни и изходни данни!</Link>
+                        Следващ урок <Link to={"/tutorials/python/io"} className="text-blue-600 underline">Входни и изходни данни!</Link>
 
                     </p>
                 </div>

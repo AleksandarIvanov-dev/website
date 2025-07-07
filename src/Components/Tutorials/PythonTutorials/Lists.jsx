@@ -2,6 +2,8 @@ import React from "react";
 import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
+import Quiz from "../../Exams/Quiz";
+import ListImage from '../Images/python-list-index.png'
 import { Link } from "react-router-dom";
 
 export default function Lists() {
@@ -46,6 +48,16 @@ b = [1,2,3,4,5]`}
                         Елементите в даден списък могат да бъдат достъпвани чрез индексиране. В Python, индексите започват от 0, което означава,
                         че a[0] ще ви даде достъп до първия елемент.
                     </p>
+
+                    <div className="flex justify-center mb-10">
+                        <div className="bg-blue-100 border-l-4 border-blue-500 rounded shadow-md p-4">
+                            <img
+                                src={ListImage}
+                                alt="Илюстрация на индексиране на списъци в Python"
+                                className="w-full max-w-xl rounded-md h-auto"
+                            />
+                        </div>
+                    </div>
 
                     <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-800 p-4 mb-6 rounded">
                         <pre className="mt-2 bg-white p-3 rounded text-sm text-black font-mono">
@@ -126,8 +138,18 @@ for item in a:
     print(item)`} />
                     </div>
 
+                    <Quiz
+                        question="Как можем да достъпим даден елемент в списък в Python?"
+                        code={`temp_list = [1,2,3,4,5]
+a = temp_list[1]
+b = temp_List[1]
+c = temp_list.pop()`}
+                        options={["a", "b", "c"]}
+                        correctAnswer={"a"}
+                    />
+
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок е <Link to={"/tutorials/python/functions"} className="text-blue-600 underline">Създаване на функции в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/dict"} className="text-blue-600 underline">Създаване на речници в Python</Link>
                     </p>
                 </div>
             </div>
