@@ -7,6 +7,9 @@ import AllTutorials from './Components/Tutorials/AllTutorials';
 import ProgrammingVSCoding from './Components/Tutorials/ProgrammingVSCoding';
 import ExamIntro from './Components/Exams/ExamIntro';
 import Exam from './Components/Exams/Exam';
+// User profile imports
+import UserDetails from './Components/UserProfile/UserDetails';
+
 //Python Tutorial imports
 import IntroPython from './Components/Tutorials/PythonTutorials/Introduction';
 import InputAndOutput from './Components/Tutorials/PythonTutorials/InputAndOutput'
@@ -50,6 +53,7 @@ function App() {
         <Route path="/tutorials/python/functions" Component={withAuth(Functions)} />
         <Route path="/tutorials/python/lists" Component={withAuth(Lists)} />
         <Route path="/tutorials/python/dict" Component={withAuth(Dictionaries)} />
+        <Route path="/myprofile" Component={withAuth(UserDetails)} />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
         <Route path="/exams/start" Component={withAuth(Exam)} />
         <Route path='/settings' element={<DropDownMenuSettings />} />
