@@ -4,7 +4,22 @@ export default function Quiz({ question, code, options, correctAnswer }) {
     const [selected, setSelected] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = () => {
+    const [language, tutorialName] = window.location.pathname.split('/').slice(2);
+
+
+    const handleSubmit = async () => {
+        //console.log(language, tutorialName)
+        await fetch("http://localhost:5000/save-progress", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                language: language,
+                tutorialId: tutorialName
+            })
+        })
         setSubmitted(true);
     }
 

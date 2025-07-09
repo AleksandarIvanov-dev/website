@@ -4,7 +4,6 @@ import HomePage from './Components/HomePage/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUpPage from './Components/SignUpPage/SignUpPage';
 import AllTutorials from './Components/Tutorials/AllTutorials';
-import ProgrammingVSCoding from './Components/Tutorials/ProgrammingVSCoding';
 import ExamIntro from './Components/Exams/ExamIntro';
 import Exam from './Components/Exams/Exam';
 // User profile imports
@@ -40,7 +39,6 @@ function App() {
         <Route path="/tutorials" element={<AllTutorials />} />
         <Route path="/code-editor" element={<TextEditor />} />
         <Route path="/tutorials" element={<AllTutorials />} />
-        <Route path="/tutorials/programming-vs-coding" Component={withAuth(ProgrammingVSCoding)} />
         <Route path="/tutorials/python/intro" Component={withAuth(IntroPython)} />
         <Route path="/tutorials/python/io" Component={withAuth(InputAndOutput)} />
         <Route path="/tutorials/python/conventions" Component={withAuth(Conventions)} />
