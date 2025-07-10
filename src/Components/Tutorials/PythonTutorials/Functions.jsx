@@ -2,7 +2,7 @@ import React from "react";
 import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
-import DeclaringFunction from '../Images/DeclaringFunction.png';
+import DeclaringFunction from '../Images/Python/DeclaringFunction.png';
 import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 

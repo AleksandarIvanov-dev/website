@@ -2,9 +2,9 @@ import React from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from '../CodeEditor'
-import IfStatement from '../Images/if-statement.webp'
-import IfElseStatement from '../Images/if-else-statement.webp'
-import NestedStatements from '../Images/Nested-statement.webp'
+import IfStatement from '../Images/Python/if-statement.webp'
+import IfElseStatement from '../Images/Python/if-else-statement.webp'
+import NestedStatements from '../Images/Python/Nested-statement.webp'
 import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 

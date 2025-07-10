@@ -2,7 +2,7 @@ import React from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from '../CodeEditor'
-import OperatorsImage from '../Images/OperatorsInPython.png'
+import OperatorsImage from '../Images/Python/OperatorsInPython.png'
 import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 

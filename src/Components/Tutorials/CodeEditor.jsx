@@ -2,7 +2,7 @@ import React from "react";
 import Editor from '@monaco-editor/react';
 import { useState, useEffect } from "react";
 
-const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, World!")` }) => {
+const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, World!")`, programingLanguage = "python3" }) => {
     // 1. Use a state variable for the editor's content
     const [currentCode, setCurrentCode] = useState(initialCode); // Initialize with prop
     const [output, setOutput] = useState("");
@@ -50,7 +50,7 @@ const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, Wor
             <h3 className="text-xl font-semibold mb-4 text-gray-800">Изпробвай го сам!</h3>
             <Editor
                 height={height}
-                defaultLanguage="python"
+                defaultLanguage={programingLanguage || "python3"}// Default to Python if not specified
                 value={currentCode} // Bind value to currentCode state
                 theme="vs"
                 onChange={(val) => setCurrentCode(val || "")} // Update state when editor content changes

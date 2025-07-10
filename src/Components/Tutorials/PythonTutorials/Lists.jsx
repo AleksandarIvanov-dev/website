@@ -3,7 +3,7 @@ import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import Quiz from "../../Exams/Quiz";
-import ListImage from '../Images/python-list-index.png'
+import ListImage from '../Images/Python/python-list-index.png'
 import { Link } from "react-router-dom";
 
 export default function Lists() {

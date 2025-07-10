@@ -1,7 +1,7 @@
 import React from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
-import StringIndexing from '../Images/Python_String_index.png'
+import StringIndexing from '../Images/Python/Python_String_index.png'
 import CodeEditor from '../CodeEditor'
 import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
