@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
+import JavaCodeExecution from "../Images/Java/How-java-code-Executes.webp";
 import CodeEditor from "../CodeEditor";
 
 export default function Introduction() {
@@ -60,6 +61,16 @@ export default function Introduction() {
                         System.out.println("Hello, World!"); отпечатва съобщението на конзолата.
                     </p>
 
+                    <div className="flex justify-center mb-10">
+                        <div className="bg-blue-100 border-l-4 border-blue-500 rounded shadow-md p-4">
+                            <img
+                                src={JavaCodeExecution}
+                                alt="Илюстрация на изпълнение на Java код"
+                                className="w-full max-w-xl rounded-md h-auto"
+                            />
+                        </div>
+                    </div>
+
                     <div className="mt-12">
                         <h2 className="text-2xl font-semibold text-blue-600 mb-4">Опитайте сами!</h2>
                         <CodeEditor height="80px" initialCode={`public class HelloWorld {
@@ -69,17 +80,16 @@ export default function Introduction() {
 }`} programingLanguage="java" />
                     </div>
 
-                    <h2 className="text-2xl font-semibold text-blue-600 mb-2">Защо да изберете Python?</h2>
+                    <h2 className="text-2xl font-semibold text-blue-600 mb-2">Защо да изберете Java?</h2>
                     <ul className="list-disc list-inside text-gray-800 text-lg mb-4">
-                        <li>Лесен за учене - синтаксисът на Python е много близък до естествения език, което го прави изключително достъпен за бързо усвояване.</li>
-                        <li>Гъвкав и многофункционален - както споменахме, приложенията му са безкрайни – от уеб разработка до научни изчисления.</li>
-                        <li>Голяма общност и ресурси - имате достъп до хиляди библиотеки, фреймуърци и огромна общност, готова да помогне и сподели знания.</li>
-                        <li>Високо търсене на пазара на труда - уменията по Python са сред най-търсените в технологичната индустрия днес.</li>
+                        <li>Платформена независимост – Java приложенията могат да работят на всяка операционна система, благодарение на JVM.</li>
+                        <li>Стабилност и мащабируемост – Java е предпочитан избор за големи корпоративни системи и приложения, които изискват надеждност.</li>
+                        <li>Голяма общност и богата екосистема – Има огромен брой библиотеки, инструменти и ресурси, както и активна общност, която помага при решаване на проблеми.</li>
+                        <li>Високо търсене на пазара на труда – Java програмистите са сред най-търсените специалисти в ИТ индустрията.</li>
                     </ul>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/io"} className="text-blue-600 underline">Входни и изходни данни!</Link>
-
+                        Следващ урок <Link to={"/tutorials/java/io"} className="text-blue-600 underline">Входни и изходни данни!</Link>
                     </p>
                 </div>
             </div>

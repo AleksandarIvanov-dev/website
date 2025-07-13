@@ -22,6 +22,11 @@ import Loops from './Components/Tutorials/PythonTutorials/Loops';
 import Functions from './Components/Tutorials/PythonTutorials/Functions'
 import Lists from './Components/Tutorials/PythonTutorials/Lists'
 import Dictionaries from './Components/Tutorials/PythonTutorials/Dictionaries';
+// Java Tutorial imports
+import JavaIntro from "./Components/Tutorials/JavaTutorials/Introduction";
+import JavaIO from "./Components/Tutorials/JavaTutorials/InputAndOutput";
+import JavaConventions from "./Components/Tutorials/JavaTutorials/Conventions";
+import JavaDataTypes from './Components/Tutorials/JavaTutorials/DataTypes';
 
 import DropDownMenuSettings from './Components/Settings/DropDownMenuSettings';
 import LogInPage from './Components/LogInPage/LogIn';
@@ -51,6 +56,10 @@ function App() {
         <Route path="/tutorials/python/functions" Component={withAuth(Functions)} />
         <Route path="/tutorials/python/lists" Component={withAuth(Lists)} />
         <Route path="/tutorials/python/dict" Component={withAuth(Dictionaries)} />
+        <Route path="/tutorials/java/intro" Component={withAuth(JavaIntro)} />
+        <Route path="/tutorials/java/io" Component={withAuth(JavaIO)} />
+        <Route path="/tutorials/java/conventions" Component={withAuth(JavaConventions)} />
+        <Route path="/tutorials/java/data-types" Component={withAuth(JavaDataTypes)} />
         <Route path="/myprofile" Component={withAuth(UserDetails)} />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
         <Route path="/exams/start" Component={withAuth(Exam)} />
