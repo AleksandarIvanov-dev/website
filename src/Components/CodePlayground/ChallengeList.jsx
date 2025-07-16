@@ -46,7 +46,7 @@ export default function ChallengeList() {
                                     {challenge.title}
                                 </h2>
                                 <p className="text-gray-700 mb-4">
-                                    {challenge.language || "JavaScript"}
+                                    {challenge.languageForDisplay}
                                 </p>
                                 <p className="text-gray-700 mb-4">
                                     {challenge.description.slice(0, 100)}...

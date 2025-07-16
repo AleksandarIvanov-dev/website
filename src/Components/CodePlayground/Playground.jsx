@@ -40,7 +40,7 @@ export default function Playground() {
     if (loading) return <p className="p-8">Loading...</p>;
     if (!challenge) return <p className="p-8 text-red-600">Challenge not found</p>;
 
-    console.log(challenge)
+    if(challenge.language === "Python") challenge.language = "python";
 
     return (
         <div className="flex flex-col min-h-screen">
