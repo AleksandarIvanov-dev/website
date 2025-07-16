@@ -159,7 +159,7 @@ export default function Operators() {
                     </div>
 
                     <div className="mt-12">
-                        <CodeEditor height="120px" initialCode={`a = 10\nb = 3\nprint(a + b)\nprint(a ** b)`} />
+                        <CodeEditor height="120px" initialCode={`a = 10\nb = 3\nprint(a + b)\nprint(a ** b)`}  programingLanguage = "python"/>
                     </div>
 
                     <Quiz

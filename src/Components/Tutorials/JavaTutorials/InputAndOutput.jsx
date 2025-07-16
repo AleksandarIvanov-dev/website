@@ -27,7 +27,7 @@ export default function Introduction() {
                         <li>System.out: Това е стандартният изходен поток (System.out), който се използва за показване на резултата от програма върху изходно устройство като екрана на компютъра.</li>
                     </ul>
 
-                    <h4 className="text-2xl font-semibold text-blue-300 mb-2">Стандартни потоци в Java</h4>
+                    <h3 className="text-2xl font-semibold text-blue-600 mb-2">Функции за принтиране в Java</h3>
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
                         print():
                         Този метод в Java се използва за показване на текст на конзолата.
@@ -48,7 +48,7 @@ export default function Introduction() {
                         <li>%s – използва се за отпечатване на текст (String).</li>
                         <li>%d – използва се за отпечатване на цели числа (int, long).</li>
                         <li>%f – използва се за отпечатване на числа с плаваща запетая (float, double).</li>
-                        <li>Може да намерите още информация <Link to={"https://www.w3schools.com/java/ref_output_printf.asp"} className="text-blue-600 underline">тук</Link></li>
+                        Може да намерите още информация <Link to={"https://www.w3schools.com/java/ref_output_printf.asp"} className="text-blue-600 underline">тук</Link>
                     </ul>
 
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
@@ -59,7 +59,7 @@ export default function Introduction() {
 
                     <div className="mt-12">
                         <h2 className="text-2xl font-semibold text-blue-600 mb-4">Опитайте сами!</h2>
-                        <CodeEditor height="80px" initialCode={`class PrintExample {
+                        <CodeEditor height="500px" initialCode={`class PrintExample {
   
     public static void main(String[] args) {
         int x = 100;

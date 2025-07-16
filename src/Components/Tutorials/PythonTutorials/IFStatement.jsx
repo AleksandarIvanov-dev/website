@@ -48,7 +48,7 @@ if a < 20:
     print("a is smaller than 20")
 
 print("I'm not in if statement")`}
-                        />
+                         programingLanguage = "python"/>
                     </div>
 
                     <h2 className="text-2xl font-semibold text-blue-600 mb-2">Оператор if...else</h2>
@@ -74,8 +74,8 @@ print("I'm not in if statement")`}
 if a < 20:
     print("a is smaller than 20")
 else:
-    print("a is bigger than 20")`}
-                        />
+    print("a is bigger than 20")` }
+                            programingLanguage="python" />
                     </div>
 
                     <h2 className="text-2xl font-semibold text-blue-600 mb-2">Логически Оператори с If...Else</h2>
@@ -93,7 +93,7 @@ if (i > 0):
     print("i is positive")
 else:
     print("i is 0 or Negative")`}
-                        />
+                            programingLanguage="python" />
                     </div>
 
                     <h2 className="text-2xl font-semibold text-blue-600 mb-2">Вложени If...Else Оператори</h2>
@@ -141,7 +141,7 @@ else:
     print("i is not present")
     `
                             }
-                        />
+                            programingLanguage="python" />
                     </div>
 
                     <Quiz

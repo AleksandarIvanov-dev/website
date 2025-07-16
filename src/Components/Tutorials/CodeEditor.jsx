@@ -2,7 +2,7 @@ import React from "react";
 import Editor from '@monaco-editor/react';
 import { useState, useEffect } from "react";
 
-const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, World!")`, programingLanguage = "python3" }) => {
+const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, World!")`, programingLanguage = "python", versionIndex = "5", theme="vs" }) => {
     // 1. Use a state variable for the editor's content
     const [currentCode, setCurrentCode] = useState(initialCode); // Initialize with prop
     const [output, setOutput] = useState("");
@@ -14,18 +14,20 @@ const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, Wor
     useEffect(() => {
         setCurrentCode(initialCode);
     }, [initialCode]);
-
+    
     const runCode = async () => {
         setLoading(true);
         setOutput("");
+
+        if(programingLanguage === "python") programingLanguage = "python3";
 
         const payload = {
             clientId: "740b7e52c332bbbce02cdf69cb87461d",
             clientSecret: "3b2d3849be5207c8e9354bb38d51100b12867d1f9a94d3e5540b7b821cc91b43",
             script: currentCode, // Use the state variable for execution
             stdin: input,
-            language: "python3",
-            versionIndex: "5",
+            language: programingLanguage,
+            versionIndex: versionIndex,
             compileOnly: false,
         };
 
@@ -47,12 +49,11 @@ const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, Wor
 
     return (
         <div className="mt-10 bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">Изпробвай го сам!</h3>
             <Editor
                 height={height}
                 defaultLanguage={programingLanguage || "python3"}// Default to Python if not specified
                 value={currentCode} // Bind value to currentCode state
-                theme="vs"
+                theme={theme}
                 onChange={(val) => setCurrentCode(val || "")} // Update state when editor content changes
                 options={{
                     fontSize: 14,

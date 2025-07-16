@@ -48,7 +48,7 @@ export default function InputOutputPython() {
                     </p>
 
                     <div className="mt-12">
-                        <CodeEditor height="150px" initialCode={`name = input();\nprint("Hello, ", name)`} />
+                        <CodeEditor height="150px" initialCode={`name = input();\nprint("Hello, ", name)`} programingLanguage = "python" />
                     </div>
 
                     <Quiz

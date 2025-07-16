@@ -96,8 +96,10 @@ export default function IntroPython() {
                         </pre>
                     </div>
 
+
                     <div className="mt-12">
-                        <CodeEditor height="150px" initialCode={`n = 42\nf = 3.14\ns = "Hello, World!"\nprint(type(n))\nprint(type(f))\nprint(type(s))`} />
+                        <h2 className="text-2xl font-semibold text-blue-600 mb-2">Пробвай сам!</h2>
+                        <CodeEditor height="150px" initialCode={`n = 42\nf = 3.14\ns = "Hello, World!"\nprint(type(n))\nprint(type(f))\nprint(type(s))`} programingLanguage="python" theme="vs" />
                     </div>
 
                     <Quiz

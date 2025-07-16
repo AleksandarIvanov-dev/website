@@ -125,7 +125,7 @@ for i in range(0, counter):
                         <CodeEditor height="120px" initialCode={`for i in range(10):
     print(i)
     if i == 6:
-        break`} />
+        break`} programingLanguage = "python" />
                     </div>
 
                     <Quiz

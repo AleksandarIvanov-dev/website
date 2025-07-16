@@ -114,7 +114,7 @@ print(evenOdd(7))`}
         
         
 print(evenOdd(14))
-print(evenOdd(7))`} />
+print(evenOdd(7))`} programingLanguage="python" />
                     </div>
 
                     <Quiz

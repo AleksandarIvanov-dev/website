@@ -135,7 +135,7 @@ for item in a:
                     <div className="mt-12">
                         <CodeEditor height="100px" initialCode={`a = ["apple", "orange", "bananna"]
 for item in a:
-    print(item)`} />
+    print(item)`}  programingLanguage = "python"/>
                     </div>
 
                     <Quiz

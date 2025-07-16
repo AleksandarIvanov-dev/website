@@ -90,7 +90,7 @@ export default function Strings() {
                     </div>
 
                     <div className="mt-12">
-                        <CodeEditor height="100px" initialCode={`my_string = "hello"\nmy_string[0] = "H"`} />
+                        <CodeEditor height="100px" initialCode={`my_string = "hello"\nmy_string[0] = "H"` }  programingLanguage = "python" />
                     </div>
 
                     <Quiz

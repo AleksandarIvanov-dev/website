@@ -123,7 +123,7 @@ print(students["Ivan"]["city"])  # Sofia`}
   "model": "Mustang",
   "year": 1964
 }
-print(thisdict["brand"])`} />
+print(thisdict["brand"])` } programingLanguage="python" />
                     </div>
 
                     <Quiz

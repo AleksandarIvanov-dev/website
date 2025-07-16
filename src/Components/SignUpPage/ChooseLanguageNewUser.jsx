@@ -35,7 +35,7 @@ const LanguageSelector = () => {
                 },
                 credentials: 'include',
                 body: JSON.stringify({
-                    languages: selectedLanguages.map(lang => lang.toLowerCase())
+                    languages: selectedLanguages
                 })
             });
 
