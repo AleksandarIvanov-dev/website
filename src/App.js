@@ -1,11 +1,11 @@
 import React from 'react';
-import TextEditor from './Components/CodeEditor/TextEditor';
 import HomePage from './Components/HomePage/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUpPage from './Components/SignUpPage/SignUpPage';
 import AllTutorials from './Components/Tutorials/AllTutorials';
 import ExamIntro from './Components/Exams/ExamIntro';
 import Exam from './Components/Exams/Exam';
+import ProgrammingVSCoding from './Components/Tutorials/ProgrammingVSCoding';
 // User profile imports
 import UserDetails from './Components/UserProfile/UserDetails';
 
@@ -44,8 +44,7 @@ function App() {
         <Route path="/logIn" element={<LogInPage />} />
         <Route path="/signUp" element={<SignUpPage />} />
         <Route path="/tutorials" element={<AllTutorials />} />
-        <Route path="/code-editor" element={<TextEditor />} />
-        <Route path="/tutorials" element={<AllTutorials />} />
+        <Route path="/tutorials/programming-vs-coding" Component={withAuth(ProgrammingVSCoding)} />
         <Route path="/tutorials/python/intro" Component={withAuth(IntroPython)} />
         <Route path="/tutorials/python/io" Component={withAuth(InputAndOutput)} />
         <Route path="/tutorials/python/conventions" Component={withAuth(Conventions)} />

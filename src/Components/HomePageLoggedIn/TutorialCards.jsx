@@ -1,31 +1,21 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function TutorialCard({ tutorial }) {
-    const navigate = useNavigate();
-
-  const handleStart = () => {
-    navigate(tutorial.link);
-  };
-
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex items-center justify-between">
-      <div className="flex items-center gap-4">
-        <div className="w-16 h-16 bg-gray-300 rounded overflow-hidden">
-          <img
-            src={tutorial.image}
-            alt={tutorial.title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="text-gray-800">{tutorial.text}</div>
+    <div className="border p-4 rounded shadow-sm bg-white">
+      <img src={tutorial.image} alt={tutorial.title} className="w-full h-auto object-contain rounded-t-lg"/>
+      <h3 className="text-xl font-semibold">{tutorial.title}</h3>
+      <p className="text-gray-600">{tutorial.text}</p>
+
+      <div className="flex justify-between items-center mt-2">
+        <a href={tutorial.link} className="text-blue-600 underline">Go to tutorial</a>
+        {tutorial.status === "completed" && (
+          <span className="text-green-700 font-medium">✔ Completed</span>
+        )}
+        {tutorial.status === "started" && (
+          <span className="text-yellow-600 font-medium">⏳ In progress</span>
+        )}
       </div>
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        onClick={handleStart}
-      >
-        Start
-      </button>
     </div>
   );
 }

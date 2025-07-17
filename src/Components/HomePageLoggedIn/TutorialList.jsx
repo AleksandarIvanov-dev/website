@@ -3,7 +3,7 @@ import TutorialCard from "./TutorialCards";
 import { useLocation } from "react-router-dom";
 
 export default function TutorialList() {
-   const [tutorials, setTutorials] = useState([]);
+    const [tutorials, setTutorials] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -14,14 +14,11 @@ export default function TutorialList() {
     useEffect(() => {
         async function fetchTutorials() {
             try {
-                const response = await fetch(`http://localhost:5000/alltutorials?lang=${selectedLanguage}`, {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                const response = await fetch("http://localhost:5000/tutorial-progress", {
+                    method: "GET",
+                    credentials: "include",
+                    headers: { "Content-Type": "application/json" },
                 });
-
                 if (!response.ok) {
                     throw new Error('Failed to fetch tutorials');
                 }

@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import HomePageHeader from "../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../HomePage/FooterHomePage";
-import CodeEditor from "../Tutorials/CodeEditor";
 import ChallengeDescription from "./ChallengeDescription";
+import CodeEditorForChallenge from "./PlaygroundCodeEditor";
 import DropDownTheme from "../CodeEditor/DropDownTheme";
 
 
@@ -14,6 +14,7 @@ export default function Playground() {
     const [loading, setLoading] = useState(true);
     const [theme, setTheme] = useState('vs');
 
+    // Fetch challenge data from the server
     useEffect(() => {
         async function fetchChallenge() {
             try {
@@ -40,7 +41,7 @@ export default function Playground() {
     if (loading) return <p className="p-8">Loading...</p>;
     if (!challenge) return <p className="p-8 text-red-600">Challenge not found</p>;
 
-    if(challenge.language === "Python") challenge.language = "python";
+    console.log(challenge.language)
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -54,12 +55,11 @@ export default function Playground() {
 
                     <div className="bg-white rounded-lg shadow p-6 overflow-auto">
                         <DropDownTheme selectedTheme={theme} onSelect={setTheme} />
-                        <CodeEditor
+                        <CodeEditorForChallenge
                             height="400px"
                             initialCode={challenge.starterCode}
                             programingLanguage={challenge.language}
-                            versionIndex={'5'}
-                            theme={theme}
+                            challengeId={challenge._id}
                         />
                     </div>
                 </div>
