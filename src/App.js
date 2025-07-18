@@ -27,6 +27,7 @@ import JavaIntro from "./Components/Tutorials/JavaTutorials/Introduction";
 import JavaIO from "./Components/Tutorials/JavaTutorials/InputAndOutput";
 import JavaConventions from "./Components/Tutorials/JavaTutorials/Conventions";
 import JavaDataTypes from './Components/Tutorials/JavaTutorials/DataTypes';
+import JavaNumbers from './Components/Tutorials/JavaTutorials/Numbers'
 
 import ChallengeList from './Components/CodePlayground/ChallengeList';
 import Playground from './Components/CodePlayground/Playground';
@@ -61,6 +62,7 @@ function App() {
         <Route path="/tutorials/java/io" Component={withAuth(JavaIO)} />
         <Route path="/tutorials/java/conventions" Component={withAuth(JavaConventions)} />
         <Route path="/tutorials/java/data-types" Component={withAuth(JavaDataTypes)} />
+        <Route path="/tutorials/java/numbers" Component={withAuth(JavaNumbers)} />
         <Route path="/challenges" Component={withAuth(ChallengeList)} />
         <Route path="/playground/:challengeId" Component={withAuth(Playground)} />
         <Route path="/myprofile" Component={withAuth(UserDetails)} />
