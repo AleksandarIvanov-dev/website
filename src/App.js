@@ -27,7 +27,9 @@ import JavaIntro from "./Components/Tutorials/JavaTutorials/Introduction";
 import JavaIO from "./Components/Tutorials/JavaTutorials/InputAndOutput";
 import JavaConventions from "./Components/Tutorials/JavaTutorials/Conventions";
 import JavaDataTypes from './Components/Tutorials/JavaTutorials/DataTypes';
-import JavaNumbers from './Components/Tutorials/JavaTutorials/Numbers'
+import JavaVariables from './Components/Tutorials/JavaTutorials/Variables';
+import JavaStrings from './Components/Tutorials/JavaTutorials/Strings'
+import JavaOperators from './Components/Tutorials/JavaTutorials/Operators'
 
 import ChallengeList from './Components/CodePlayground/ChallengeList';
 import Playground from './Components/CodePlayground/Playground';
@@ -62,7 +64,9 @@ function App() {
         <Route path="/tutorials/java/io" Component={withAuth(JavaIO)} />
         <Route path="/tutorials/java/conventions" Component={withAuth(JavaConventions)} />
         <Route path="/tutorials/java/data-types" Component={withAuth(JavaDataTypes)} />
-        <Route path="/tutorials/java/numbers" Component={withAuth(JavaNumbers)} />
+        <Route path="/tutorials/java/variables" Component={withAuth(JavaVariables)} />
+        <Route path="/tutorials/java/strings" Component={withAuth(JavaStrings)} />
+        <Route path="/tutorials/java/operators" Component={withAuth(JavaOperators)} />
         <Route path="/challenges" Component={withAuth(ChallengeList)} />
         <Route path="/playground/:challengeId" Component={withAuth(Playground)} />
         <Route path="/myprofile" Component={withAuth(UserDetails)} />
