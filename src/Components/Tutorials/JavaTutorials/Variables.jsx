@@ -13,7 +13,7 @@ export default function Introduction() {
             <div className="min-h-screen bg-white p-6 md:p-12">
                 <div className="max-w-7xl mx-auto bg-gray-50 shadow-lg rounded-lg p-8">
                     <h1 className="text-3xl md:text-4xl font-bold text-blue-700 mb-6">
-                        Числа в Java
+                        Променливи в Java
                     </h1>
 
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
@@ -28,7 +28,7 @@ export default function Introduction() {
                         <li>Стойност (Value): Действителните данни, присвоени на променливата.</li>
                     </ul>
 
-                    <h2 className="text-2xl font-semibold text-blue-600 mb-2">деклариране на променливи в Java</h2>
+                    <h2 className="text-2xl font-semibold text-blue-600 mb-2">Деклариране на променливи в Java</h2>
                     <div className="flex justify-center mb-10">
                         <div className="bg-blue-100 border-l-4 border-blue-500 rounded shadow-md p-4">
                             <img
@@ -134,7 +134,7 @@ class LocalVariable {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/java/numbers"} className="text-blue-600 underline">Числа в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/strings"} className="text-blue-600 underline">Символни низове в Java</Link>
                     </p>
                 </div>
             </div>
