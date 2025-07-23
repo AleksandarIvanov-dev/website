@@ -8,7 +8,17 @@ import NestedStatements from '../Images/Python/Nested-statement.webp'
 import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
+
 export default function Operators() {
+    //const location = useLocation(); // ✅ Hook to get current URL
+
+    // useEffect(() => {
+    //     const parts = location.pathname.split("/");
+    //     const tutorialId = parts[parts.length - 1];
+
+    //     startTutorial(tutorialId); // ✅ Send tutorial ID
+    // }, [location.pathname]);
+
     return (
         <div>
             <HomePageHeader />
@@ -48,7 +58,7 @@ if a < 20:
     print("a is smaller than 20")
 
 print("I'm not in if statement")`}
-                         programingLanguage = "python"/>
+                            programingLanguage="python" />
                     </div>
 
                     <h2 className="text-2xl font-semibold text-blue-600 mb-2">Оператор if...else</h2>

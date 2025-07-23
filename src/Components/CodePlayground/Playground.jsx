@@ -61,6 +61,8 @@ export default function Playground() {
                             programingLanguage={challenge.language}
                             challengeId={challenge._id}
                         />
+                        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                        <div class="elfsight-app-30425757-dbb3-4271-9a6c-9b0de79fc125" data-elfsight-app-lazy></div>
                     </div>
                 </div>
             </main>

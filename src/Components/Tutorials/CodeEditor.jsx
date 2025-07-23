@@ -2,7 +2,23 @@ import React from "react";
 import Editor from '@monaco-editor/react';
 import { useState, useEffect } from "react";
 
-const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, World!")`, programingLanguage = "python", versionIndex = "5", theme="vs" }) => {
+export const startTutorial = async (tutorialId) => {
+    try {
+        const response = await fetch("http://localhost:5000/start-tutorial", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ tutorialId }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error("Error in startTutorial:", error);
+    }
+};
+
+const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, World!")`, programingLanguage = "python", versionIndex = "5", theme = "vs" }) => {
     // 1. Use a state variable for the editor's content
     const [currentCode, setCurrentCode] = useState(initialCode); // Initialize with prop
     const [output, setOutput] = useState("");
@@ -14,12 +30,12 @@ const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, Wor
     useEffect(() => {
         setCurrentCode(initialCode);
     }, [initialCode]);
-    
+
     const runCode = async () => {
         setLoading(true);
         setOutput("");
 
-        if(programingLanguage === "python") programingLanguage = "python3";
+        if (programingLanguage === "python") programingLanguage = "python3";
 
         const payload = {
             clientId: "740b7e52c332bbbce02cdf69cb87461d",

@@ -1,27 +1,32 @@
 import React, { useState } from "react";
 
-export default function Quiz({ question, code, options, correctAnswer }) {
+export default function Quiz({ question, code, options, correctAnswer, onComplete }) {
     const [selected, setSelected] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
     const [language, tutorialName] = window.location.pathname.split('/').slice(2);
 
 
-    const handleSubmit = async () => {
-        //console.log(language, tutorialName)
-        await fetch("http://localhost:5000/save-progress", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                language: language,
-                tutorialId: tutorialName
-            })
+const handleSubmit = async () => {
+    await fetch("http://localhost:5000/save-progress", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            language: language,
+            tutorialId: tutorialName
         })
-        setSubmitted(true);
+    });
+
+    setSubmitted(true);
+
+    // ✅ If correct and onComplete is provided, call it
+    if (selected === correctAnswer && typeof onComplete === 'function') {
+        onComplete();
     }
+};
 
 
     return (
@@ -65,7 +70,7 @@ export default function Quiz({ question, code, options, correctAnswer }) {
                     {selected === correctAnswer ? (
                         <span className="text-green-600">Правилно</span>
                     ) : (
-                        <span className="text-red-500">Грешно. Правилният отговор е: {correctAnswer}</span>
+                        <span className="text-red-500">Грешно. Опитай отново!</span>
                     )}
                 </p>
             )}
