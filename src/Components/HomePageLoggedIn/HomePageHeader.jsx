@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function HomePageHeader() {
@@ -22,7 +22,7 @@ export default function HomePageHeader() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-        const handleUserDetails = async () => {
+    const handleUserDetails = async () => {
         try {
             const res = await fetch("http://localhost:5000/getuserprofile", {
                 method: "GET",
@@ -61,7 +61,14 @@ export default function HomePageHeader() {
 
     return (
         <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
-            <h1 className="text-xl font-bold text-blue-600">Programin'DE</h1>
+            <h1 className="text-xl font-bold text-blue-600"><Link to={"/home"}>Programin'DE</Link></h1>
+
+            <nav className="space-x-6 text-gray-700 font-medium hidden md:block">
+                <Link to="/challenges" className="hover:text-blue-500">Challenges</Link>
+                <Link to="/tutorials" className="hover:text-blue-500">Tutorials</Link>
+                <Link to="/exams" className="hover:text-blue-500">Exams</Link>
+                <Link to="/playground" className="hover:text-blue-500">Playground</Link>
+            </nav>
 
             <div className="relative" ref={dropdownRef}>
                 <button

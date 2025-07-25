@@ -1,53 +1,54 @@
 import React from "react";
-import Header from "../HeaderForTutorials/HeaderComponent";
+import HomePageHeader from "../HomePageLoggedIn/HomePageHeader";
+import FooterHomePage from "../HomePage/FooterHomePage";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function AllTutorials() {
+    const [data, setData] = useState([]);
+    const [language, setLanguage] = useState('')
+    useEffect(() => {
+        async function getTutorialsByLanguage() {
+            try {
+                const response = await fetch("http://localhost:5000/get-tutorials", {
+                    credentials: "include",
+                    method: "POST"
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setData(data)
+                    setLanguage(data[0].language)
+                } else {
+                    console.error("Failed to fetch user profile");
+                }
+            } catch (error) {
+
+            }
+        }
+
+        getTutorialsByLanguage()
+
+    }, [])
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-            <Header />
-            <h1 className="text-3xl font-bold text-blue-700 mb-6">All Tutorials</h1>
-            <p className="text-lg text-gray-700 mb-4">
-                Explore our comprehensive tutorials to enhance your programming skills.
-            </p>
-            <div className="w-full max-w-2xl bg-white rounded-lg shadow-md p-6">
-                <ul className="space-y-4">
-                    {/* Example tutorial links */}
-                    <li>
-                        <Link to="/tutorials/programming-vs-coding">Програмиране vs кодиране</Link>
-                    </li>
-                    <li>
-                        <Link to="/tutorials/python/intro">Въведение в Python</Link>
-                    </li>
-                    <li>
-                        <Link to="/tutorials/variables">Variables and Data Types</Link>
-                    </li>
-                    <li>
-                        <Link to="/tutorials/operators">Operators</Link>
-                    </li>
-                    <li>
-                        <Link to="/tutorials/integer">Type: Integers</Link>
-                    </li>
-                    <li>
-                        <Link to="/tutorials/float">Type: Float</Link>
-                    </li>
-                    <li>
-                        <Link to="/tutorials/string">Type: String</Link>
-                    </li>
-                    <li>
-                        <Link to="/tutorials/bool">Type: Boolean</Link>
-                    </li>
-                    <li>
-                        <Link to="/exams">Exam</Link>
-                    </li>
-                    <li>
-                        <Link to="/settings">Settings</Link>
-                    </li>
-                    <li>
-                        <Link to="/home">Settings</Link>
-                    </li>
-                </ul>
+        <div>
+            <HomePageHeader />
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+                <h1 className="text-3xl font-bold text-blue-700 mb-6">Уроци за {language}</h1>
+                <p className="text-lg text-gray-700 mb-4">
+                </p>
+                <div className="w-full max-w-2xl bg-white rounded-lg shadow-md p-6">
+                    <ul className="space-y-4">
+                        {data.map((tutorial, index) => (
+                            <li key={index}>
+                                <Link to={tutorial.link} className="text-blue-600 hover:underline">
+                                    {tutorial.title}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
+            <FooterHomePage />
         </div>
     );
 }

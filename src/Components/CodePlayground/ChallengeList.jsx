@@ -51,6 +51,9 @@ export default function ChallengeList() {
                                 <p className="text-gray-700 mb-4">
                                     {challenge.description.slice(0, 100)}...
                                 </p>
+                                <p className="text-gray-700 mb-4">
+                                    {challenge.difficulty}
+                                </p>
                                 <Link
                                     to={`/playground/${challenge._id}`}
                                     className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"

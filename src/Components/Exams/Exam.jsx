@@ -1,6 +1,7 @@
 import React from "react";
 //import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { data } from "react-router-dom";
 
 
 export default function DataVariablesExam() {
@@ -10,29 +11,37 @@ export default function DataVariablesExam() {
     const [submitted, setSubmitted] = useState(false);
     const [correctAnswers, setCorrectAnswers] = useState({});
 
-    // Load questions based on selected language
-    // This will dynamically import the JSON file based on the selected language
     useEffect(() => {
-        if (language) {
-            import(`./questions/${language}.json`)
-                .then((module) => setQuestions(module.default))
-                .catch((err) => console.error("Error loading questions:", err));
-        }
-    }, [language]);
+        if (!language) return;
 
-    // Load correct answers based on selected language
-    useEffect(() => {
-        if (language) {
-            import(`./questions/answers/${language}Answers.json`)
-                .then((module) => setCorrectAnswers(module.default))
-                .catch((err) => console.error("Error loading answers:", err));
-        }
+        const fetchQuestions = async () => {
+            try {
+                const res = await fetch(`http://localhost:5000/get-exam/${language}`, {
+                    credentials: "include",
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" }
+                });
+
+                const data = await res.json();
+                setQuestions(data.questions);  // expects { questions: [...] } from server
+                setCorrectAnswers(
+                    data.questions.reduce((acc, q) => {
+                        acc[q._id] = q.correctAnswers;
+                        return acc;
+                    }, {})
+                );
+            } catch (err) {
+                console.error("Error fetching questions:", err);
+            }
+        };
+
+        fetchQuestions();
     }, [language]);
 
     // Handle answer change
     // This function updates the user's answer for a specific question
-    const handleChange = (id, value) => {
-        setUserAnswers((prev) => ({ ...prev, [id]: value }));
+    const handleChange = (questionId, selectedKey) => {
+        setUserAnswers((prev) => ({ ...prev, [questionId]: selectedKey }));
     };
 
     const handleSubmit = (e) => {
@@ -44,13 +53,11 @@ export default function DataVariablesExam() {
         // Validate answers
         let correctCount = 0;
         Object.entries(userAnswers).forEach(([id, answer]) => {
-            const isCorrect = correctAnswers[id].answer === answer;
-            if (isCorrect) {
+            const correct = correctAnswers[id];
+            if (Array.isArray(correct) && correct.includes(answer)) {
                 correctCount++;
             }
         });
-
-        // TO DO: Replace with actual user ID from authentication context or state
 
         // Fetch method to submit answers and get back the results
         // /* 
@@ -59,7 +66,7 @@ export default function DataVariablesExam() {
             headers: {
                 "Content-Type": "application/json"
             },
-            credentials: "include", // 👈 Important: sends JWT cookie
+            credentials: "include", // Sends JWT cookie
             body: JSON.stringify({
                 language,
                 answers: userAnswers,
@@ -103,33 +110,36 @@ export default function DataVariablesExam() {
             className="bg-[#0F172A] text-white p-6 min-h-screen flex flex-col gap-6"
         >
             {questions.map((q, index) => (
-                <div key={q.id} className="...">
-                    <h3>{index + 1}. {q.question}</h3>
-                    {q.code && (
-                        <pre><code>{q.code}</code></pre>
-                    )}
-                    <div className="grid gap-2">
-                        {Object.entries(q.options).map(([key, opt]) => (
+                <div key={q._id || index} className="mb-6">
+                    <h3 className="font-semibold mb-2">
+                        {index + 1}. {q.questionText}
+                    </h3>
+
+                    {q.options.map((opt, keyIndex) => {
+                        const key = String.fromCharCode(65 + keyIndex); // A, B, C, D...
+
+                        return (
                             <label
                                 key={key}
-                                className={`block cursor-pointer p-2 rounded-md border ${userAnswers[q.id] === key
+                                className={`block cursor-pointer p-2 rounded-md border ${userAnswers[q._id] === key
                                     ? "bg-blue-600 border-blue-400"
                                     : "bg-gray-700 border-gray-600 hover:bg-gray-600"
                                     }`}
                             >
                                 <input
                                     type="radio"
-                                    name={q.id}
+                                    name={q._id}
                                     value={key}
-                                    onChange={() => handleChange(q.id, key)}
+                                    onChange={() => handleChange(q._id, key)}
                                     className="hidden"
                                 />
                                 {key}: {opt}
                             </label>
-                        ))}
-                    </div>
+                        );
+                    })}
                 </div>
             ))}
+
 
             <button
                 type="submit"

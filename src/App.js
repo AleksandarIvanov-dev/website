@@ -33,7 +33,7 @@ import JavaOperators from './Components/Tutorials/JavaTutorials/Operators'
 
 import ChallengeList from './Components/CodePlayground/ChallengeList';
 import Playground from './Components/CodePlayground/Playground';
-import DropDownMenuSettings from './Components/Settings/DropDownMenuSettings';
+import AddExamForm from './Components/Exams/AddExam';
 import LogInPage from './Components/LogInPage/LogIn';
 import Home from './Components/HomePageLoggedIn/Home';
 import withAuth from './Components/withAuth';
@@ -72,7 +72,7 @@ function App() {
         <Route path="/myprofile" Component={withAuth(UserDetails)} />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
         <Route path="/exams/start" Component={withAuth(Exam)} />
-        <Route path='/settings' element={<DropDownMenuSettings />} />
+        <Route path='/test' element={<AddExamForm />} /> {/* Change the route to /add-exam */}
         <Route path="/home" Component={withAuth(Home)} />
         <Route path="/home/lang" Component={withAuth(LanguageSelector)} />
         {/* Add more routes as needed */}

@@ -14,8 +14,8 @@ export default function TutorialList() {
     useEffect(() => {
         async function fetchTutorials() {
             try {
-                const response = await fetch("http://localhost:5000/tutorial-progress", {
-                    method: "GET",
+                const response = await fetch("http://localhost:5000/get-tutorial", {
+                    method: "POST",
                     credentials: "include",
                     headers: { "Content-Type": "application/json" },
                 });

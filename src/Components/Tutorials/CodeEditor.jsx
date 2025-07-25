@@ -18,7 +18,7 @@ export const startTutorial = async (tutorialId) => {
     }
 };
 
-const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, World!")`, programingLanguage = "python", versionIndex = "5", theme = "vs" }) => {
+const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, World!")`, programingLanguage = "", versionIndex = "5", theme = "vs" }) => {
     // 1. Use a state variable for the editor's content
     const [currentCode, setCurrentCode] = useState(initialCode); // Initialize with prop
     const [output, setOutput] = useState("");
@@ -36,6 +36,7 @@ const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, Wor
         setOutput("");
 
         if (programingLanguage === "python") programingLanguage = "python3";
+        if (programingLanguage === "") programingLanguage = "" //for JavaScript 
 
         const payload = {
             clientId: "740b7e52c332bbbce02cdf69cb87461d",
@@ -67,7 +68,7 @@ const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, Wor
         <div className="mt-10 bg-white p-6 rounded-lg shadow-md">
             <Editor
                 height={height}
-                defaultLanguage={programingLanguage || "python3"}// Default to Python if not specified
+                defaultLanguage={programingLanguage}
                 value={currentCode} // Bind value to currentCode state
                 theme={theme}
                 onChange={(val) => setCurrentCode(val || "")} // Update state when editor content changes

@@ -8,13 +8,7 @@ export default function TutorialCard({ tutorial }) {
       <p className="text-gray-600">{tutorial.text}</p>
 
       <div className="flex justify-between items-center mt-2">
-        <a href={tutorial.link + `/${tutorial._id}`} className="text-blue-600 underline">Go to tutorial</a>
-        {tutorial.status === "completed" && (
-          <span className="text-green-700 font-medium">✔ Completed</span>
-        )}
-        {tutorial.status === "started" && (
-          <span className="text-yellow-600 font-medium">⏳ In progress</span>
-        )}
+        <a href={tutorial.link} className="text-blue-600 underline">Go to tutorial</a>
       </div>
     </div>
   );

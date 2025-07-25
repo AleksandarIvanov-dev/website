@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Editor from "@monaco-editor/react";
 
-export default function CodeEditorForChallenge({ height, initialCode, programingLanguage, challengeId }) {
+export default function CodeEditorForChallenge({ height, initialCode, programingLanguage, challengeId, theme }) {
     const [code, setCode] = useState(initialCode);
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
             });
 
             const data = await response.json();
-            console.log(data)
+            //console.log(data)
 
         } catch (error) {
             console.log(error)
@@ -39,7 +39,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
             });
 
             const data = await response.json();
-            console.log(data)
+            //console.log(data)
 
         } catch (error) {
             console.log(error)
@@ -55,6 +55,10 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
 
     const runAllTestCases = async () => {
         setLoading(true);
+
+        if (programingLanguage === "pytohn") programingLanguage = "python3"
+        if (programingLanguage === "javascript") programingLanguage = "nodejs"
+
         try {
             const response = await fetch("http://localhost:5000/execute-code", {
                 method: "POST",
@@ -86,14 +90,16 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
             setLoading(false);
         }
     };
+
     return (
         <div className="bg-white p-4 rounded shadow">
             <Editor
                 height={height}
-                defaultLanguage={programingLanguage?.toLowerCase() || "python"}
+                defaultLanguage={programingLanguage}
                 value={code}
                 onChange={(val) => setCode(val || "")}
                 options={{ fontSize: 14, minimap: { enabled: false } }}
+                theme={theme}
             />
 
             <button
