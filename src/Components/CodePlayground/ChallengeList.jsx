@@ -35,7 +35,7 @@ export default function ChallengeList() {
             <HomePageHeader />
             <div className="min-h-screen bg-gray-50 p-6 md:p-10">
                 <div className="max-w-6xl mx-auto">
-                    <h1 className="text-3xl font-bold text-gray-800 mb-8">Coding Challenges</h1>
+                    <h1 className="text-3xl font-bold text-gray-800 mb-8">Предизвикателства за програмиране</h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {challenges.map((challenge) => (
                             <div
@@ -46,13 +46,15 @@ export default function ChallengeList() {
                                     {challenge.title}
                                 </h2>
                                 <p className="text-gray-700 mb-4">
-                                    {challenge.languageForDisplay}
+                                   Език: {challenge.languageForDisplay}
                                 </p>
                                 <p className="text-gray-700 mb-4">
-                                    {challenge.description.slice(0, 100)}...
+                                  Описание: {challenge.description.length > 100
+                                        ? `${challenge.description.slice(0, 100)}...`
+                                        : challenge.description}
                                 </p>
                                 <p className="text-gray-700 mb-4">
-                                    {challenge.difficulty}
+                                   Трудност: {challenge.difficulty}
                                 </p>
                                 <Link
                                     to={`/playground/${challenge._id}`}

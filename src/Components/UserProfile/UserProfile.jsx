@@ -6,9 +6,14 @@ import { useState } from "react";
 
 export default function UserProfile({ user }) {
     const [formData, setFormData] = useState({
-        firstName: user.firstName || "",
-        lastName: user.lastName || "",
-        email: user.email || "",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        progressLevel: user.progressLevel,
+        languages: user.languages,
+        solvedChallenges: user.solvedChallenges,
+        tutorialProgress: user.tutorialProgress,
+        solvedExams: user.solvedExams
     });
 
     const handleChange = (e) => {
@@ -61,6 +66,55 @@ export default function UserProfile({ user }) {
                             value={formData.email}
                             onChange={handleChange}
                             className="w-full px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-sm text-gray-700 mb-1">Ниво на напредък</label>
+                        <input
+                            type="text"
+                            value={formData.progressLevel}
+                            disabled
+                            className="w-full px-3 py-2 rounded-md bg-gray-100 border border-gray-300 text-gray-800"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-sm text-gray-700 mb-1">Избрани езици за учене</label>
+                        <input
+                            type="text"
+                            value={formData.languages?.join(', ') || "—"}
+                            disabled
+                            className="w-full px-3 py-2 rounded-md bg-gray-100 border border-gray-300 text-gray-800"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-sm text-gray-700 mb-1">Брой решени предизвикателства</label>
+                        <input
+                            type="text"
+                            value={formData.solvedChallenges?.length || 0}
+                            disabled
+                            className="w-full px-3 py-2 rounded-md bg-gray-100 border border-gray-300 text-gray-800"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-sm text-gray-700 mb-1">Прогрес по уроци</label>
+                        <input
+                            type="text"
+                            value={formData.tutorialProgress?.filter(t => t.status === "completed").length || 0}
+                            disabled
+                            className="w-full px-3 py-2 rounded-md bg-gray-100 border border-gray-300 text-gray-800"
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label className="block text-sm text-gray-700 mb-1">Брой предадени изпити</label>
+                        <input
+                            type="text"
+                            value={formData.solvedExams?.length || 0}
+                            disabled
+                            className="w-full px-3 py-2 rounded-md bg-gray-100 border border-gray-300 text-gray-800"
                         />
                     </div>
 
