@@ -27,10 +27,12 @@ import JavaIO from "./Components/Tutorials/JavaTutorials/InputAndOutput";
 import JavaConventions from "./Components/Tutorials/JavaTutorials/Conventions";
 import JavaDataTypes from './Components/Tutorials/JavaTutorials/DataTypes';
 import JavaVariables from './Components/Tutorials/JavaTutorials/Variables';
-import JavaStrings from './Components/Tutorials/JavaTutorials/Strings'
-import JavaOperators from './Components/Tutorials/JavaTutorials/Operators'
+import JavaStrings from './Components/Tutorials/JavaTutorials/Strings';
+import JavaOperators from './Components/Tutorials/JavaTutorials/Operators';
+import JavaIfStatement from './Components/Tutorials/JavaTutorials/IFStatement';
 
 import ChallengeList from './Components/CodePlayground/ChallengeList';
+import AllTutorials from './Components/Tutorials/AllTutorials'
 import Playground from './Components/CodePlayground/Playground';
 import AddExamForm from './Components/Exams/AddExam';
 import LogInPage from './Components/LogInPage/LogIn';
@@ -65,12 +67,14 @@ function App() {
         <Route path="/tutorials/java/variables" Component={withAuth(JavaVariables)} />
         <Route path="/tutorials/java/strings" Component={withAuth(JavaStrings)} />
         <Route path="/tutorials/java/operators" Component={withAuth(JavaOperators)} />
+        <Route path="/tutorials/java/conditions" Component={withAuth(JavaIfStatement)} />
         <Route path="/challenges" Component={withAuth(ChallengeList)} />
         <Route path="/playground/:challengeId" Component={withAuth(Playground)} />
         <Route path="/myprofile" Component={withAuth(UserDetails)} />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
         <Route path="/exams/start" Component={withAuth(Exam)} />
-        <Route path='/test' element={<AddExamForm />} /> {/* Change the route to /add-exam */}
+        <Route path='/test' element={<AddExamForm />} />{/* Change the route to /add-exam */}
+        <Route path='/tutorials' element={<AllTutorials />} />
         <Route path="/home" Component={withAuth(Home)} />
         <Route path="/home/lang" Component={withAuth(LanguageSelector)} />
         {/* Add more routes as needed */}

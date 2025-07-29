@@ -37,9 +37,6 @@ export default function Introduction() {
                             {`Classes: class Student { }
          class Integer {}
          class Scanner {}`}
-                            {`Classes: class Student { }
-         class Integer {}
-         class Scanner {}`}
                         </pre>
                     </div>
 

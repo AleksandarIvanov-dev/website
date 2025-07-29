@@ -243,7 +243,7 @@ class TestingOperators
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/java/operators"} className="text-blue-600 underline">Условни оператори в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/conditions"} className="text-blue-600 underline">Условни оператори в Java</Link>
                     </p>
                 </div>
             </div>

@@ -87,7 +87,7 @@ export default function Introduction() {
 
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/java/con"} className="text-blue-600 underline">Правила за писане в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/conventions"} className="text-blue-600 underline">Правила за писане в Java</Link>
                     </p>
                 </div>
             </div>
