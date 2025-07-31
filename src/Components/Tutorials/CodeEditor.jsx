@@ -62,7 +62,9 @@ const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, Wor
         } finally {
             setLoading(false);
         }
+        console.log(payload)
     };
+
 
     return (
         <div className="mt-10 bg-white p-6 rounded-lg shadow-md">

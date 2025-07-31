@@ -6,10 +6,7 @@ export default function TutorialList() {
     const [tutorials, setTutorials] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const selectedLanguage = queryParams.get("lang") || "c#";
+    const [selectedLanguage, setSelectedLanguage] = useState('');
 
     useEffect(() => {
         async function fetchTutorials() {
@@ -25,6 +22,7 @@ export default function TutorialList() {
 
                 const data = await response.json();
                 setTutorials(data);
+                setSelectedLanguage(data[0].language)
             } catch (err) {
                 setError(err.message);
             } finally {

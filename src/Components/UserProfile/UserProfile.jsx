@@ -92,7 +92,7 @@ export default function UserProfile({ user }) {
                         <label className="block text-sm text-gray-700 mb-1">Брой решени предизвикателства</label>
                         <input
                             type="text"
-                            value={formData.solvedChallenges?.length || 0}
+                            value={formData.solvedChallenges?.filter(c => c.status === "completed").length || 0}
                             disabled
                             className="w-full px-3 py-2 rounded-md bg-gray-100 border border-gray-300 text-gray-800"
                         />

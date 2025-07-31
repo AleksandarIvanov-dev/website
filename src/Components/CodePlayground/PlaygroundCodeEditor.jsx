@@ -51,12 +51,12 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
             hasStartedRef.current = true;
             startChallenge();
         }
-    }, []);
+    }, [challengeId]);
 
     const runAllTestCases = async () => {
         setLoading(true);
 
-        if (programingLanguage === "pytohn") programingLanguage = "python3"
+        if (programingLanguage === "python") programingLanguage = "python3"
         if (programingLanguage === "javascript") programingLanguage = "nodejs"
 
         try {

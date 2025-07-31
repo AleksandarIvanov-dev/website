@@ -17,6 +17,7 @@ export default function UserDetails() {
                 });
 
                 const data = await response.json();
+                console.log(data)
                 if (response.ok) {
                     setUser(data);
                 } else {
