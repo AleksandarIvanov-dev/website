@@ -1,7 +1,6 @@
 import React from "react";
 //import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { data } from "react-router-dom";
 
 
 export default function DataVariablesExam() {
@@ -23,7 +22,7 @@ export default function DataVariablesExam() {
                 });
 
                 const data = await res.json();
-                setQuestions(data.questions);  // expects { questions: [...] } from server
+                setQuestions(data.questions);
                 setCorrectAnswers(
                     data.questions.reduce((acc, q) => {
                         acc[q._id] = q.correctAnswers;
@@ -35,9 +34,9 @@ export default function DataVariablesExam() {
             }
         };
 
+
         fetchQuestions();
     }, [language]);
-
     // Handle answer change
     // This function updates the user's answer for a specific question
     const handleChange = (questionId, selectedKey) => {
@@ -68,10 +67,11 @@ export default function DataVariablesExam() {
             },
             credentials: "include", // Sends JWT cookie
             body: JSON.stringify({
-                language,
                 answers: userAnswers,
+                language,
+                questions: questions.map(q => q._id),
                 correctCount,
-                totalQuestions: questions.length
+                totalQuestion: questions.length,
             })
         })
             .then((res) => res.json())
