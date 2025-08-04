@@ -135,7 +135,7 @@ for item in a:
                     <div className="mt-12">
                         <CodeEditor height="100px" initialCode={`a = ["apple", "orange", "bananna"]
 for item in a:
-    print(item)`}  programingLanguage = "python"/>
+    print(item)`} programingLanguage="python" />
                     </div>
 
                     <Quiz
@@ -150,6 +150,12 @@ c = temp_list.pop()`}
 
                     <p className="text-gray-700 text-lg leading-relaxed">
                         Следващ урок <Link to={"/tutorials/python/dict"} className="text-blue-600 underline">Създаване на речници в Python</Link>
+                    </p>
+
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/python/python-lists/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Списъци в Python
+                        </a>
                     </p>
                 </div>
             </div>

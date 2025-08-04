@@ -91,6 +91,11 @@ export default function Introduction() {
                     <p className="text-gray-700 text-lg leading-relaxed">
                         Следващ урок <Link to={"/tutorials/java/io"} className="text-blue-600 underline">Входни и изходни данни!</Link>
                     </p>
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/java/introduction-to-java/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Въведение в Java
+                        </a>
+                    </p>
                 </div>
             </div>
             <FooterHomePage />

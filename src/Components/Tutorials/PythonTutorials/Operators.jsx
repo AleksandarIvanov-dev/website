@@ -159,7 +159,7 @@ export default function Operators() {
                     </div>
 
                     <div className="mt-12">
-                        <CodeEditor height="120px" initialCode={`a = 10\nb = 3\nprint(a + b)\nprint(a ** b)`}  programingLanguage = "python"/>
+                        <CodeEditor height="120px" initialCode={`a = 10\nb = 3\nprint(a + b)\nprint(a ** b)`} programingLanguage="python" />
                     </div>
 
                     <Quiz
@@ -170,6 +170,12 @@ export default function Operators() {
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
                         Следващ урок <Link to={"/tutorials/python/conditions"} className="text-blue-600 underline">Условни оператори в Python!</Link>
+                    </p>
+
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/python/python-operators/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Python Оператори
+                        </a>
                     </p>
                 </div>
             </div>

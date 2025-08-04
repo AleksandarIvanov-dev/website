@@ -11,7 +11,7 @@ export default function IntroPython() {
             <div className="min-h-screen bg-white p-6 md:p-12">
                 <div className="max-w-7xl mx-auto bg-gray-50 shadow-lg rounded-lg p-8">
                     <h1 className="text-3xl md:text-4xl font-bold text-blue-700 mb-6">
-                        Въведение в програмирането с Python.
+                        Въведение в програмирането с Python
                     </h1>
 
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
@@ -60,7 +60,12 @@ export default function IntroPython() {
 
                     <p className="text-gray-700 text-lg leading-relaxed">
                         Следващ урок <Link to={"/tutorials/python/io"} className="text-blue-600 underline">Входни и изходни данни!</Link>
+                    </p>
 
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/python/introduction-to-python/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Въведение в програмирането с Python
+                        </a>
                     </p>
                 </div>
             </div>

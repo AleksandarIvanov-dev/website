@@ -163,6 +163,11 @@ else:
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
                         Следващ урок <Link to={"/tutorials/python/cycles"} className="text-blue-600 underline">Цикли в Python</Link>
                     </p>
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/python/conditional-statements-in-python/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Условни оператори
+                        </a>
+                    </p>
                 </div>
             </div>
             <FooterHomePage />

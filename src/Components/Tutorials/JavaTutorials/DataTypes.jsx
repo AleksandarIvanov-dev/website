@@ -170,14 +170,19 @@ export default function Introduction() {
                     <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-900 p-4 rounded mb-6">
                         <p className="font-semibold">Забележка:</p>
                         <p className="mt-1 text-gray-800 text-base leading-relaxed">
-                           За разлика от езици като C или C++, които използват набора от символи ASCII, Java използва набора от символи Unicode за поддръжка на интернационализация. 
-                           Unicode изисква повече от 8 бита за представяне на широк спектър от символи от различни езици, включително латински, гръцки, кирилица, китайски, арабски и други. 
-                           В резултат на това Java използва 2 байта за съхранение на "char", което гарантира, че може да представи всеки Unicode символ.
+                            За разлика от езици като C или C++, които използват набора от символи ASCII, Java използва набора от символи Unicode за поддръжка на интернационализация.
+                            Unicode изисква повече от 8 бита за представяне на широк спектър от символи от различни езици, включително латински, гръцки, кирилица, китайски, арабски и други.
+                            В резултат на това Java използва 2 байта за съхранение на "char", което гарантира, че може да представи всеки Unicode символ.
                         </p>
                     </div>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
                         Следващ урок <Link to={"/tutorials/java/variables"} className="text-blue-600 underline">Промелниви в Java</Link>
+                    </p>
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/java/java-data-types/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Типове данни в Java
+                        </a>
                     </p>
                 </div>
             </div>

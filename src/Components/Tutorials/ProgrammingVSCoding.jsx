@@ -2,7 +2,7 @@ import React from "react";
 import HomePageHeader from "../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../HomePage/FooterHomePage";
 
-export default function InputOutputPython() {
+export default function ProgrammingVSCoding() {
     return (
         <div>
             <HomePageHeader />
@@ -54,7 +54,14 @@ export default function InputOutputPython() {
                         могат да бъдат перфектни кодери. Всичко зависи от вас сами да изберете това, което искате да изследвате.
                         Компютърните науки са обширна област, която постоянно се развива и няма да спре в определен момент; ще намерите много за изследване и наслада.
                     </p>
+
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/blogs/programming-vs-coding-a-short-comparison-between-both/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Програмиране vs кодиране
+                        </a>
+                    </p>
                 </div>
+
             </div>
             <FooterHomePage />
         </div>

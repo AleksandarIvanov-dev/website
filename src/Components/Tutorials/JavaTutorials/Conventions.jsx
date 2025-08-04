@@ -63,12 +63,17 @@ export default function Introduction() {
 
                     <h2 className="text-2xl font-semibold text-blue-600 mb-2">Константни променливи</h2>
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                       Константните променливи трябва да са изписани с главни букви, като думите са разделени с долни черти ("_").
-                       Съществуват различни константи, използвани в предварително дефинирани класове като Float, Long, String и т.н.
+                        Константните променливи трябва да са изписани с главни букви, като думите са разделени с долни черти ("_").
+                        Съществуват различни константи, използвани в предварително дефинирани класове като Float, Long, String и т.н.
                     </p>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
                         Следващ урок <Link to={"/tutorials/java/data-types"} className="text-blue-600 underline">Типове данни в Java</Link>
+                    </p>
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/java/java-naming-conventions/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Конвенции за именуване в Java
+                        </a>
                     </p>
                 </div>
             </div>

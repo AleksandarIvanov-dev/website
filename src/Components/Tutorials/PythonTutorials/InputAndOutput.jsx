@@ -48,7 +48,7 @@ export default function InputOutputPython() {
                     </p>
 
                     <div className="mt-12">
-                        <CodeEditor height="150px" initialCode={`name = input();\nprint("Hello, ", name)`} programingLanguage = "python" />
+                        <CodeEditor height="150px" initialCode={`name = input();\nprint("Hello, ", name)`} programingLanguage="python" />
                     </div>
 
                     <Quiz
@@ -59,6 +59,11 @@ export default function InputOutputPython() {
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
                         Следващ урок <Link to={"/tutorials/python/conventions"} className="text-blue-600 underline">Правила за писане в Python</Link>.
+                    </p>
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/python/input-and-output-in-python/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Вход и изход в Python
+                        </a>
                     </p>
                 </div>
             </div>

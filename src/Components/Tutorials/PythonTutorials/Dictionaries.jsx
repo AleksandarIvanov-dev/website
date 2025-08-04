@@ -135,6 +135,11 @@ print(thisdict["brand"])` } programingLanguage="python" />
                     <p className="text-gray-700 text-lg leading-relaxed">
                         Следващ урок <Link to={"/tutorials/python/functions"} className="text-blue-600 underline">Създаване на функции в Python</Link>
                     </p>
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/python/python-dictionary/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Речници в Python
+                        </a>
+                    </p>
                 </div>
             </div>
             <FooterHomePage />

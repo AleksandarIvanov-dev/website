@@ -90,7 +90,7 @@ export default function Strings() {
                     </div>
 
                     <div className="mt-12">
-                        <CodeEditor height="100px" initialCode={`my_string = "hello"\nmy_string[0] = "H"` }  programingLanguage = "python" />
+                        <CodeEditor height="100px" initialCode={`my_string = "hello"\nmy_string[0] = "H"`} programingLanguage="python" />
                     </div>
 
                     <Quiz
@@ -101,6 +101,11 @@ export default function Strings() {
 
                     <p className="text-gray-700 text-lg leading-relaxed">
                         Следващ урок <Link to={"/tutorials/python/operators"} className="text-blue-600 underline">Оператори в Python!</Link>
+                    </p>
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/python/python-string/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Python Символни низове
+                        </a>
                     </p>
                 </div>
             </div>

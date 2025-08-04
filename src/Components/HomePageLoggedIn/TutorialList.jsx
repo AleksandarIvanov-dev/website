@@ -31,6 +31,7 @@ export default function TutorialList() {
         }
 
         fetchTutorials();
+        //console.log(tutorials)
     }, [selectedLanguage]); // refetch when language changes
 
     if (loading) return <p>Loading tutorials...</p>;

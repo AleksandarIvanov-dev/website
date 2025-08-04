@@ -125,7 +125,7 @@ for i in range(0, counter):
                         <CodeEditor height="120px" initialCode={`for i in range(10):
     print(i)
     if i == 6:
-        break`} programingLanguage = "python" />
+        break`} programingLanguage="python" />
                     </div>
 
                     <Quiz
@@ -136,6 +136,12 @@ for i in range(0, counter):
 
                     <p className="text-gray-700 text-lg leading-relaxed">
                         Следващ урок <Link to={"/tutorials/python/lists"} className="text-blue-600 underline">Списъци в Python</Link>
+                    </p>
+
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/python/loops-in-python/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Цикли в Python
+                        </a>
                     </p>
                 </div>
             </div>

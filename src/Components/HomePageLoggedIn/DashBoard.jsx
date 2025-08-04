@@ -22,7 +22,8 @@ export default function DashboardStats() {
                 setCountChallenges(data.challenges.length)
 
                 //console.log(completedChallenges)
-                const completedExams = data.solvedExams?.length || 0;
+                const completedExams = data.exams.filter(exam => exam.isCompleted === true).length
+                //console.log(completedExams)
                 const completedTutorials = Object.values(data.namesOfSolvedQuiz || {}).flat().length || 0;
 
                 setUserProgress({ completedChallenges, completedExams, completedTutorials });

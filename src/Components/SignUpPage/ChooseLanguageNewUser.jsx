@@ -38,10 +38,8 @@ const LanguageSelector = () => {
                     languages: selectedLanguages
                 })
             });
-
-            // Navigate to home with the first selected language
-            const firstLang = selectedLanguages[0]?.toLowerCase() || "c#";
-            navigate(`/home?lang=${encodeURIComponent(firstLang)}`);
+            
+            navigate("/home");
         } catch (error) {
             console.error('Failed to update preferred languages:', error);
         }
@@ -53,7 +51,7 @@ const LanguageSelector = () => {
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
 
                 <h2 className="text-3xl font-bold text-gray-800 mb-8">
-                    Select the programming languages you want to learn:
+                    Изберете езикът, с който искате да започнете:
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -78,7 +76,7 @@ const LanguageSelector = () => {
 
                 {selectedLanguages.length === 0 && (
                     <div className="mt-10 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-md shadow-md">
-                        <p className="text-lg">Please select at least one language to continue.</p>
+                        <p className="text-lg">Моля, изберете поне един език за програмиране.</p>
                     </div>
                 )}
 

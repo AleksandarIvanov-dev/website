@@ -112,6 +112,11 @@ export default function IntroPython() {
                         Следващ урок <Link to={"/tutorials/python/numbers"} className="text-blue-600 underline">Числа в Python</Link>
 
                     </p>
+                    <p className="text-sm text-gray-500 italic text-right mt-6">
+                        Източник: <a href="https://www.geeksforgeeks.org/python/python-variables/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                            Geeks for Geeks - Python променливи
+                        </a>
+                    </p>
                 </div>
             </div>
             <FooterHomePage />
