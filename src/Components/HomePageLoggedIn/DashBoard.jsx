@@ -19,12 +19,16 @@ export default function DashboardStats() {
                 const data = await response.json();
                 console.log(data)
                 const completedChallenges = data.userData.solvedChallenges?.filter(c => c.status === "completed");
-                setCountChallenges(data.challenges.length)
+                setCountChallenges(data.allChallengesByLanguage.length)
 
                 //console.log(completedChallenges)
                 const completedExams = data.exams.filter(exam => exam.isCompleted === true).length
                 //console.log(completedExams)
-                const completedTutorials = Object.values(data.namesOfSolvedQuiz || {}).flat().length || 0;
+                const completedTutorials = data.userData.progressTutorial.reduce((total, langEntry) => {
+                    // Count tutorials in this language with endedAt not null
+                    const completedInLang = langEntry.tutorials.filter(t => t.endedAt !== null).length;
+                    return total + completedInLang;
+                }, 0);
 
                 setUserProgress({ completedChallenges, completedExams, completedTutorials });
             } catch (err) {

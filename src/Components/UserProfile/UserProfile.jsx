@@ -1,6 +1,7 @@
 import React from "react";
 import HomePageHeader from "../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../HomePage/FooterHomePage";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 
@@ -82,10 +83,11 @@ export default function UserProfile({ user }) {
                         <label className="block text-sm text-gray-700 mb-1">Избрани езици за учене</label>
                         <input
                             type="text"
-                            value={formData.languages?.join(', ') || "—"}
+                            value={formData.languages?.join(', ')}
                             disabled
                             className="w-full px-3 py-2 rounded-md bg-gray-100 border border-gray-300 text-gray-800"
                         />
+                        <Link className="text-blue-600" to={"/home/lang"}>Добави други програмни ецизи</Link>
                     </div>
 
                     <div className="mb-4">

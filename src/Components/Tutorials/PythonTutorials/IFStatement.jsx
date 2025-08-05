@@ -1,23 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from '../CodeEditor'
 import IfStatement from '../Images/Python/if-statement.webp'
 import IfElseStatement from '../Images/Python/if-else-statement.webp'
 import NestedStatements from '../Images/Python/Nested-statement.webp'
+import { startTutorial, endTutorial } from "../CodeEditor";
 import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 
-export default function Operators() {
-    //const location = useLocation(); // ✅ Hook to get current URL
-
-    // useEffect(() => {
-    //     const parts = location.pathname.split("/");
-    //     const tutorialId = parts[parts.length - 1];
-
-    //     startTutorial(tutorialId); // ✅ Send tutorial ID
-    // }, [location.pathname]);
+export default function IFStatement() {
+    useEffect(() => {
+        startTutorial("Python If statement", "Python");
+    }, []);
 
     return (
         <div>
@@ -158,10 +154,12 @@ else:
                         question="Какъв е операторът, който се използва за проверка на условие в Python?"
                         options={["else", "elif", "if"]}
                         correctAnswer={"if"}
+                        quizLanguage={"Python"}
+                        quizName={"If statements in Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок <Link to={"/tutorials/python/cycles"} className="text-blue-600 underline">Цикли в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/cycles"} onClick={() => endTutorial("Python If statement", "Python")} className="text-blue-600 underline">Цикли в Python</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/python/conditional-statements-in-python/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

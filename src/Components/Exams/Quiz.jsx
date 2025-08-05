@@ -1,33 +1,27 @@
 import React, { useState } from "react";
+import { completeQuiz } from "../Tutorials/CodeEditor";
 
-export default function Quiz({ question, code, options, correctAnswer, onComplete }) {
+export default function Quiz({ question, code, options, correctAnswer, onComplete, quizLanguage, quizName }) {
     const [selected, setSelected] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
-    const [language, tutorialName] = window.location.pathname.split('/').slice(2);
+    const handleSubmit = async () => {
+        setSubmitted(true);
 
+        if (selected === correctAnswer) {
+            try {
+                // Save quiz progress
+                await completeQuiz(quizLanguage, quizName);
 
-const handleSubmit = async () => {
-    await fetch("http://localhost:5000/save-progress", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            language: language,
-            tutorialId: tutorialName
-        })
-    });
-
-    setSubmitted(true);
-
-    // ✅ If correct and onComplete is provided, call it
-    if (selected === correctAnswer && typeof onComplete === 'function') {
-        onComplete();
-    }
-};
-
+                // Optional: trigger parent logic
+                if (typeof onComplete === 'function') {
+                    onComplete();
+                }
+            } catch (err) {
+                console.error("Error saving quiz progress:", err);
+            }
+        }
+    };
 
     return (
         <div className="my-6 p-4 bg-white text-black border border-gray-300 rounded shadow-sm">
@@ -69,6 +63,7 @@ const handleSubmit = async () => {
                 <p className="mt-2 text-sm font-medium">
                     {selected === correctAnswer ? (
                         <span className="text-green-600">Правилно</span>
+
                     ) : (
                         <span className="text-red-500">Грешно. Опитай отново!</span>
                     )}

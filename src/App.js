@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUpPage from './Components/SignUpPage/SignUpPage';
 import ExamIntro from './Components/Exams/ExamIntro';
 import Exam from './Components/Exams/Exam';
+import ChoseExam from './Components/Exams/ChooseExam'
 import ProgrammingVSCoding from './Components/Tutorials/ProgrammingVSCoding';
 // User profile imports
 import UserDetails from './Components/UserProfile/UserDetails';
@@ -72,7 +73,8 @@ function App() {
         <Route path="/playground/:challengeId" Component={withAuth(Playground)} />
         <Route path="/myprofile" Component={withAuth(UserDetails)} />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
-        <Route path="/exams/start" Component={withAuth(Exam)} />
+        <Route path="/exams/choose" Component={withAuth(ChoseExam)} />
+        <Route path="/exam/start/:language" Component={withAuth(Exam)} />
         <Route path='/test' element={<AddExamForm />} />{/* Change the route to /add-exam */}
         <Route path='/tutorials' element={<AllTutorials />} />
         <Route path="/home" Component={withAuth(Home)} />

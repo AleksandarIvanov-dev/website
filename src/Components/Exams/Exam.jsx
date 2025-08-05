@@ -1,156 +1,141 @@
-import React from "react";
-//import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function DataVariablesExam() {
-    const [language, setLanguage] = useState("");
+    const { language } = useParams();
     const [questions, setQuestions] = useState([]);
     const [userAnswers, setUserAnswers] = useState({});
-    const [submitted, setSubmitted] = useState(false);
     const [correctAnswers, setCorrectAnswers] = useState({});
+    const [submitted, setSubmitted] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(null);
 
+    // Fetch questions on mount
     useEffect(() => {
-        if (!language) return;
-
         const fetchQuestions = async () => {
             try {
                 const res = await fetch(`http://localhost:5000/get-exam/${language}`, {
                     credentials: "include",
-                    method: "GET",
-                    headers: { "Content-Type": "application/json" }
+                    headers: { "Content-Type": "application/json" },
                 });
-
                 const data = await res.json();
                 setQuestions(data.questions);
-                setCorrectAnswers(
-                    data.questions.reduce((acc, q) => {
-                        acc[q._id] = q.correctAnswers;
-                        return acc;
-                    }, {})
-                );
+                setCorrectAnswers(Object.fromEntries(data.questions.map(q => [q._id, q.correctAnswers])));
+                startTimer(data.time);
             } catch (err) {
                 console.error("Error fetching questions:", err);
             }
         };
 
-
-        fetchQuestions();
+        if (language) fetchQuestions();
     }, [language]);
-    // Handle answer change
-    // This function updates the user's answer for a specific question
-    const handleChange = (questionId, selectedKey) => {
-        setUserAnswers((prev) => ({ ...prev, [questionId]: selectedKey }));
+
+    // Timer logic
+    const startTimer = (durationMs) => {
+        const endTime = Date.now() + durationMs;
+        const interval = setInterval(() => {
+            const remaining = endTime - Date.now();
+            if (remaining <= 0) {
+                clearInterval(interval);
+                setTimeLeft(0);
+                submitExam(true); // Auto-submit
+            } else {
+                setTimeLeft(remaining);
+            }
+        }, 1000);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setSubmitted(true);
+    const handleAnswer = (questionId, optionKey) => {
+        setUserAnswers(prev => ({ ...prev, [questionId]: optionKey }));
+    };
 
-        console.log("Submitting answers:", { language, userAnswers });
+    const calculateScore = () => {
+        return Object.entries(userAnswers).filter(([id, ans]) =>
+            correctAnswers[id]?.includes(ans)
+        ).length;
+    };
 
-        // Validate answers
-        let correctCount = 0;
-        Object.entries(userAnswers).forEach(([id, answer]) => {
-            const correct = correctAnswers[id];
-            if (Array.isArray(correct) && correct.includes(answer)) {
-                correctCount++;
-            }
-        });
-
-        // Fetch method to submit answers and get back the results
-        // /* 
+    const submitExam = (auto = false) => {
+        const correctCount = calculateScore();
         fetch("http://localhost:5000/exam/results", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include", // Sends JWT cookie
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 answers: userAnswers,
                 language,
                 questions: questions.map(q => q._id),
                 correctCount,
                 totalQuestion: questions.length,
-            })
+            }),
         })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log("Exam result submitted:", data);
-                // Optionally show grade or redirect to a summary page
+            .then(res => res.json())
+            .then(data => {
+                console.log(auto ? "Auto-submitted:" : "Manually submitted:", data);
             })
-            .catch((err) => {
-                console.error("Error submitting exam result:", err);
-            });
-        // */
+            .catch(err => console.error("Error submitting exam:", err));
     };
 
-    if (!language) {
-        return (
-            <div className="bg-[#0F172A] text-white min-h-screen p-6 flex flex-col items-start gap-4">
-                <h2 className="text-xl font-semibold">Select Programming Language</h2>
-                <select
-                    className="bg-gray-800 border border-gray-600 rounded-md p-2 text-white"
-                    onChange={(e) => setLanguage(e.target.value)}
-                >
-                    <option value="">-- Choose Language --</option>
-                    <option value="javascript">JavaScript</option>
-                    <option value="python">Python</option>
-                    <option value="java">Java</option>
-                    <option value="csharp">C#</option>
-                    <option value="cpp">C++</option>
-                </select>
-            </div>
-        );
-    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (submitted) return;
+        setSubmitted(true);
+        submitExam(false);
+    };
+
+    const formatTime = (ms) => {
+        const secs = Math.floor(ms / 1000);
+        const mins = String(Math.floor(secs / 60)).padStart(2, "0");
+        return `${mins}:${String(secs % 60).padStart(2, "0")}`;
+    };
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="bg-[#0F172A] text-white p-6 min-h-screen flex flex-col gap-6"
-        >
-            {questions.map((q, index) => (
-                <div key={q._id || index} className="mb-6">
-                    <h3 className="font-semibold mb-2">
-                        {index + 1}. {q.questionText}
-                    </h3>
+        <form onSubmit={handleSubmit} className="bg-[#0F172A] text-white p-6 min-h-screen flex flex-col gap-6">
+            {timeLeft !== null && (
+                <div className="text-xl font-bold text-yellow-300">Оставащо време: {formatTime(timeLeft)}</div>
+            )}
 
-                    {q.options.map((opt, keyIndex) => {
-                        const key = String.fromCharCode(65 + keyIndex); // A, B, C, D...
-
+            {questions.map((q, idx) => (
+                <div key={q._id} className="mb-6">
+                    <h3 className="font-semibold mb-2">{idx + 1}. {q.questionText}</h3>
+                    {q.options.map((opt, optIdx) => {
+                        const optionKey = String.fromCharCode(65 + optIdx);
+                        const selected = userAnswers[q._id] === optionKey;
                         return (
                             <label
-                                key={key}
-                                className={`block cursor-pointer p-2 rounded-md border ${userAnswers[q._id] === key
-                                    ? "bg-blue-600 border-blue-400"
-                                    : "bg-gray-700 border-gray-600 hover:bg-gray-600"
-                                    }`}
+                                key={optionKey}
+                                className={`block cursor-pointer p-2 rounded-md border transition
+                                    ${selected ? "bg-blue-600 border-blue-400" : "bg-gray-700 border-gray-600 hover:bg-gray-600"}
+                                    ${submitted ? "opacity-60 cursor-not-allowed" : ""}
+                                `}
                             >
                                 <input
                                     type="radio"
                                     name={q._id}
-                                    value={key}
-                                    onChange={() => handleChange(q._id, key)}
+                                    value={optionKey}
+                                    onChange={() => handleAnswer(q._id, optionKey)}
                                     className="hidden"
+                                    disabled={submitted}
                                 />
-                                {key}: {opt}
+                                {optionKey}: {opt}
                             </label>
                         );
                     })}
                 </div>
             ))}
 
-
             <button
                 type="submit"
-                className="bg-indigo-600 hover:bg-indigo-500 px-6 py-3 rounded-md font-semibold self-start"
+                disabled={submitted}
+                className="bg-indigo-600 hover:bg-indigo-500 px-6 py-3 rounded-md font-semibold self-start disabled:opacity-50"
             >
-                Submit Answers
+                {submitted ? "Submitted" : "Submit Answers"}
             </button>
 
             {submitted && (
-                <p className="text-green-400 font-medium mt-4">✅ Answers submitted successfully.</p>
+                <p className="text-green-400 font-medium mt-4">
+                    ✅ Exam submitted. You got {calculateScore()} / {questions.length} correct.
+                </p>
             )}
         </form>
     );
-};
+}

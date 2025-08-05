@@ -2,13 +2,14 @@ import React from "react";
 import Editor from '@monaco-editor/react';
 import { useState, useEffect } from "react";
 
-export const startTutorial = async (tutorialId) => {
+export const startTutorial = async (tutorialName, tutorialLanguage) => {
     try {
+        //console.log(tutorialName)
         const response = await fetch("http://localhost:5000/start-tutorial", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
-            body: JSON.stringify({ tutorialId }),
+            body: JSON.stringify({ tutorialName, tutorialLanguage }),
         });
 
         const data = await response.json();
@@ -17,6 +18,46 @@ export const startTutorial = async (tutorialId) => {
         console.error("Error in startTutorial:", error);
     }
 };
+
+export const endTutorial = async (tutorialName, tutorialLanguage) => {
+    try {
+        //console.log(tutorialName)
+        const response = await fetch("http://localhost:5000/end-tutorial", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ tutorialName, tutorialLanguage }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error("Error in startTutorial:", error);
+    }
+};
+
+export const completeQuiz = async (language, quizName) => {
+    try {
+        const response = await fetch("http://localhost:5000/quiz-complete", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ language, quizName }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error);
+        }
+
+        console.log(data.message);
+        return data; // optional: let calling code use this
+    } catch (error) {
+        console.error("Error while saving quiz:", error.message);
+        throw error;
+    }
+}
 
 const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, World!")`, programingLanguage = "", versionIndex = "5", theme = "vs" }) => {
     // 1. Use a state variable for the editor's content

@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import DeclaringFunction from '../Images/Python/DeclaringFunction.png';
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
 export default function Loops() {
+    useEffect(() => {
+        startTutorial("Python functions", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -124,10 +128,10 @@ print(evenOdd(7))`} programingLanguage="python" />
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/functions"} className="text-blue-600 underline">Създаване на функции в Python</Link>
+                        Следващ урок <Link to={"/challenges"} onClick={() => endTutorial("Python functions", "Python")} className="text-blue-600 underline">Упражнения</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
-                        Източник: <a href="https://www.geeksforgeeks.org/python/python-functions/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                        Източник: <a href="https://www.geeksforgeeks.org/python/python-functions/"  target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
                             Geeks for Geeks - Функции в Python
                         </a>
                     </p>

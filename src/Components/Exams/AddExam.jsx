@@ -5,6 +5,7 @@ export default function AddExamForm() {
     const [questionCount, setQuestionCount] = useState(0);
     const [questions, setQuestions] = useState([]);
     const [difficulty, setDifficulty] = useState("")
+    const [examTime, setExamTime] = useState("")
 
     const handleQuestionCountChange = (e) => {
         const count = parseInt(e.target.value);
@@ -39,7 +40,8 @@ export default function AddExamForm() {
         const payload = {
             language,
             questions,
-            difficulty
+            difficulty,
+            examTime: examTime * 60 * 1000 //converts from minutes to ms
         };
 
         try {
@@ -70,38 +72,58 @@ export default function AddExamForm() {
                         className="bg-gray-800 border border-gray-600 rounded-md p-2 text-white"
                         onChange={(e) => setLanguage(e.target.value)}
                         value={language}
+                        required
                     >
-                        <option value="">-- Choose Language --</option>
-                        <option value="javascript">JavaScript</option>
-                        <option value="python">Python</option>
-                        <option value="java">Java</option>
-                        <option value="csharp">C#</option>
-                        <option value="cpp">C++</option>
+                        <option value="">-- Изберете език --</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Python">Python</option>
+                        <option value="Java">Java</option>
+                        <option value="C#">C#</option>
+                        <option value="C++">C++</option>
                     </select>
 
                     <select
                         className="bg-gray-800 border border-gray-600 rounded-md p-2 text-white"
                         onChange={(e) => setDifficulty(e.target.value)}
                         value={difficulty}
+                        required
                     >
                         <option value="">-- Choose Difficulty --</option>
-                        <option value="beginner">Beginner</option>
-                        <option value="intermediate">Intermediate</option>
-                        <option value="advanced">Advanced</option>
+                        <option value="beginner"> Ниво Начинаещи</option>
+                        <option value="intermediate">Ниво Междинно</option>
+                        <option value="advanced">Ниво Напреднали</option>
+
                     </select>
                 </div>
 
-                <div>
-                    <label className="block mb-2 font-semibold text-slate-300">Number of Questions</label>
-                    <input
-                        type="number"
-                        min={1}
-                        max={50}
-                        className="bg-slate-800 border border-slate-600 p-2 rounded w-full text-white"
-                        onChange={handleQuestionCountChange}
-                        value={questionCount}
-                    />
+                <div className="flex gap-4">
+                    {/* Number of Questions */}
+                    <div className="w-1/2">
+                        <label className="block mb-2 font-semibold text-slate-300">Брой на Въпроси</label>
+                        <input
+                            type="number"
+                            min={1}
+                            max={50}
+                            className="bg-slate-800 border border-slate-600 p-2 rounded w-full text-white"
+                            onChange={handleQuestionCountChange}
+                            value={questionCount}
+                            required
+                        />
+                    </div>
+
+                    {/* Exam Duration */}
+                    <div className="w-1/2">
+                        <label className="block mb-2 font-semibold text-slate-300">Времетраене на изпита (в минути):</label>
+                        <input
+                            type="number"
+                            className="bg-slate-800 border border-slate-600 p-2 rounded w-full text-white"
+                            value={examTime}
+                            onChange={(e) => setExamTime(Number(e.target.value))}
+                            required
+                        />
+                    </div>
                 </div>
+
 
                 {questions.map((q, index) => (
                     <div

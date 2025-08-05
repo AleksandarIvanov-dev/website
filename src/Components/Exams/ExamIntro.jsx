@@ -18,7 +18,7 @@ export default function DataVariablesExamIntro() {
                 <li>Разполагате с 30 минути, за да завършите изпита</li>
                 <li>Времето стартира след натискане на бутона започни изпит</li>
             </ul>
-            <Link to="/exams/start" className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+            <Link to="/exams/choose" className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
                 Избери изпит
             </Link>
             <FooterHomePage />

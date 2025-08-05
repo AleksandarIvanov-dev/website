@@ -21,8 +21,7 @@ export default function LogIn() {
             const data = await response.json();
 
             if (response.ok) {
-                const preferredLang = data.user.languages?.[0] || "c#"; // default to csharp if none
-                navigate(`/home?lang=${preferredLang}`);
+                navigate(`/home`);
             } else {
                 setError(data.error);
             }
