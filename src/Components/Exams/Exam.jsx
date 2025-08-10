@@ -8,6 +8,7 @@ export default function DataVariablesExam() {
     const [correctAnswers, setCorrectAnswers] = useState({});
     const [submitted, setSubmitted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(null);
+    const [examId, setExamId] = useState(null);
     let navigate = useNavigate();
 
     // Fetch questions on mount
@@ -19,6 +20,7 @@ export default function DataVariablesExam() {
                     headers: { "Content-Type": "application/json" },
                 });
                 const data = await res.json();
+                setExamId(data._id)
                 setQuestions(data.questions);
                 setCorrectAnswers(Object.fromEntries(data.questions.map(q => [q._id, q.correctAnswers])));
                 startTimer(data.time);
@@ -73,6 +75,7 @@ export default function DataVariablesExam() {
             credentials: "include",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
+                examId: examId,
                 answers: userAnswers,
                 language: language,
                 questions: questions.map(q => q._id),

@@ -9,6 +9,7 @@ import ProgrammingVSCoding from './Components/Tutorials/ProgrammingVSCoding';
 // User profile imports
 import UserDetails from './Components/UserProfile/UserDetails';
 import UserStats from './Components/UserProfile/UserStats';
+import UserExamResults from './Components/UserProfile/UserExamResults';
 
 //Python Tutorial imports
 import IntroPython from './Components/Tutorials/PythonTutorials/Introduction';
@@ -74,6 +75,7 @@ function App() {
         <Route path="/playground/:challengeId" Component={withAuth(Playground)} />
         <Route path="/myprofile" Component={withAuth(UserDetails)} />
         <Route path="/mystats" Component={withAuth(UserStats)} />
+        <Route path="/mystats/exam/:id" element={<UserExamResults />} />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
         <Route path="/exams/choose" Component={withAuth(ChoseExam)} />
         <Route path="/exam/start/:language" Component={withAuth(Exam)} />

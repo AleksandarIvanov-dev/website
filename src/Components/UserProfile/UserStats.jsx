@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import HomePageHeader from '../HomePageLoggedIn/HomePageHeader';
 import FooterHomePage from '../HomePage/FooterHomePage';
 
@@ -97,34 +98,39 @@ export default function UserStats() {
                                     <div key={idx} className="p-4 border rounded shadow bg-white">
                                         {examDetails && (
                                             <p className="text-gray-600">
-                                                <strong>Език:</strong> {examDetails.language.charAt(0).toUpperCase() + examDetails.language.slice(1)}
+                                                <strong>Език:</strong>{" "}
+                                                {examDetails.language.charAt(0).toUpperCase() + examDetails.language.slice(1)}
                                             </p>
                                         )}
-                                        <p><strong>Оценка:</strong> {userExam.grade ? `${userExam.grade}` : 'Няма оценка'}</p>
-                                        <p><strong>Общ брой въпроси:</strong> {userExam.totalQuestions}</p>
-                                        <p><strong>Верни отговори:</strong> {userExam.correctCount}</p>
-                                        <p><strong>Подаден на:</strong> {new Date(userExam.submittedAt).toLocaleString()}</p>
+                                        <p>
+                                            <strong>Оценка:</strong> {userExam.grade ? `${userExam.grade}` : "Няма оценка"}
+                                        </p>
+                                        <p>
+                                            <strong>Общ брой въпроси:</strong> {userExam.totalQuestions}
+                                        </p>
+                                        <p>
+                                            <strong>Верни отговори:</strong> {userExam.correctCount}
+                                        </p>
+                                        <p>
+                                            <strong>Подаден на:</strong>{" "}
+                                            {new Date(userExam.submittedAt).toLocaleString()}
+                                        </p>
 
-                                        <details className="mt-2">
-                                            <summary className="cursor-pointer text-blue-600">Виж отговорите</summary>
-                                            <ul className="list-disc pl-5 mt-1">
-                                                {userExam.allAnswers.map((ans, index) => (
-                                                    <li key={index}>
-                                                        {typeof ans === 'object'
-                                                            ? `Въпрос: ${ans.questionId} → Отговор: ${ans.answer}`
-                                                            : JSON.stringify(ans)}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </details>
+                                        {/* Link to the exam details page */}
+                                        <Link
+                                            to={`/mystats/exam/${userExam.examId}`}
+                                            className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                                        >
+                                            Преглед на изпита
+                                        </Link>
                                     </div>
                                 );
                             })}
                         </div>
                     )}
                 </div>
-            </div>
+            </div >
             <FooterHomePage />
-        </div>
+        </div >
     );
 }
