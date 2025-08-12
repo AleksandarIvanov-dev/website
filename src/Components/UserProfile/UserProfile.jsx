@@ -2,7 +2,7 @@ import React from "react";
 import HomePageHeader from "../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../HomePage/FooterHomePage";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 export default function UserProfile({ user }) {
@@ -10,12 +10,15 @@ export default function UserProfile({ user }) {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        password: "",
+        confirmPassword: "",
         progressLevel: user.progressLevel,
         languages: user.languages,
         solvedChallenges: user.solvedChallenges,
         tutorialProgress: user.tutorialProgress,
         solvedExams: user.solvedExams
     });
+    const [error, setError] = useState('')
 
     const handleChange = (e) => {
         setFormData((prev) => ({
@@ -24,9 +27,39 @@ export default function UserProfile({ user }) {
         }));
     };
 
-    const handleSubmit = async () => {
-        // TODO: Send update request to backend
-        console.log("Submitted:", formData);
+    useEffect(()=>{
+        console.log(formData.firstName)
+    },[formData.firstName])
+
+    const handleSubmit = async (event) => {
+
+        if (formData.password !== formData.confirmPassword) {
+            event.preventDefault();
+        }
+
+        try {
+            const res = await fetch(`http://localhost:5000/updateuser`, {
+                credentials: "include",
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    email: formData.email,
+                    password: formData.password
+                })
+
+            });
+            if (!res.ok) throw new Error("Failed to update user!");
+            const data = await res.json();
+            console.log("PUT DATA: ", data)
+        } catch (err) {
+            setError(err);
+            alert("Couldn't update. Please try again later.")
+            console.log(error)
+        }
     };
 
     return (
@@ -65,6 +98,28 @@ export default function UserProfile({ user }) {
                             type="email"
                             name="email"
                             value={formData.email}
+                            onChange={handleChange}
+                            className="w-full px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label className="block text-sm text-gray-700 mb-1">Парола</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            className="w-full px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label className="block text-sm text-gray-700 mb-1">Потвърди паролата</label>
+                        <input
+                            type="password"
+                            name="confirmPassword"
+                            value={formData.confirmPassword}
                             onChange={handleChange}
                             className="w-full px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />

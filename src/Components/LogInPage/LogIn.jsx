@@ -15,7 +15,7 @@ export default function LogIn() {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({email,password})
+                body: JSON.stringify({ email, password })
             });
 
             const data = await response.json();
@@ -24,12 +24,13 @@ export default function LogIn() {
                 navigate(`/home`);
             } else {
                 setError(data.error);
+                alert("Email or password are incorrect! Please try again!")
             }
 
         } catch (err) {
             setError("Login failed. Try again.");
 
-            console.log(error)
+            alert(err)
         }
     }
 
@@ -67,7 +68,7 @@ export default function LogIn() {
                                     Password
                                 </label>
                                 <div className="text-sm">
-                                    
+
                                     <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                                         Forgot password?
                                     </a>
