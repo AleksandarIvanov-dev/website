@@ -38,9 +38,9 @@ export default function DropMenu({ onSelect }) {
                         <a
                             href="#"
                             className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
-                            onClick={() => handleSelect("python3", "Python 3")}
+                            onClick={() => handleSelect("python3", "Python")}
                         >
-                            Python 3
+                            Python
                         </a>
                     </MenuItem>
                     <MenuItem>
@@ -63,6 +63,18 @@ export default function DropMenu({ onSelect }) {
                             }
                         >
                             Java
+                        </a>
+                    </MenuItem>
+
+                    <MenuItem>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                            onClick={() => handleSelect("", "JavaScript")
+
+                            }
+                        >
+                            JavaScript
                         </a>
                     </MenuItem>
                 </div>

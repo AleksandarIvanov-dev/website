@@ -34,6 +34,7 @@ import JavaStrings from './Components/Tutorials/JavaTutorials/Strings';
 import JavaOperators from './Components/Tutorials/JavaTutorials/Operators';
 import JavaIfStatement from './Components/Tutorials/JavaTutorials/IFStatement';
 
+import CodePlayground from './Components/CodePlayground/CodePlayground';
 import ChallengeList from './Components/CodePlayground/ChallengeList';
 import AllTutorials from './Components/Tutorials/AllTutorials'
 import Playground from './Components/CodePlayground/Playground';
@@ -73,6 +74,7 @@ function App() {
         <Route path="/tutorials/java/conditions" Component={withAuth(JavaIfStatement)} />
         <Route path="/challenges" Component={withAuth(ChallengeList)} />
         <Route path="/playground/:challengeId" Component={withAuth(Playground)} />
+        <Route path="/playground" Component={withAuth(CodePlayground)} />
         <Route path="/myprofile" Component={withAuth(UserDetails)} />
         <Route path="/mystats" Component={withAuth(UserStats)} />
         <Route path="/mystats/exam/:id" element={<UserExamResults />} />

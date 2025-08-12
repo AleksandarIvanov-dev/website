@@ -63,7 +63,7 @@ export default function UserStats() {
 
                 <div className="mb-10">
                     <h2 className="text-3xl font-semibold text-blue-700 mb-3">
-                        Предизвикателства ({userData.solvedChallenges.length})
+                        Предизвикателства {/*({userData.solvedChallenges.length})*/}
                     </h2>
                     {challenges.length === 0 ? (
                         <p className="text-gray-500">Няма намерени предизвикателства.</p>
