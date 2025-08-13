@@ -17,6 +17,7 @@ export default function ChallengeList() {
                 });
                 const data = await response.json();
                 setChallenges(data);
+                console.log(data)
             } catch (err) {
                 setError("Error loading challenges.");
             } finally {
@@ -46,16 +47,17 @@ export default function ChallengeList() {
                                     {challenge.title}
                                 </h2>
                                 <p className="text-gray-700 mb-4">
-                                   Език: {challenge.languageForDisplay}
+                                    Трудност: {challenge.difficulty}
                                 </p>
                                 <p className="text-gray-700 mb-4">
-                                  Описание: {challenge.description.length > 100
+                                    Език: {challenge.languageForDisplay}
+                                </p>
+                                <p className="text-gray-700 mb-4">
+                                    Описание: {challenge.description.length > 100
                                         ? `${challenge.description.slice(0, 100)}...`
                                         : challenge.description}
                                 </p>
-                                <p className="text-gray-700 mb-4">
-                                   Трудност: {challenge.difficulty}
-                                </p>
+
                                 <Link
                                     to={`/playground/${challenge._id}`}
                                     className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"

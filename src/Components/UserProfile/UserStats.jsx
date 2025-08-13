@@ -75,7 +75,12 @@ export default function UserStats() {
                                     <div key={idx} className="p-5 border border-blue-100 rounded-lg bg-blue-50 shadow">
                                         <h3 className="text-xl font-bold text-blue-700">{challenge.title}</h3>
                                         <p><strong>Статус:</strong> {solvedInfo?.status}</p>
-                                        <p><strong>Започнато на:</strong> {new Date(solvedInfo?.solvedAt).toLocaleString()}</p>
+                                        <p>
+                                            <strong>{solvedInfo?.status === "completed" ? "Завършено на:" : "Започнато на:"}</strong>{" "}
+                                            {new Date(
+                                                solvedInfo?.status === "completed" ? solvedInfo.completedAt : solvedInfo.solvedAt
+                                            ).toLocaleString()}
+                                        </p>
                                     </div>
                                 );
                             })}

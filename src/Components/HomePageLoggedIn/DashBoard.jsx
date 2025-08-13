@@ -17,7 +17,7 @@ export default function DashboardStats() {
                 });
 
                 const data = await response.json();
-                console.log(data)
+                //console.log(data)
                 const completedChallenges = data.userData.solvedChallenges?.filter(c => c.status === "completed");
                 setCountChallenges(data.allChallengesByLanguage.length)
 

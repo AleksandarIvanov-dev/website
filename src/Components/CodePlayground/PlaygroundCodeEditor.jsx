@@ -89,7 +89,9 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
         } finally {
             setLoading(false);
         }
+        console.log(results)
     };
+
 
     return (
         <div className="bg-white p-4 rounded shadow">

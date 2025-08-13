@@ -23,6 +23,7 @@ export default function TutorialList() {
                 const data = await response.json();
                 setTutorials(data);
                 setSelectedLanguage(data[0].language)
+                //console.log("Data: ", data)
             } catch (err) {
                 setError(err.message);
             } finally {
