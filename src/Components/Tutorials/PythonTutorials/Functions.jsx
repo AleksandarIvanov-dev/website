@@ -7,7 +7,7 @@ import Quiz from "../../Exams/Quiz";
 import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
-export default function Loops() {
+export default function FunctionsPython() {
     useEffect(() => {
         startTutorial("Python functions", "Python");
     }, []);
@@ -125,6 +125,8 @@ print(evenOdd(7))`} programingLanguage="python" />
                         question="Какъв е операторът, който се използва за връщане на стойност от функция в Python?"
                         options={["return", "break", "continue"]}
                         correctAnswer={"return"}
+                        quizLanguage={"Python"}
+                        quizName={"Функции в Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">

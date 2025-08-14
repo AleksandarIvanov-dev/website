@@ -239,7 +239,9 @@ class TestingOperators
                             "Създаване на обекти и класове",
                             "Достъп до коментари за показването им на екрана"
                         ]}
-                        correctAnswer="Извършване на операции върху променливи и стойности"
+                        correctAnswer={"Извършване на операции върху променливи и стойности"}
+                        quizLanguage={"Java"}
+                        quizName={"Оператори в Java"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">

@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import Quiz from "../../Exams/Quiz";
 import ListImage from '../Images/Python/python-list-index.png'
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
-export default function Lists() {
+export default function ListsPython() {
+    useEffect(() => {
+        startTutorial("Python lists", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -146,10 +150,12 @@ b = temp_List[1]
 c = temp_list.pop()`}
                         options={["a", "b", "c"]}
                         correctAnswer={"a"}
+                        quizLanguage={"Python"}
+                        quizName={"Списъци в Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/dict"} className="text-blue-600 underline">Създаване на речници в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/dict"} onClick={() => endTutorial("Python lists", "Python")} className="text-blue-600 underline">Създаване на речници в Python</Link>
                     </p>
 
                     <p className="text-sm text-gray-500 italic text-right mt-6">

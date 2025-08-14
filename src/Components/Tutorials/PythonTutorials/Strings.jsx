@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import StringIndexing from '../Images/Python/Python_String_index.png'
 import CodeEditor from '../CodeEditor'
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
-export default function Strings() {
+export default function StringsPython() {
+    useEffect(() => {
+        startTutorial("Python strings", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -97,10 +101,12 @@ export default function Strings() {
                         question="Могат ли Strings да бъдат променяни след тяхното деклариране?"
                         options={["True", "False"]}
                         correctAnswer={"False"}
+                        quizLanguage={"Python"}
+                        quizName={"Символни низове в Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/operators"} className="text-blue-600 underline">Оператори в Python!</Link>
+                        Следващ урок <Link to={"/tutorials/python/operators"} onClick={() => endTutorial("Python strings", "Python")} className="text-blue-600 underline">Оператори в Python!</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/python/python-string/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

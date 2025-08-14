@@ -10,7 +10,7 @@ import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
 
 
-export default function IFStatement() {
+export default function IFStatementPython() {
     useEffect(() => {
         startTutorial("Python If statement", "Python");
     }, []);

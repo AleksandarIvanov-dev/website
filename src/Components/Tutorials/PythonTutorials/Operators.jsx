@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from '../CodeEditor'
 import OperatorsImage from '../Images/Python/OperatorsInPython.png'
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
-export default function Operators() {
+export default function OperatorsPython() {
+    useEffect(() => {
+        startTutorial("Python operators", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -166,10 +170,12 @@ export default function Operators() {
                         question="Кой оператор се използва за присвояване на стойност в Python?"
                         options={["==", "=>", "="]}
                         correctAnswer={"="}
+                        quizLanguage={"Python"}
+                        quizName={"Оператори в Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок <Link to={"/tutorials/python/conditions"} className="text-blue-600 underline">Условни оператори в Python!</Link>
+                        Следващ урок <Link to={"/tutorials/python/conditions"} onClick={() => endTutorial("Python operators", "Python")} className="text-blue-600 underline">Условни оператори в Python!</Link>
                     </p>
 
                     <p className="text-sm text-gray-500 italic text-right mt-6">

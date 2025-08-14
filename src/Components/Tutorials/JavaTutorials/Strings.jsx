@@ -97,7 +97,9 @@ class Geeks
                             "Съхраняват текст",
                             "Всички отговори са верни"
                         ]}
-                        correctAnswer="Съхраняват текст"
+                        correctAnswer={"Съхраняват текст"}
+                        quizLanguage={"Java"}
+                        quizName={"Символни низове в Java"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">

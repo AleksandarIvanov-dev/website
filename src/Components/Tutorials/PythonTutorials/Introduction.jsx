@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
 export default function IntroPython() {
+    useEffect(() => {
+        startTutorial("Python intro", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -59,7 +63,7 @@ export default function IntroPython() {
                     </ul>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/io"} className="text-blue-600 underline">Входни и изходни данни!</Link>
+                        Следващ урок <Link to={"/tutorials/python/io"} onClick={() => endTutorial("Python intro", "Python")} className="text-blue-600 underline">Входни и изходни данни!</Link>
                     </p>
 
                     <p className="text-sm text-gray-500 italic text-right mt-6">

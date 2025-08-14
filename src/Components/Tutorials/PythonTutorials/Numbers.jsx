@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
-export default function Numbers() {
+export default function NumbersPython() {
+    useEffect(() => {
+        startTutorial("Python numbers", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -72,10 +76,12 @@ export default function Numbers() {
                         question="Може ли число от тип int да бъде с плаваща запетая?"
                         options={["Да", "Не"]}
                         correctAnswer={"Не"}
+                        quizLanguage={"Python"}
+                        quizName={"Числа в Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/string"} className="text-blue-600 underline">String в Python!</Link>
+                        Следващ урок <Link to={"/tutorials/python/string"} onClick={() => endTutorial("Python numbers", "Python")} className="text-blue-600 underline">String в Python!</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/python/python-numbers/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

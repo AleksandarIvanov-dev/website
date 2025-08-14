@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
-export default function Loops() {
+export default function LoopsPython() {
+    useEffect(() => {
+        startTutorial("Python functions", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -132,10 +136,12 @@ for i in range(0, counter):
                         question="Какъв е операторът, който се използва за излизане от цикъл в Python?"
                         options={["continue", "exit", "break"]}
                         correctAnswer={"break"}
+                        quizLanguage={"Python"}
+                        quizName={"Цикли в Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/lists"} className="text-blue-600 underline">Списъци в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/lists"} onClick={() => endTutorial("Python loops", "Python")} className="text-blue-600 underline">Списъци в Python</Link>
                     </p>
 
                     <p className="text-sm text-gray-500 italic text-right mt-6">

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
-export default function InputOutputPython() {
+export default function ConventionsPython() {
+    useEffect(() => {
+        startTutorial("Python conventions", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -102,10 +106,12 @@ export default function InputOutputPython() {
                         question="Какъв е основният принцип за именуване на променливи в Python?"
                         options={["CamelCase", "snake_case", "PascalCase"]}
                         correctAnswer={"scake_case"}
+                        quizLanguage={"Python"}
+                        quizName={"Конвенции в Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок <Link to={"/tutorials/python/variables"} className="text-blue-600 underline">Променливи в Python</Link>.
+                        Следващ урок <Link to={"/tutorials/python/variables"} onClick={() => endTutorial("Python conventions", "Python")} className="text-blue-600 underline">Променливи в Python</Link>.
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/python/python-naming-conventions/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

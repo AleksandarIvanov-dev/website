@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CodeEditor from '../CodeEditor'
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
-export default function IntroPython() {
+export default function VariablesPython() {
+    useEffect(() => {
+        startTutorial("Python Variables", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -106,10 +110,12 @@ export default function IntroPython() {
                         question="Може ли число от тип int да бъде преобразувано в тип str?"
                         options={["Да", "Не"]}
                         correctAnswer={"Да"}
+                        quizLanguage={"Python"}
+                        quizName={"Променливи в Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/numbers"} className="text-blue-600 underline">Числа в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/numbers"} onClick={() => endTutorial("Python Variables", "Python")} className="text-blue-600 underline">Числа в Python</Link>
 
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">

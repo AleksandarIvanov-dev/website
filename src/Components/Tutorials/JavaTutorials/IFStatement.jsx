@@ -145,6 +145,8 @@ if (number > 5) {
 }`}
                         options={["По-малко от 5", "По-голямо от 5", "Error", "Няма да покаже нищо"]}
                         correctAnswer={"По-голямо от 5"}
+                        quizLanguage={"Java"}
+                        quizName={"Условни оператори в Java"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">

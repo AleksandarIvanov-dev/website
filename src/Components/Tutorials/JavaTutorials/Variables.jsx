@@ -130,7 +130,9 @@ class LocalVariable {
                             "Статична променлива (Static Variable)",
                             "Глобална променлива (Global Variable)"
                         ]}
-                        correctAnswer="Локална променлива (Local Variable)"
+                        correctAnswer={"Локална променлива (Local Variable)"}
+                        quizLanguage={"Java"}
+                        quizName={"Промеливи в Java"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">

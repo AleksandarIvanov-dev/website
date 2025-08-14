@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CodeEditor from '../CodeEditor';
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
 export default function InputOutputPython() {
+    useEffect(() => {
+        startTutorial("Python input and output", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -55,10 +59,12 @@ export default function InputOutputPython() {
                         question="Коя функция се използва за извеждане на текст на екрана в Python?"
                         options={["input()", "output()", "print()"]}
                         correctAnswer={"print()"}
+                        quizLanguage={"Python"}
+                        quizName={"Вход и изход в Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок <Link to={"/tutorials/python/conventions"} className="text-blue-600 underline">Правила за писане в Python</Link>.
+                        Следващ урок <Link to={"/tutorials/python/conventions"} onClick={() => endTutorial("Python input and output", "Python")} className="text-blue-600 underline">Правила за писане в Python</Link>.
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/python/input-and-output-in-python/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

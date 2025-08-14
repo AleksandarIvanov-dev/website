@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import Quiz from "../../Exams/Quiz";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from '../CodeEditor'
+import { startTutorial, endTutorial } from "../CodeEditor";
 import { Link } from "react-router-dom";
 
 export default function Dictionaries() {
+    useEffect(() => {
+        startTutorial("Python dictionaries", "Python");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -130,10 +134,12 @@ print(thisdict["brand"])` } programingLanguage="python" />
                         question="Могат ли речниците да съдържат едни и същи ключове с различни стойности?"
                         options={["Да", "Не"]}
                         correctAnswer={"Не"}
+                        quizLanguage={"Python"}
+                        quizName={"Речници в Python"}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/functions"} className="text-blue-600 underline">Създаване на функции в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/functions"} onClick={() => endTutorial("Python dictionaries", "Python")} className="text-blue-600 underline">Създаване на функции в Python</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/python/python-dictionary/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

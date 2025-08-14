@@ -11,7 +11,7 @@ export default function Introduction() {
             <div className="min-h-screen bg-white p-6 md:p-12">
                 <div className="max-w-7xl mx-auto bg-gray-50 shadow-lg rounded-lg p-8">
                     <h1 className="text-3xl md:text-4xl font-bold text-blue-700 mb-6">
-                        Java IO - Input/Output
+                        Java IO - Вход/Изход
                     </h1>
 
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
