@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
-import JavaStrings from "../Images/Java/String-in-Java.png"
 import CodeEditor from "../CodeEditor"
 import Quiz from "../../Exams/Quiz";
 

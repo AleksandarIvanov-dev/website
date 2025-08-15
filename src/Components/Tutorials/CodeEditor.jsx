@@ -72,13 +72,14 @@ const SimplePythonEditor = ({ height = '100px', initialCode = `print("Hello, Wor
         setCurrentCode(initialCode);
     }, [initialCode]);
 
-    if (programingLanguage === "python") programingLanguage = "python3";
+    if (programingLanguage === "python3") programingLanguage = "python";
 
     const runCode = async () => {
         setLoading(true);
         setOutput("");
 
         if (programingLanguage === "") programingLanguage = "nodejs" //for JavaScript 
+        if (programingLanguage === "python") programingLanguage = "python3";
 
         const payload = {
             clientId: "740b7e52c332bbbce02cdf69cb87461d",
