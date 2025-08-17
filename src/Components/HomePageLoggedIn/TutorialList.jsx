@@ -40,7 +40,7 @@ export default function TutorialList() {
 
     return (
         <section>
-            <h2 className="text-2xl font-bold mb-4">Tutorials for {selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)}</h2>
+            <h2 className="text-2xl font-bold mb-4">Уроци за {selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)}</h2>
             <div className="space-y-4">
                 {tutorials.map(tutorial => (
                     <TutorialCard key={tutorial._id} tutorial={tutorial} />

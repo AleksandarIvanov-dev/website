@@ -105,7 +105,7 @@ export default function ConventionsPython() {
                     <Quiz
                         question="Какъв е основният принцип за именуване на променливи в Python?"
                         options={["CamelCase", "snake_case", "PascalCase"]}
-                        correctAnswer={"scake_case"}
+                        correctAnswer={"snake_case"}
                         quizLanguage={"Python"}
                         quizName={"Конвенции в Python"}
                     />

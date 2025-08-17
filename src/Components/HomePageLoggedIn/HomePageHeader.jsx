@@ -64,10 +64,10 @@ export default function HomePageHeader() {
             <h1 className="text-xl font-bold text-blue-600"><Link to={"/home"}>Programin'DE</Link></h1>
 
             <nav className="space-x-6 text-gray-700 font-medium hidden md:block">
-                <Link to="/challenges" className="hover:text-blue-500">Challenges</Link>
-                <Link to="/tutorials" className="hover:text-blue-500">Tutorials</Link>
-                <Link to="/exams" className="hover:text-blue-500">Exams</Link>
-                <Link to="/playground" className="hover:text-blue-500">Playground</Link>
+                <Link to="/challenges" className="hover:text-blue-500">Предизвикателства</Link>
+                <Link to="/tutorials" className="hover:text-blue-500">Уроци</Link>
+                <Link to="/exams" className="hover:text-blue-500">Изпити</Link>
+                <Link to="/playground" className="hover:text-blue-500">Среда за писане на код</Link>
             </nav>
 
             <div className="relative" ref={dropdownRef}>
@@ -75,14 +75,14 @@ export default function HomePageHeader() {
                     onClick={() => setOpen(prev => !prev)}
                     className="bg-gray-100 px-4 py-2 rounded border text-gray-700 font-medium hover:bg-gray-200"
                 >
-                    Welcome, {userName}
+                    Здравей, {userName}
                 </button>
 
                 {open && (
                     <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-md z-10">
                         <ul className="text-gray-700">
-                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"><Link to={"/myprofile"}>Profile</Link></li>
-                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"><Link to={"/mystats"}>My Stats</Link></li>
+                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"><Link to={"/myprofile"}>Моят профил</Link></li>
+                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"><Link to={"/mystats"}>Статистика</Link></li>
                             <li
                                 className="px-4 py-2 hover:bg-red-100 text-red-600 cursor-pointer"
                                 onClick={handleLogout}

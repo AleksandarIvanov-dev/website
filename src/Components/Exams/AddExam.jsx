@@ -6,10 +6,17 @@ export default function AddExamForm() {
     const [questions, setQuestions] = useState([]);
     const [difficulty, setDifficulty] = useState("")
     const [examTime, setExamTime] = useState("")
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
 
     const handleQuestionCountChange = (e) => {
         const count = parseInt(e.target.value);
         setQuestionCount(count);
+
+        if (count > 30) {
+            throw new Error("Не може повече от 30 въпроса");
+        }
+
         const newQuestions = Array.from({ length: count }, (_, i) => ({
             questionText: "",
             options: ["", "", "", ""],
@@ -38,6 +45,8 @@ export default function AddExamForm() {
         e.preventDefault();
 
         const payload = {
+            title,
+            description,
             language,
             questions,
             difficulty,
@@ -97,13 +106,34 @@ export default function AddExamForm() {
                 </div>
 
                 <div className="flex gap-4">
+                    Заглавие:
+                    <input
+                        type="text"
+                        placeholder="Заглавие на изпита"
+                        className="bg-gray-800 border border-gray-600 rounded-md p-2 text-white"
+                        onChange={(e) => setTitle(e.target.value)}
+                        value={title}
+                        required
+                    />
+                    Описание:
+                    <input
+                        type="text"
+                        placeholder="Описание на изпита"
+                        className="bg-slate-800 p-2 rounded w-full border border-slate-600 text-white placeholder-slate-400"
+                        onChange={(e) => setDescription(e.target.value)}
+                        value={description}
+                        required
+                    />
+                </div>
+
+                <div className="flex gap-4">
                     {/* Number of Questions */}
                     <div className="w-1/2">
                         <label className="block mb-2 font-semibold text-slate-300">Брой на Въпроси</label>
                         <input
                             type="number"
                             min={1}
-                            max={50}
+                            max={30}
                             className="bg-slate-800 border border-slate-600 p-2 rounded w-full text-white"
                             onChange={handleQuestionCountChange}
                             value={questionCount}

@@ -92,7 +92,7 @@ export default function UserStats() {
                     <h2 className="text-3xl font-semibold text-blue-700 mb-3">
                         Решени изпити ({userData.solvedExams.length})
                     </h2>
-                    {exams.length === 0 ? (
+                    {userData.solvedExams.length === 0 ? (
                         <p className="text-gray-500">Няма намерени изпити.</p>
                     ) : (
                         <div className="space-y-6">

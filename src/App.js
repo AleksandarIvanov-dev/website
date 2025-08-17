@@ -84,10 +84,10 @@ function App() {
         <Route path="/playground" Component={withAuth(CodePlayground)} />
         <Route path="/myprofile" Component={withAuth(UserDetails)} />
         <Route path="/mystats" Component={withAuth(UserStats)} />
-        <Route path="/mystats/exam/:id" element={<UserExamResults />} />
+        <Route path="/mystats/exam/:id" Component={withAuth(UserExamResults)} />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
         <Route path="/exams/choose" Component={withAuth(ChoseExam)} />
-        <Route path="/exam/start/:language" Component={withAuth(Exam)} />
+        <Route path="/exam/start/:id" Component={withAuth(Exam)} />
         <Route path='/test' element={<AddExamForm />} />{/* Change the route to /add-exam */}
         <Route path='/tutorials' element={<AllTutorials />} />
         <Route path="/home" Component={withAuth(Home)} />

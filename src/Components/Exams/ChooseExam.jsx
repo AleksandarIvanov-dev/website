@@ -38,7 +38,9 @@ const AvailableExams = () => {
         <div>
             <HomePageHeader />
             <div className="min-h-screen bg-white-900 py-10 px-4">
-                <h1 className="text-3xl font-bold text-white text-center mb-8">Всички налични изпити</h1>
+                <h1 className="text-3xl font-bold text-white text-center mb-8">
+                    Всички налични изпити
+                </h1>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {exams.map((exam) => (
@@ -47,8 +49,25 @@ const AvailableExams = () => {
                             className="bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-600 rounded-2xl shadow-lg p-6 flex flex-col justify-between"
                         >
                             <div>
-                                <h2 className="text-2xl font-semibold text-white mb-2">{exam.language}</h2>
-                                <p className="text-sm text-slate-300 mb-4">Трудност: <span className="font-medium">{exam.difficulty}</span></p>
+                                {/* Title */}
+                                <h2 className="text-2xl font-semibold text-white mb-2">
+                                    {exam.title}
+                                </h2>
+
+                                {/* Description */}
+                                <p className="text-slate-300 text-sm mb-4">
+                                    {exam.description}
+                                </p>
+
+                                {/* Language */}
+                                <p className="text-sm text-slate-400 mb-2">
+                                    Език: <span className="font-medium">{exam.language}</span>
+                                </p>
+
+                                {/* Difficulty */}
+                                <p className="text-sm text-slate-400 mb-4">
+                                    Трудност: <span className="font-medium">{exam.difficulty}</span>
+                                </p>
                             </div>
 
                             <div className="flex justify-between items-center mt-auto">
@@ -56,7 +75,7 @@ const AvailableExams = () => {
                                     Въпроси: {exam.questions.length}
                                 </span>
                                 <button
-                                    onClick={() => navigate(`/exam/start/${exam.language}`)}
+                                    onClick={() => navigate(`/exam/start/${exam._id}`)}
                                     className="bg-green-600 hover:bg-green-500 transition px-4 py-1 rounded text-sm text-white"
                                 >
                                     Старт
@@ -69,6 +88,7 @@ const AvailableExams = () => {
             <FooterHomePage />
         </div>
     );
+
 };
 
 export default AvailableExams;

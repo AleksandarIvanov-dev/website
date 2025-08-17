@@ -1,74 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 export default function DataVariablesExam() {
-    const { language } = useParams();
     const [questions, setQuestions] = useState([]);
     const [userAnswers, setUserAnswers] = useState({});
     const [correctAnswers, setCorrectAnswers] = useState({});
     const [submitted, setSubmitted] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(null);
+    const [timeLeft, setTimeLeft] = useState(null); // Initial state is null
     const [examId, setExamId] = useState(null);
+    const [language, setLanguage] = useState("")
     let navigate = useNavigate();
+    const { id } = useParams();
 
-    // Fetch questions on mount
-    useEffect(() => {
-        const fetchQuestions = async () => {
-            try {
-                const res = await fetch(`http://localhost:5000/get-exam/${language}`, {
-                    credentials: "include",
-                    headers: { "Content-Type": "application/json" },
-                });
-                const data = await res.json();
-                setExamId(data._id)
-                setQuestions(data.questions);
-                setCorrectAnswers(Object.fromEntries(data.questions.map(q => [q._id, q.correctAnswers])));
-                startTimer(data.time);
-            } catch (err) {
-                console.error("Error fetching questions:", err);
-            }
-        };
-
-        if (language) fetchQuestions();
-    }, [language]);
-
-    // Timer logic
+    // Helper function to start the timer by setting the initial duration
     const startTimer = (durationMs) => {
-        const endTime = Date.now() + durationMs;
-        const interval = setInterval(() => {
-            const remaining = endTime - Date.now();
-            if (remaining <= 0) {
-                clearInterval(interval);
-                setTimeLeft(0);
-                submitExam(true); // Auto-submit
-            } else {
-                setTimeLeft(remaining);
+        console.log(durationMs)
+        setTimeLeft(durationMs);
+    };
+
+    // Corrected score calculation for multi-select questions
+    const calculateScore = useCallback(() => {
+        let score = 0;
+        for (const questionId in correctAnswers) {
+            const userAns = (userAnswers[questionId] || []).slice().sort();
+            const correctAns = (correctAnswers[questionId] || []).slice().sort();
+
+            // Compare sorted arrays to check for equality
+            if (JSON.stringify(userAns) === JSON.stringify(correctAns) && userAns.length > 0) {
+                score++;
             }
-        }, 1000);
-    };
+        }
+        return score;
+    }, [userAnswers, correctAnswers]); // Dependencies for useCallback
 
-    const handleMultiSelect = (questionId, optionKey) => {
-        setUserAnswers(prev => {
-            const currentSelections = prev[questionId] || [];
-
-            const updatedSelections = currentSelections.includes(optionKey)
-                ? currentSelections.filter(key => key !== optionKey)  // uncheck
-                : [...currentSelections, optionKey];  // check
-
-            return {
-                ...prev,
-                [questionId]: updatedSelections
-            };
-        });
-    };
-
-    const calculateScore = () => {
-        return Object.entries(userAnswers).filter(([id, ans]) =>
-            correctAnswers[id]?.includes(ans)
-        ).length;
-    };
-
-    const submitExam = (auto = false) => {
+    // Memoized submitExam function
+    const submitExam = useCallback((auto = false) => {
         const correctCount = calculateScore();
         fetch("http://localhost:5000/exam/results", {
             method: "POST",
@@ -77,8 +43,8 @@ export default function DataVariablesExam() {
             body: JSON.stringify({
                 examId: examId,
                 answers: userAnswers,
-                language: language,
                 questions: questions.map(q => q._id),
+                language,
                 correctCount,
                 totalQuestion: questions.length,
             }),
@@ -88,8 +54,76 @@ export default function DataVariablesExam() {
                 console.log(auto ? "Auto-submitted:" : "Manually submitted:", data);
             })
             .catch(err => console.error("Error submitting exam:", err));
+    }, [examId, userAnswers, language, questions, calculateScore]); // Dependencies for useCallback
+
+    // Effect to fetch questions on mount or language change
+    useEffect(() => {
+        const fetchQuestions = async () => {
+            try {
+                const res = await fetch(`http://localhost:5000/get-exam/${id}`, {
+                    credentials: "include",
+                    headers: { "Content-Type": "application/json" },
+                });
+                const data = await res.json();
+
+                if (data && data.questions) {
+                    setExamId(data._id);
+                    setQuestions(data.questions);
+                    setCorrectAnswers(
+                        Object.fromEntries(data.questions.map(q => [q._id, q.correctAnswers]))
+                    );
+                    startTimer(data.time);
+                    setLanguage(data.language)
+
+                } else {
+                    console.error("No questions found for this exam:", data);
+                }
+            } catch (err) {
+                console.error("Error fetching questions:", err);
+            }
+        };
+        fetchQuestions();
+    }, [id]);
+
+    // Effect for the countdown timer logic
+    useEffect(() => {
+        // Don't start the interval until timeLeft has been set by the fetch
+        if (timeLeft === null || timeLeft <= 0 || submitted) {
+            return;
+        }
+
+        const interval = setInterval(() => {
+            setTimeLeft(prevTime => prevTime - 1000);
+        }, 1000);
+
+        // Cleanup function to clear interval
+        return () => clearInterval(interval);
+    }, [timeLeft, submitted]);
+
+    // Effect to handle auto-submission when time runs out
+    useEffect(() => {
+        if (timeLeft !== null && timeLeft <= 0 && !submitted) {
+            console.log("Time is up! Auto-submitting...");
+            setSubmitted(true);
+            submitExam(true);
+        }
+    }, [timeLeft, submitted, submitExam]);
+
+    // Handler for selecting/deselecting an answer
+    const handleMultiSelect = (questionId, optionKey) => {
+        setUserAnswers(prev => {
+            const currentSelections = prev[questionId] || [];
+            const updatedSelections = currentSelections.includes(optionKey)
+                ? currentSelections.filter(key => key !== optionKey)
+                : [...currentSelections, optionKey];
+            return {
+                ...prev,
+                [questionId]: updatedSelections
+            };
+        });
     };
 
+    // Handler for manual form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         if (submitted) return;
@@ -97,10 +131,13 @@ export default function DataVariablesExam() {
         submitExam(false);
     };
 
+    // Utility to format milliseconds into MM:SS format
     const formatTime = (ms) => {
-        const secs = Math.floor(ms / 1000);
-        const mins = String(Math.floor(secs / 60)).padStart(2, "0");
-        return `${mins}:${String(secs % 60).padStart(2, "0")}`;
+        if (ms <= 0) return "00:00";
+        const totalSeconds = Math.floor(ms / 1000);
+        const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+        const seconds = String(totalSeconds % 60).padStart(2, "0");
+        return `${minutes}:${seconds}`;
     };
 
     return (
@@ -120,9 +157,9 @@ export default function DataVariablesExam() {
                             <label
                                 key={optionKey}
                                 className={`block cursor-pointer p-2 rounded-md border transition
-                        ${selected ? "bg-blue-600 border-blue-400" : "bg-gray-700 border-gray-600 hover:bg-gray-600"}
-                        ${submitted ? "opacity-60 cursor-not-allowed" : ""}
-                    `}
+                                    ${selected ? "bg-blue-600 border-blue-400" : "bg-gray-700 border-gray-600 hover:bg-gray-600"}
+                                    ${submitted ? "opacity-60 cursor-not-allowed" : ""}
+                                `}
                             >
                                 <input
                                     type="checkbox"
@@ -156,6 +193,12 @@ export default function DataVariablesExam() {
                         className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
                     >
                         ⬅️ Назад
+                    </button>
+                    <button
+                        onClick={() => navigate(`/mystats/exam/${id}`)}
+                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                    >
+                        Провери резултата си!
                     </button>
                 </div>
             )}
