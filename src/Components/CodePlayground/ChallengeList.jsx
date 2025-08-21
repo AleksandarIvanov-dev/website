@@ -62,7 +62,7 @@ export default function ChallengeList() {
                                     to={`/playground/${challenge._id}`}
                                     className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
                                 >
-                                    Start Challenge
+                                    Старт
                                 </Link>
                             </div>
                         ))}

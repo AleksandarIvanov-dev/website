@@ -89,53 +89,75 @@ export default function UserStats() {
                 </div>
 
                 <div className="mb-10">
-                    <h2 className="text-3xl font-semibold text-blue-700 mb-3">
-                        Решени изпити ({userData.solvedExams.length})
-                    </h2>
-                    {userData.solvedExams.length === 0 ? (
-                        <p className="text-gray-500">Няма намерени изпити.</p>
-                    ) : (
-                        <div className="space-y-6">
-                            {userData.solvedExams.map((userExam, idx) => {
-                                const examDetails = exams.find(e => e._id === userExam.examId);
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Табло за Решени изпити */}
+                        <div className="p-6 border border-blue-200 rounded-lg shadow bg-white">
+                            <h2 className="text-2xl font-semibold text-blue-600 mb-2">
+                                Решени изпити ({userData.solvedExams.length})
+                            </h2>
+                            {userData.solvedExams.length === 0 ? (
+                                <p className="text-gray-500">Няма намерени изпити.</p>
+                            ) : (
+                                <div className="space-y-6">
+                                    {userData.solvedExams.map((userExam, idx) => {
+                                        const examDetails = exams.find(e => e._id === userExam.examId);
+                                        return (
+                                            <div key={idx} className="p-4 border rounded shadow bg-white">
+                                                {examDetails && (
+                                                    <p className="text-gray-600">
+                                                        <strong>Език:</strong> {examDetails.language.charAt(0).toUpperCase() + examDetails.language.slice(1)}
+                                                    </p>
+                                                )}
+                                                <p><strong>Оценка:</strong> {userExam.grade ?? "Няма оценка"}</p>
+                                                <p><strong>Общ брой въпроси:</strong> {userExam.totalQuestions}</p>
+                                                <p><strong>Верни отговори:</strong> {userExam.correctCount}</p>
+                                                <p><strong>Подаден на:</strong> {new Date(userExam.submittedAt).toLocaleString()}</p>
 
-                                return (
-                                    <div key={idx} className="p-4 border rounded shadow bg-white">
-                                        {examDetails && (
-                                            <p className="text-gray-600">
-                                                <strong>Език:</strong>{" "}
-                                                {examDetails.language.charAt(0).toUpperCase() + examDetails.language.slice(1)}
-                                            </p>
-                                        )}
-                                        <p>
-                                            <strong>Оценка:</strong> {userExam.grade ? `${userExam.grade}` : "Няма оценка"}
-                                        </p>
-                                        <p>
-                                            <strong>Общ брой въпроси:</strong> {userExam.totalQuestions}
-                                        </p>
-                                        <p>
-                                            <strong>Верни отговори:</strong> {userExam.correctCount}
-                                        </p>
-                                        <p>
-                                            <strong>Подаден на:</strong>{" "}
-                                            {new Date(userExam.submittedAt).toLocaleString()}
-                                        </p>
-
-                                        {/* Link to the exam details page */}
-                                        <Link
-                                            to={`/mystats/exam/${userExam.examId}`}
-                                            className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-                                        >
-                                            Преглед на изпита
-                                        </Link>
-                                    </div>
-                                );
-                            })}
+                                                <Link
+                                                    to={`/mystats/exam/${userExam.examId}`}
+                                                    className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                                                >
+                                                    Преглед на изпита
+                                                </Link>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
                         </div>
-                    )}
+
+                        {/* Табло за Решени кодови изпити */}
+                        <div className="p-6 border border-green-200 rounded-lg shadow bg-white">
+                            <h2 className="text-2xl font-semibold text-green-600 mb-2">
+                                Решени кодови изпити ({userData.codeExamSolved.length})
+                            </h2>
+                            {userData.codeExamSolved.length === 0 ? (
+                                <p className="text-gray-500">Няма намерени Code Exams.</p>
+                            ) : (
+                                <div className="space-y-6">
+                                    {userData.codeExamSolved.map((codeExam, idx) => (
+                                        <div key={idx} className="p-4 border rounded shadow bg-white">
+                                            <p><strong>Заглавие:</strong> {codeExam.title}</p>
+                                            <p><strong>Статус:</strong> {codeExam.status === "passed" ? "Преминат": "Не преминат"}</p>
+                                            <p><strong>Подаден на:</strong> {new Date(codeExam.submittedAt).toLocaleString()}</p>
+                                            <p><strong>Общо тестове:</strong> {codeExam.totalTestCases}</p>
+                                            <p><strong>Минати тестове:</strong> {codeExam.testCasesPassed}</p>
+                                            <Link
+                                                to={`/exam/code/answers/${codeExam.codeExamId}`}
+                                                className="inline-block mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+                                            >
+                                                Преглед на Code изпита
+                                            </Link>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
+                <FooterHomePage />
             </div >
-            <FooterHomePage />
-        </div >
-    );
+            );
+        </div>
+    )
 }

@@ -3,7 +3,7 @@ import HomePageHeader from "../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../HomePage/FooterHomePage";
 import { useNavigate } from "react-router-dom";
 
-const AvailableExams = () => {
+const AvailableCodeExams = () => {
     const [exams, setExams] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ const AvailableExams = () => {
     useEffect(() => {
         const fetchExams = async () => {
             try {
-                const response = await fetch("http://localhost:5000/get/exams", {
+                const response = await fetch("http://localhost:5000/get/code-exams", {
                     credentials: "include",
                     method: "GET",
                 });
@@ -72,10 +72,10 @@ const AvailableExams = () => {
 
                             <div className="flex justify-between items-center mt-auto">
                                 <span className="bg-blue-600 text-white text-xs px-3 py-1 rounded-full">
-                                    Въпроси: {exam.questions.length}
+                                    Време: {exam.time / 60 / 1000} минути
                                 </span>
                                 <button
-                                    onClick={() => navigate(`/exam/start/${exam._id}`)}
+                                    onClick={() => navigate(`/exam/code/start/${exam._id}`)}
                                     className="bg-green-600 hover:bg-green-500 transition px-4 py-1 rounded text-sm text-white"
                                 >
                                     Старт
@@ -91,4 +91,4 @@ const AvailableExams = () => {
 
 };
 
-export default AvailableExams;
+export default AvailableCodeExams;

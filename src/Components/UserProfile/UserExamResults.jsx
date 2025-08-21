@@ -7,6 +7,7 @@ export default function ExamResults() {
     const [results, setResults] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    console.log(id)
 
     useEffect(() => {
         async function fetchResults() {

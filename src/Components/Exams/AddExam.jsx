@@ -54,7 +54,7 @@ export default function AddExamForm() {
         };
 
         try {
-            const res = await fetch(`http://localhost:5000/add-exam`, {
+            const res = await fetch(`http://localhost:5000/add/exam`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

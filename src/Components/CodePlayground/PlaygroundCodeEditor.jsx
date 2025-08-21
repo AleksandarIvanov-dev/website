@@ -9,7 +9,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
 
     const startChallenge = async () => {
         try {
-            const response = await fetch("http://localhost:5000/start-challenge", {
+            await fetch("http://localhost:5000/start-challenge", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
@@ -18,7 +18,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
                 })
             });
 
-            const data = await response.json();
+            //const data = await response.json();
             //console.log(data)
 
         } catch (error) {
@@ -65,6 +65,8 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
                 body: JSON.stringify({
+                    clientId: "740b7e52c332bbbce02cdf69cb87461d",
+                    clientSecret: "3b2d3849be5207c8e9354bb38d51100b12867d1f9a94d3e5540b7b821cc91b43",
                     challengeId: challengeId,
                     code: code,
                     language: programingLanguage,
@@ -76,13 +78,15 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
 
             if (data.success) {
                 setResults(data.testResults);
+                //console.log("Received Data: ", data)
 
                 const allPassed = data.testResults.every(test => test.passed);
                 if (allPassed) {
                     await endChallenge();
                 }
             } else {
-                setResults([{ output: "Error: " + data.error, passed: false }]);
+                //console.log("setResults in Else: ", data.testResults)
+                setResults(data.testResults);
             }
         } catch (err) {
             setResults([{ output: "Execution error: " + err.message, passed: false }]);
@@ -116,6 +120,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
                 <div className="mt-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-2">Резултати:</h3>
                     {results.map((res, index) => (
+                        //console.log(res),
                         <div
                             key={index}
                             className={`p-3 mb-2 rounded ${res.passed ? "bg-green-100 border-l-4 border-green-500" : "bg-red-100 border-l-4 border-red-500"}`}

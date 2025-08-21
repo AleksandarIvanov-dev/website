@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-export default function DataVariablesExam() {
+export default function QuestionExam() {
     const [questions, setQuestions] = useState([]);
     const [userAnswers, setUserAnswers] = useState({});
     const [correctAnswers, setCorrectAnswers] = useState({});
@@ -56,25 +56,31 @@ export default function DataVariablesExam() {
             .catch(err => console.error("Error submitting exam:", err));
     }, [examId, userAnswers, language, questions, calculateScore]); // Dependencies for useCallback
 
-    // Effect to fetch questions on mount or language change
+    // Effect to fetch questions on mount
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/get-exam/${id}`, {
+                const res = await fetch(`http://localhost:5000/exam/start/${id}`, {
                     credentials: "include",
                     headers: { "Content-Type": "application/json" },
                 });
-                const data = await res.json();
 
-                if (data && data.questions) {
+                // Make sure the response is JSON
+                if (!res.ok) {
+                    throw new Error(`Server error: ${res.status}`);
+                }
+
+                const data = await res.json();
+                console.log("Fetched exam:", data);
+
+                if (data) {
                     setExamId(data._id);
-                    setQuestions(data.questions);
+                    setQuestions(data.questions || []);
                     setCorrectAnswers(
-                        Object.fromEntries(data.questions.map(q => [q._id, q.correctAnswers]))
+                        Object.fromEntries((data.questions || []).map(q => [q._id, q.correctAnswers || []]))
                     );
                     startTimer(data.time);
-                    setLanguage(data.language)
-
+                    setLanguage(data.language);
                 } else {
                     console.error("No questions found for this exam:", data);
                 }
@@ -84,6 +90,7 @@ export default function DataVariablesExam() {
         };
         fetchQuestions();
     }, [id]);
+
 
     // Effect for the countdown timer logic
     useEffect(() => {
@@ -187,19 +194,21 @@ export default function DataVariablesExam() {
 
             {submitted && (
                 <div className="mt-4 p-4 bg-green-100 border border-green-300 rounded">
-                    <p className="text-green-700 font-medium mb-2">✅ Изпитът е изпратен успешно.</p>
-                    <button
-                        onClick={() => navigate("/home")}
-                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-                    >
-                        ⬅️ Назад
-                    </button>
-                    <button
-                        onClick={() => navigate(`/mystats/exam/${id}`)}
-                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-                    >
-                        Провери резултата си!
-                    </button>
+                    <p className="text-green-700 font-medium mb-4">✅ Изпитът е изпратен успешно.</p>
+                    <div className="flex gap-4">
+                        <button
+                            onClick={() => navigate("/home")}
+                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                        >
+                            ⬅️ Назад
+                        </button>
+                        <button
+                            onClick={() => navigate(`/mystats/exam/${id}`)}
+                            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+                        >
+                            Провери резултата си!
+                        </button>
+                    </div>
                 </div>
             )}
         </form>

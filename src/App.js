@@ -5,11 +5,14 @@ import SignUpPage from './Components/SignUpPage/SignUpPage';
 import ExamIntro from './Components/Exams/ExamIntro';
 import Exam from './Components/Exams/Exam';
 import ChoseExam from './Components/Exams/ChooseExam'
+import CodeExam from './Components/Exams/CodeExam'
+import ChoseCodeExam from './Components/Exams/ChooseCodeExam';
 import ProgrammingVSCoding from './Components/Tutorials/ProgrammingVSCoding';
 // User profile imports
 import UserDetails from './Components/UserProfile/UserDetails';
 import UserStats from './Components/UserProfile/UserStats';
 import UserExamResults from './Components/UserProfile/UserExamResults';
+import UserCodeExamResults from './Components/UserProfile/UserCodeExamResults';
 
 //Python Tutorial imports
 import IntroPython from './Components/Tutorials/PythonTutorials/Introduction';
@@ -43,6 +46,7 @@ import ChallengeList from './Components/CodePlayground/ChallengeList';
 import AllTutorials from './Components/Tutorials/AllTutorials'
 import Playground from './Components/CodePlayground/Playground';
 import AddExamForm from './Components/Exams/AddExam';
+import CodeExamForm from "./Components/Exams/AddCodeExam"
 import LogInPage from './Components/LogInPage/LogIn';
 import Home from './Components/HomePageLoggedIn/Home';
 import withAuth from './Components/withAuth';
@@ -85,10 +89,14 @@ function App() {
         <Route path="/myprofile" Component={withAuth(UserDetails)} />
         <Route path="/mystats" Component={withAuth(UserStats)} />
         <Route path="/mystats/exam/:id" Component={withAuth(UserExamResults)} />
+        <Route path="/exam/code/answers/:id" Component={withAuth(UserCodeExamResults)} />
         <Route path="/exams" Component={withAuth(ExamIntro)} />
         <Route path="/exams/choose" Component={withAuth(ChoseExam)} />
+        <Route path="/exams/code/choose" Component={withAuth(ChoseCodeExam)} />
         <Route path="/exam/start/:id" Component={withAuth(Exam)} />
+        <Route path="/exam/code/start/:id" Component={withAuth(CodeExam)} />
         <Route path='/test' element={<AddExamForm />} />{/* Change the route to /add-exam */}
+        <Route path='/code-test' element={<CodeExamForm />} />{/* Change the route to /add-exam */}
         <Route path='/tutorials' element={<AllTutorials />} />
         <Route path="/home" Component={withAuth(Home)} />
         <Route path="/home/lang" Component={withAuth(LanguageSelector)} />
