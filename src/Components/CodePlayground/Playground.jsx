@@ -13,6 +13,7 @@ export default function Playground() {
     const [challenge, setChallenge] = useState(null);
     const [loading, setLoading] = useState(true);
     const [theme, setTheme] = useState('vs');
+    const [userCode, setUserCode] = useState('')
 
     // Fetch challenge data from the server
     useEffect(() => {
@@ -38,13 +39,42 @@ export default function Playground() {
         fetchChallenge();
     }, [challengeId]);
 
+
+    function saveProgress(userCode) {
+        setUserCode(userCode)
+    }
+
+    useEffect(() => {
+        const saveUserCode = () => {
+            try {
+                const url = "http://localhost:5000/save/challenge-progress";
+                const data = {
+                    challengeId,
+                    code: userCode
+                };
+
+                // sendBeacon requires a Blob
+                const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
+                navigator.sendBeacon(url, blob);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        window.addEventListener("beforeunload", saveUserCode);
+        return () => {
+            window.removeEventListener("beforeunload", saveUserCode);
+        };
+    }, [userCode, challengeId]);
+
     if (loading) return <p className="p-8">Loading...</p>;
     if (!challenge) return <p className="p-8 text-red-600">Challenge not found</p>;
 
-    //console.log(challenge.language)
 
     if (challenge.language === "python3") challenge.language = "python"
     if (challenge.language === "nodejs") challenge.language = "javascript"
+
+
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -64,6 +94,7 @@ export default function Playground() {
                             programingLanguage={challenge.language}
                             challengeId={challenge._id}
                             theme={theme}
+                            saveProgress={saveProgress}
                         />
                         <script src="https://static.elfsight.com/platform/platform.js" async></script>
                         <div class="elfsight-app-30425757-dbb3-4271-9a6c-9b0de79fc125" data-elfsight-app-lazy></div>

@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import Editor from "@monaco-editor/react";
 
-export default function CodeEditorForChallenge({ height, initialCode, programingLanguage, challengeId, theme }) {
+export default function CodeEditorForChallenge({ height, initialCode, programingLanguage, challengeId, theme, saveProgress }) {
     const [code, setCode] = useState(initialCode);
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const hasStartedRef = useRef(false);
+
 
     const startChallenge = async () => {
         try {
@@ -46,12 +47,37 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
         }
     }
 
+    // const loadProgress = async () => {
+    //     try {
+    //         const response = await fetch("http://localhost:5000/get/challenge-progress", {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             credentials: "include",
+    //             body: JSON.stringify({ id: challengeId }),
+    //         });
+
+    //         const data = await response.json();
+    //         console.log(data);
+
+    //         if (data.challenges && data.challenges.length > 0) {
+    //             setCode(data.challenges[0].userCode); // Set editor code to saved code
+    //         }
+
+    //     } catch (error) {
+    //         console.error("Failed to load progress:", error);
+    //     }
+    // };
+
+
     useEffect(() => {
         if (!hasStartedRef.current) {
             hasStartedRef.current = true;
             startChallenge();
         }
+
+        //loadProgress()
     }, [challengeId]);
+
 
     const runAllTestCases = async () => {
         setLoading(true);
@@ -96,6 +122,10 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
         console.log(results)
     };
 
+    // use UseEffect to pass up the code to the Parent node
+    useEffect(() => {
+        saveProgress(code)
+    }, [code, saveProgress]);
 
     return (
         <div className="bg-white p-4 rounded shadow">
@@ -103,7 +133,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
                 height={height}
                 defaultLanguage={programingLanguage}
                 value={code}
-                onChange={(val) => setCode(val || "")}
+                onChange={(val) => setCode(val)}
                 options={{ fontSize: 14, minimap: { enabled: false } }}
                 theme={theme}
             />
