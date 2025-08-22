@@ -56,6 +56,30 @@ export default function QuestionExam() {
             .catch(err => console.error("Error submitting exam:", err));
     }, [examId, userAnswers, language, questions, calculateScore]); // Dependencies for useCallback
 
+    useEffect(() => {
+        const addTime = async () => {
+            try {
+                const response = await fetch("http://localhost:5000/update-jwt", {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        examId: id
+                    })
+                })
+
+                const data = await response.json()
+                console.log(data)
+            } catch (error) {
+                console.log(error)
+            }
+
+        }
+        addTime()
+    }, [id])
+
     // Effect to fetch questions on mount
     useEffect(() => {
         const fetchQuestions = async () => {
