@@ -41,6 +41,7 @@ export default function UserCodeExamResults() {
             <h1 className="text-3xl font-bold mb-6 text-blue-700">Submissions for Exam</h1>
 
             {submissions.map((sub, index) => (
+                console.log(sub),
                 <div
                     key={index}
                     className="bg-white p-6 rounded-lg border border-blue-200 shadow-md space-y-3"

@@ -6,8 +6,9 @@ export default function CodeExam() {
     const [exam, setExam] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(null);
-    const [code, setCode] = useState(""); 
+    const [code, setCode] = useState("");
     const [examResult, setExamResult] = useState(null); // ✅ store exam result
+    const [running, setRunning] = useState(false); // New state to manage the running state of the exam
     let navigate = useNavigate();
     const { id } = useParams();
 
@@ -39,8 +40,12 @@ export default function CodeExam() {
                     if (data.examResult) {
                         setExamResult(data); // ✅ store backend response
                     }
+                    setRunning(false); // Stop the running state after submission
                 })
-                .catch((err) => console.error("Error submitting exam:", err));
+                .catch((err) => {
+                    console.error("Error submitting exam:", err);
+                    setRunning(false); // Stop the running state in case of an error
+                });
         },
         [exam, code]
     );
@@ -117,83 +122,122 @@ export default function CodeExam() {
         return `${minutes}:${seconds}`;
     };
 
+    const handleRunCode = () => {
+        if (running) return; // Prevent running the code again while it's already running
+        setRunning(true);
+        submitExam(); // Trigger the exam submission logic to run the code and get results
+    };
+
     if (!exam) {
         return <div className="text-white p-6">Loading exam...</div>;
     }
 
     return (
         <form
-            onSubmit={handleSubmit}
-            className="bg-[#0F172A] text-white p-6 min-h-screen flex flex-col gap-6"
+            onSubmit={(e) => e.preventDefault()} // prevent full page reload
+            className="bg-white text-gray-900 p-6 min-h-screen flex flex-col gap-6"
         >
             {timeLeft !== null && (
-                <div className="text-xl font-bold text-yellow-300">
+                <div className="text-xl font-bold text-blue-600 mb-4">
                     Оставащо време: {formatTime(timeLeft)}
                 </div>
             )}
 
-            <h1 className="text-2xl font-bold">{exam.title}</h1>
-            <p className="text-gray-300">{exam.description}</p>
-            <p className="text-sm text-gray-400">
-                Language: <span className="font-semibold">{exam.language}</span> | Difficulty:{" "}
-                <span className="font-semibold">{exam.difficulty}</span>
+            <p className="text-sm text-gray-700">
+                Language: <span className="font-semibold text-blue-700">{exam.language}</span> | Difficulty:{" "}
+                <span className="font-semibold text-blue-700">{exam.difficulty}</span>
             </p>
 
-            <Editor
-                height={300}
-                defaultLanguage={handleProgrammingLanguage(exam.language)}
-                value={code}
-                onChange={(val) => setCode(val || "")}
-                options={{ fontSize: 14, minimap: { enabled: false } }}
-                theme={"vs-dark"}
-            />
+            {/* Two-column layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* LEFT SIDE: exam details */}
+                <div className="bg-white rounded-xl p-6 shadow-lg border border-blue-100 flex flex-col justify-between">
+                    <div>
+                        <h1 className="text-2xl font-bold text-blue-800 mb-2">{exam.title}</h1>
+                        <p className="text-gray-600 mb-4">{exam.description}</p>
+                    </div>
+                </div>
 
-            <button
-                type="submit"
-                className="bg-indigo-600 hover:bg-indigo-500 px-6 py-3 rounded-md font-semibold self-start disabled:opacity-50"
-            >
-                {submitted ? "Изпълнено" : "Изпълни"}
-            </button>
+                {/* RIGHT SIDE: code editor */}
+                <div className="bg-white rounded-xl p-6 shadow-lg border border-blue-100 flex flex-col">
+                    <Editor
+                        height={300}
+                        defaultLanguage={handleProgrammingLanguage(exam.language)}
+                        value={code}
+                        onChange={(val) => setCode(val || "")}
+                        options={{ fontSize: 14, minimap: { enabled: false } }}
+                        theme="light" // switched to light theme for white style
+                    />
 
-            {submitted && examResult && (
-                <div className="mt-6 p-4 bg-gray-800 rounded-lg border border-gray-600">
-                    <p className={`font-bold text-lg ${examResult.status === "passed" ? "text-green-400" : "text-red-400"}`}>
-                        {examResult.status === "passed" ? "✅ Успешно преминахте изпита!" : "❌ Неуспешен опит"}
+                    <button
+                        type="button"
+                        onClick={handleRunCode}
+                        disabled={running}
+                        className="mt-4 bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-md font-semibold text-white self-start disabled:opacity-50 transition"
+                    >
+                        {running ? "Running..." : "▶ Run Code"}
+                    </button>
+                </div>
+            </div>
+
+            {/* Results section - full width below */}
+            {examResult && !running && (
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200 shadow">
+                    <p
+                        className={`font-bold text-lg ${examResult.status === "passed" ? "text-green-600" : "text-red-600"
+                            }`}
+                    >
+                        {examResult.status === "passed"
+                            ? "✅ Успешно преминахте изпита!"
+                            : "❌ Неуспешен опит"}
                     </p>
 
                     <div className="mt-4">
-                        <h3 className="font-semibold text-gray-200">Резултати от тестовете:</h3>
+                        <h3 className="font-semibold text-blue-800">Резултати от тестовете:</h3>
                         <ul className="mt-2 space-y-2">
                             {examResult.testResults.map((t, i) => (
-                                <li key={i} className="p-2 rounded bg-gray-700">
-                                    <p className="text-sm">🔹 <span className="font-semibold">Test {i + 1}</span></p>
-                                    <p className="text-sm text-gray-300">Input: <code>{t.input}</code></p>
-                                    <p className="text-sm text-gray-300">Expected: <code>{t.expectedOutput}</code></p>
-                                    <p className="text-sm text-gray-300">Output: <code>{t.output}</code></p>
-                                    <p className={`font-semibold ${t.passed ? "text-green-400" : "text-red-400"}`}>
+                                <li key={i} className="p-2 rounded bg-white border border-blue-100 shadow-sm">
+                                    <p className="text-sm text-blue-900">
+                                        🔹 <span className="font-semibold">Test {i + 1}</span>
+                                    </p>
+                                    <p className="text-sm text-gray-600">
+                                        Input: <code>{t.input}</code>
+                                    </p>
+                                    <p className="text-sm text-gray-600">
+                                        Expected: <code>{t.expectedOutput}</code>
+                                    </p>
+                                    <p className="text-sm text-gray-600">
+                                        Output: <code>{t.output}</code>
+                                    </p>
+                                    <p
+                                        className={`font-semibold ${t.passed ? "text-green-600" : "text-red-600"
+                                            }`}
+                                    >
                                         {t.passed ? "✔ Passed" : "✘ Failed"}
                                     </p>
                                 </li>
                             ))}
                         </ul>
-                    </div>
-
-                    <div className="flex gap-4 mt-6">
-                        <button
-                            onClick={() => navigate("/home")}
-                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-                        >
-                            ⬅️ Назад
-                        </button>
-                        <button
-                            onClick={() => navigate(`/exam/code/answers/${id}`)}
-                            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-                        >
-                            Провери резултата си!
-                        </button>
+                        <div className="mt-6 flex gap-4">
+                            <button
+                                type="button"
+                                onClick={() => navigate("/home")}
+                                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                            >
+                                ⬅️ Назад
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => navigate(`/exam/code/answers/${id}`)}
+                                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+                            >
+                                Провери резултата си!
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
         </form>
     );
+
 }

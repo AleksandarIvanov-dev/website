@@ -172,61 +172,75 @@ export default function QuestionExam() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-[#0F172A] text-white p-6 min-h-screen flex flex-col gap-6">
+        <form
+            onSubmit={handleSubmit}
+            className="bg-white text-gray-900 p-6 min-h-screen flex flex-col gap-6"
+        >
             {timeLeft !== null && (
-                <div className="text-xl font-bold text-yellow-300">Оставащо време: {formatTime(timeLeft)}</div>
+                <div className="text-xl font-bold text-blue-600">Оставащо време: {formatTime(timeLeft)}</div>
             )}
 
             {questions.map((q, idx) => (
-                <div key={q._id} className="mb-6">
-                    <h3 className="font-semibold mb-2">{idx + 1}. {q.questionText}</h3>
-                    {q.options.map((opt, optIdx) => {
-                        const optionKey = String.fromCharCode(65 + optIdx);
-                        const selected = userAnswers[q._id]?.includes(optionKey);
+                <div
+                    key={q._id}
+                    className="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-xl shadow-sm"
+                >
+                    <h3 className="font-semibold text-black-800 mb-3">
+                        {idx + 1}. {q.questionText}
+                    </h3>
+                    <div className="flex flex-col gap-2">
+                        {q.options.map((opt, optIdx) => {
+                            const optionKey = String.fromCharCode(65 + optIdx);
+                            const selected = userAnswers[q._id]?.includes(optionKey);
 
-                        return (
-                            <label
-                                key={optionKey}
-                                className={`block cursor-pointer p-2 rounded-md border transition
-                                    ${selected ? "bg-blue-600 border-blue-400" : "bg-gray-700 border-gray-600 hover:bg-gray-600"}
-                                    ${submitted ? "opacity-60 cursor-not-allowed" : ""}
-                                `}
-                            >
-                                <input
-                                    type="checkbox"
-                                    name={`${q._id}_${optionKey}`}
-                                    value={optionKey}
-                                    checked={selected || false}
-                                    onChange={() => handleMultiSelect(q._id, optionKey)}
-                                    className="hidden"
-                                    disabled={submitted}
-                                />
-                                {optionKey}: {opt}
-                            </label>
-                        );
-                    })}
+                            return (
+                                <label
+                                    key={optionKey}
+                                    className={`block cursor-pointer p-2 rounded-md border transition
+                ${selected ? "bg-blue-600 text-white border-blue-400" : "bg-white border-blue-200 hover:bg-blue-100"}
+                ${submitted ? "opacity-60 cursor-not-allowed" : ""}
+              `}
+                                >
+                                    <input
+                                        type="checkbox"
+                                        name={`${q._id}_${optionKey}`}
+                                        value={optionKey}
+                                        checked={selected || false}
+                                        onChange={() => handleMultiSelect(q._id, optionKey)}
+                                        className="hidden"
+                                        disabled={submitted}
+                                    />
+                                    {optionKey}: {opt}
+                                </label>
+                            );
+                        })}
+                    </div>
                 </div>
             ))}
 
             <button
                 type="submit"
                 disabled={submitted}
-                className="bg-indigo-600 hover:bg-indigo-500 px-6 py-3 rounded-md font-semibold self-start disabled:opacity-50"
+                className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-md font-semibold self-start disabled:opacity-50 text-white transition"
             >
                 {submitted ? "Submitted" : "Submit Answers"}
             </button>
 
             {submitted && (
-                <div className="mt-4 p-4 bg-green-100 border border-green-300 rounded">
-                    <p className="text-green-700 font-medium mb-4">✅ Изпитът е изпратен успешно.</p>
+                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded shadow">
+                    <p className="text-blue-700 font-medium mb-4">
+                        ✅ Изпитът е изпратен успешно.
+                    </p>
                     <div className="flex gap-4">
                         <button
+                            type="button"
                             onClick={() => navigate("/home")}
                             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
                         >
                             ⬅️ Назад
                         </button>
                         <button
+                            type="button"
                             onClick={() => navigate(`/mystats/exam/${id}`)}
                             className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
                         >
@@ -236,5 +250,6 @@ export default function QuestionExam() {
                 </div>
             )}
         </form>
+
     );
 }
