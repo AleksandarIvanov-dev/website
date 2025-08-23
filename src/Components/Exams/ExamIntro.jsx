@@ -12,7 +12,7 @@ export default function DataVariablesExamIntro() {
                 {/* Normal Exam Card */}
                 <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
                     <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                        Структурата на изпита
+                        Структурата на теоретически изпит
                     </h3>
                     <ul className="list-disc list-inside text-gray-700 mb-4 space-y-1">
                         <li>Въпроси с избираем отговор</li>

@@ -93,7 +93,7 @@ export default function UserStats() {
                         {/* Табло за Решени изпити */}
                         <div className="p-6 border border-blue-200 rounded-lg shadow bg-white">
                             <h2 className="text-2xl font-semibold text-blue-600 mb-2">
-                                Решени изпити ({userData.solvedExams.length})
+                                Решени теоретически изпити ({userData.solvedExams.length})
                             </h2>
                             {userData.solvedExams.length === 0 ? (
                                 <p className="text-gray-500">Няма намерени изпити.</p>
@@ -127,9 +127,9 @@ export default function UserStats() {
                         </div>
 
                         {/* Табло за Решени кодови изпити */}
-                        <div className="p-6 border border-green-200 rounded-lg shadow bg-white">
-                            <h2 className="text-2xl font-semibold text-green-600 mb-2">
-                                Решени кодови изпити ({userData.codeExamSolved.length})
+                        <div className="p-6 border border-blue-200 rounded-lg shadow bg-white">
+                            <h2 className="text-2xl font-semibold text-blue-600 mb-2">
+                                Решени практически изпити ({userData.codeExamSolved.length})
                             </h2>
                             {userData.codeExamSolved.length === 0 ? (
                                 <p className="text-gray-500">Няма намерени Code Exams.</p>
@@ -138,13 +138,13 @@ export default function UserStats() {
                                     {userData.codeExamSolved.map((codeExam, idx) => (
                                         <div key={idx} className="p-4 border rounded shadow bg-white">
                                             <p><strong>Заглавие:</strong> {codeExam.title}</p>
-                                            <p><strong>Статус:</strong> {codeExam.status === "passed" ? "Преминат": "Не преминат"}</p>
+                                            <p><strong>Статус:</strong> {codeExam.status === "passed" ? "Преминат" : "Не преминат"}</p>
                                             <p><strong>Подаден на:</strong> {new Date(codeExam.submittedAt).toLocaleString()}</p>
                                             <p><strong>Общо тестове:</strong> {codeExam.totalTestCases}</p>
                                             <p><strong>Минати тестове:</strong> {codeExam.testCasesPassed}</p>
                                             <Link
                                                 to={`/exam/code/answers/${codeExam.codeExamId}`}
-                                                className="inline-block mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+                                                className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-green-700 transition"
                                             >
                                                 Преглед на Code изпита
                                             </Link>
@@ -157,7 +157,6 @@ export default function UserStats() {
                 </div>
                 <FooterHomePage />
             </div >
-            );
         </div>
     )
 }

@@ -144,7 +144,7 @@ export default function CodeExam() {
             )}
 
             <p className="text-sm text-gray-700">
-                Language: <span className="font-semibold text-blue-700">{exam.language}</span> | Difficulty:{" "}
+                Език: <span className="font-semibold text-blue-700">{exam.language}</span> | Трудност:{" "}
                 <span className="font-semibold text-blue-700">{exam.difficulty}</span>
             </p>
 

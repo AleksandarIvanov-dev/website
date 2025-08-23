@@ -91,7 +91,7 @@ int main() {
         <div>
             <HomePageHeader />
             <div className="max-w-5xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-                <h1 className="text-2xl font-bold mb-4">🛠 Code Playground</h1>
+                <h1 className="text-2xl font-bold mb-4">🛠 Среда за писане на код</h1>
 
                 {/* Language selector */}
                 <div className="mb-4">
