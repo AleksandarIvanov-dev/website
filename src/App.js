@@ -51,6 +51,7 @@ import LogInPage from './Components/LogInPage/LogIn';
 import Home from './Components/HomePageLoggedIn/Home';
 import withAuth from './Components/withAuth';
 import LanguageSelector from "./Components/SignUpPage/ChooseLanguageNewUser"
+import AdminPanel from './Components/AdminPanel/AdminPanel';
 
 function App() {
   return (
@@ -96,7 +97,8 @@ function App() {
         <Route path="/exam/start/:id" Component={withAuth(Exam)} />
         <Route path="/exam/code/start/:id" Component={withAuth(CodeExam)} />
         <Route path='/test' element={<AddExamForm />} />{/* Change the route to /add-exam */}
-        <Route path='/code-test' element={<CodeExamForm />} />{/* Change the route to /add-exam */}
+        <Route path='/code-test' element={<CodeExamForm />} />{/* Change the route to /add/code-exam */}
+        <Route path='/admin' element={<AdminPanel />} />{/* Change the route to /admin */}
         <Route path='/tutorials' element={<AllTutorials />} />
         <Route path="/home" Component={withAuth(Home)} />
         <Route path="/home/lang" Component={withAuth(LanguageSelector)} />
