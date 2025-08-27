@@ -43,7 +43,6 @@ import JavaArrays from './Components/Tutorials/JavaTutorials/Arrays';
 
 import CodePlayground from './Components/CodePlayground/CodePlayground';
 import ChallengeList from './Components/CodePlayground/ChallengeList';
-import AllTutorials from './Components/Tutorials/AllTutorials'
 import Playground from './Components/CodePlayground/Playground';
 import AddExamForm from './Components/Exams/AddExam';
 import CodeExamForm from "./Components/Exams/AddCodeExam"
@@ -53,6 +52,7 @@ import withAuth from './Components/withAuth';
 import LanguageSelector from "./Components/SignUpPage/ChooseLanguageNewUser"
 import AdminPanel from './Components/AdminPanel/AdminPanel';
 import EditUser from './Components/AdminPanel/EditUser';
+import AddUser from './Components/AdminPanel/AddUser';
 
 function App() {
   return (
@@ -97,11 +97,11 @@ function App() {
         <Route path="/exams/code/choose" Component={withAuth(ChoseCodeExam)} />
         <Route path="/exam/start/:id" Component={withAuth(Exam)} />
         <Route path="/exam/code/start/:id" Component={withAuth(CodeExam)} />
-        <Route path='/test' element={<AddExamForm />} />{/* Change the route to /add-exam */}
-        <Route path='/code-test' element={<CodeExamForm />} />{/* Change the route to /add/code-exam */}
-        <Route path='/admin' element={<AdminPanel />} />{/* Change the route to /admin */}
-        <Route path='/admin/edit-user/:id' element={<EditUser />} />{/* Change the route to /admin */}
-        <Route path='/tutorials' element={<AllTutorials />} />
+        <Route path='/add-exam' Component={withAuth(AddExamForm)} />
+        <Route path='/code-test' Component={withAuth(CodeExamForm)} />
+        <Route path='/admin' Component={withAuth(AdminPanel)} />
+        <Route path='/admin/edit-user/:id' Component={withAuth(EditUser)} />
+        <Route path='/admin/add-user' Component={withAuth(AddUser)} />
         <Route path="/home" Component={withAuth(Home)} />
         <Route path="/home/lang" Component={withAuth(LanguageSelector)} />
         {/* Add more routes as needed */}

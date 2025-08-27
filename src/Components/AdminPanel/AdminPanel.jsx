@@ -50,8 +50,8 @@ export default function AdminPanel() {
             {/* Users List */}
             <div className="border rounded-lg shadow p-6 bg-white">
                 <div className="flex ...">
-                    <h2 className="w-64 flex-auto text-lg font-semibold mb-4 text-blue-600">Потребители</h2>
-                    <button className="w-1 flex-auto px-3 py-1 rounded-lg bg-blue-700 text-white hover:bg-blue-800">Добави потребител</button>
+                    <h2 className="w-64 flex-auto text-lg font-semibold mb-4 text-blue-600" >Потребители</h2>
+                    <button className="w-1 flex-auto px-3 py-1 rounded-lg bg-blue-700 text-white hover:bg-blue-800" onClick={() => navigate("/admin/add-user")}>Добави потребител</button>
                 </div>
 
                 <div className="space-y-3">
