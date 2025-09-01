@@ -106,8 +106,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
 
             if (data.success) {
                 setResults(data.testResults);
-                //console.log("Received Data: ", data)
-
+                
                 const allPassed = data.testResults.every(test => test.passed);
                 if (allPassed) {
                     await endChallenge();
@@ -128,7 +127,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
     useEffect(() => {
         saveProgress(code)
     }, [code, saveProgress]);
-
+    
     return (
         <div className="bg-white p-4 rounded shadow">
             <Editor
@@ -142,7 +141,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
 
             <div className="mt-4">
                 <label htmlFor="customInput" className="block text-sm font-medium text-gray-700 mb-1">
-                    Потребителски вход (по избор):
+                    Входни данни:
                 </label>
                 <textarea
                     id="customInput"
@@ -163,10 +162,10 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
             </button>
 
             {results.length > 0 && (
+                
                 <div className="mt-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-2">Резултати:</h3>
                     {results.map((res, index) => (
-                        //console.log(res),
                         <div
                             key={index}
                             className={`p-3 mb-2 rounded ${res.passed ? "bg-green-100 border-l-4 border-green-500" : "bg-red-100 border-l-4 border-red-500"}`}
