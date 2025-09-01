@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import TutorialCard from "./TutorialCards";
-import { useLocation } from "react-router-dom";
 
 export default function TutorialList() {
     const [tutorials, setTutorials] = useState([]);
