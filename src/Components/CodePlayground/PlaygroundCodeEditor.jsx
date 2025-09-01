@@ -5,6 +5,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
     const [code, setCode] = useState(initialCode);
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [customInput, setCustomInput] = useState('');
     const hasStartedRef = useRef(false);
 
 
@@ -95,6 +96,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
                     clientSecret: "3b2d3849be5207c8e9354bb38d51100b12867d1f9a94d3e5540b7b821cc91b43",
                     challengeId: challengeId,
                     code: code,
+                    userInput: customInput,
                     language: programingLanguage,
                     versionIndex: "5",
                 })
@@ -137,6 +139,20 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
                 options={{ fontSize: 14, minimap: { enabled: false } }}
                 theme={theme}
             />
+
+            <div className="mt-4">
+                <label htmlFor="customInput" className="block text-sm font-medium text-gray-700 mb-1">
+                    Потребителски вход (по избор):
+                </label>
+                <textarea
+                    id="customInput"
+                    value={customInput}
+                    onChange={(e) => setCustomInput(e.target.value)}
+                    placeholder="Въведете входни данни за тестване..."
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    rows={3}
+                />
+            </div>
 
             <button
                 onClick={runAllTestCases}

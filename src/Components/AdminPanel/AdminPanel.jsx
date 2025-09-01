@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import HomePageHeader from "../HomePageLoggedIn/HomePageHeader";
 
 export default function AdminPanel() {
     const [users, setUsers] = useState([]);
@@ -44,71 +45,76 @@ export default function AdminPanel() {
     };
 
     return (
-        <div className="p-6 max-w-3xl mx-auto">
-            <h1 className="text-2xl font-bold mb-6 text-black-700">Админ Панел</h1>
+        <div>
+            <HomePageHeader />
 
-            {/* Users List */}
-            <div className="border rounded-lg shadow p-6 bg-white">
-                <div className="flex ...">
-                    <h2 className="w-64 flex-auto text-lg font-semibold mb-4 text-blue-600" >Потребители</h2>
-                    <button className="w-1 flex-auto px-3 py-1 rounded-lg bg-blue-700 text-white hover:bg-blue-800" onClick={() => navigate("/admin/add-user")}>Добави потребител</button>
-                </div>
+            <div className="p-6 max-w-3xl mx-auto">
+                <h1 className="text-2xl font-bold mb-6 text-black-700">Админ Панел</h1>
 
-                <div className="space-y-3">
-                    {users && users.length > 0 ? (
-                        users.map((user) => (
-                            <div
-                                key={user._id}
-                                className="flex items-center justify-between border rounded-lg p-3 bg-white"
-                            >
-                                <div>
-                                    <p className="font-medium text-black">{user.name}</p>
-                                    <p className="text-sm text-black">{user.email}</p>
-                                    <p className="text-xs text-black">Роля: {user.role}</p>
+                {/* Users List */}
+                <div className="border rounded-lg shadow p-6 bg-white">
+                    <div className="flex ...">
+                        <h2 className="w-64 flex-auto text-lg font-semibold mb-4 text-blue-600" >Потребители</h2>
+                        <button className="w-1 flex-auto px-3 py-1 rounded-lg bg-blue-700 text-white hover:bg-blue-800" onClick={() => navigate("/admin/add-user")}>Добави потребител</button>
+                    </div>
+
+                    <div className="space-y-3">
+                        {users && users.length > 0 ? (
+                            users.map((user) => (
+                                <div
+                                    key={user._id}
+                                    className="flex items-center justify-between border rounded-lg p-3 bg-white"
+                                >
+                                    <div>
+                                        <p className="font-medium text-black">{user.name}</p>
+                                        <p className="text-sm text-black">{user.email}</p>
+                                        <p className="text-xs text-black">Роля: {user.role}</p>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={() => navigate(`/admin/edit-user/${user._id}`)}
+                                            className="px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
+                                        >
+                                            Редактирай
+                                        </button>
+                                        <button
+                                            onClick={() => handleDeleteUser(user._id)}
+                                            className="px-3 py-1 rounded-lg bg-blue-700 text-white hover:bg-blue-800"
+                                        >
+                                            Изтрий
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={() => navigate(`/admin/edit-user/${user._id}`)}
-                                        className="px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
-                                    >
-                                        Редактирай
-                                    </button>
-                                    <button
-                                        onClick={() => handleDeleteUser(user._id)}
-                                        className="px-3 py-1 rounded-lg bg-blue-700 text-white hover:bg-blue-800"
-                                    >
-                                        Изтрий
-                                    </button>
-                                </div>
-                            </div>
-                        ))
-                    ) : (
-                        <p className="text-blue-500 text-sm">Няма намерени потребители.</p>
-                    )}
-                </div>
+                            ))
+                        ) : (
+                            <p className="text-blue-500 text-sm">Няма намерени потребители.</p>
+                        )}
+                    </div>
 
-                {/* Pagination Controls */}
-                <footer className="flex justify-between mt-4 items-center">
-                    <button
-                        disabled={page === 1}
-                        onClick={() => setPage((p) => p - 1)}
-                        className="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 disabled:opacity-50"
-                    >
-                        Назад
-                    </button>
-                    <span className="text-black-700">
-                        Страница {page} от {pageCount}
-                    </span>
-                    <button
-                        disabled={page === pageCount}
-                        onClick={() => setPage((p) => p + 1)}
-                        className="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 disabled:opacity-50"
-                    >
-                        Напред
-                    </button>
-                </footer>
+                    {/* Pagination Controls */}
+                    <footer className="flex justify-between mt-4 items-center">
+                        <button
+                            disabled={page === 1}
+                            onClick={() => setPage((p) => p - 1)}
+                            className="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 disabled:opacity-50"
+                        >
+                            Назад
+                        </button>
+                        <span className="text-black-700">
+                            Страница {page} от {pageCount}
+                        </span>
+                        <button
+                            disabled={page === pageCount}
+                            onClick={() => setPage((p) => p + 1)}
+                            className="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 disabled:opacity-50"
+                        >
+                            Напред
+                        </button>
+                    </footer>
+                </div>
             </div>
         </div>
+
     );
 
 }

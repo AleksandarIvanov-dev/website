@@ -97,8 +97,8 @@ function App() {
         <Route path="/exams/code/choose" Component={withAuth(ChoseCodeExam)} />
         <Route path="/exam/start/:id" Component={withAuth(Exam)} />
         <Route path="/exam/code/start/:id" Component={withAuth(CodeExam)} />
-        <Route path='/add-exam' Component={withAuth(AddExamForm)} />
-        <Route path='/code-test' Component={withAuth(CodeExamForm)} />
+        <Route path='/add/exam' Component={withAuth(AddExamForm)} />
+        <Route path='/add/code-exam' Component={withAuth(CodeExamForm)} />
         <Route path='/admin' Component={withAuth(AdminPanel)} />
         <Route path='/admin/edit-user/:id' Component={withAuth(EditUser)} />
         <Route path='/admin/add-user' Component={withAuth(AddUser)} />

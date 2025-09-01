@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export default function HomePageHeader() {
     const [open, setOpen] = useState(false);
     const [userName, setUserName] = useState('')
+    const [role, setRole] = useState("")
     const dropdownRef = useRef(null);
     const navigate = useNavigate();
 
@@ -31,6 +32,7 @@ export default function HomePageHeader() {
 
             if (res.ok) {
                 const data = await res.json();
+                setRole(data.role)
                 setUserName(data.firstName);
             } else {
                 console.error("Failed to fetch user profile");
@@ -68,6 +70,20 @@ export default function HomePageHeader() {
                 <Link to="/tutorials" className="hover:text-blue-500">Уроци</Link>
                 <Link to="/exams" className="hover:text-blue-500">Изпити</Link>
                 <Link to="/playground" className="hover:text-blue-500">Среда за писане на код</Link>
+                {
+                    role !== "student" && (
+                        <>
+                            <Link to="/add/exam" className="hover:text-blue-500">Добави практически изпит</Link>
+                            <Link to="/add/code-exam" className="hover:text-blue-500">Добави теоретически изпит</Link>
+                        </>
+                    )
+                }
+
+                {
+                    role === "admin" && (
+                            <Link to="/admin" className="hover:text-blue-500">Админ панел</Link>
+                    )
+                }
             </nav>
 
             <div className="relative" ref={dropdownRef}>
