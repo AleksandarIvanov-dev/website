@@ -17,11 +17,18 @@ export default function DashboardStats() {
                 });
 
                 const data = await response.json();
+                //console.log(data)
+
+
 
                 // Get the count of completed challenges
                 const completedChallengesCount = data.userData.solvedChallenges?.filter(c => c.status === "completed").length || 0;
 
-                setCountChallenges(data.allChallengesByLanguage.length);
+                const allChallengesByUserLanguage = data?.allChallengesByLanguage?.filter(
+                    (c) => data?.userData?.languages?.includes(c.languageForDisplay)
+                ) || [];
+
+                setCountChallenges(allChallengesByUserLanguage.length);
 
                 const completedExams = data.exams.filter(exam => exam.isCompleted === true).length;
 
