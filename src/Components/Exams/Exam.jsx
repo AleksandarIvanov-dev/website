@@ -9,12 +9,13 @@ export default function QuestionExam() {
     const [timeLeft, setTimeLeft] = useState(null); // Initial state is null
     const [examId, setExamId] = useState(null);
     const [language, setLanguage] = useState("")
+    const [startedAt, setStartedAt] = useState()
     let navigate = useNavigate();
     const { id } = useParams();
 
     // Helper function to start the timer by setting the initial duration
     const startTimer = (durationMs) => {
-        console.log(durationMs)
+        //console.log(durationMs)
         setTimeLeft(durationMs);
     };
 
@@ -47,6 +48,7 @@ export default function QuestionExam() {
                 language,
                 correctCount,
                 totalQuestion: questions.length,
+                startedAt: startedAt
             }),
         })
             .then(res => res.json())
@@ -71,7 +73,7 @@ export default function QuestionExam() {
                 })
 
                 const data = await response.json()
-                console.log(data)
+                //console.log(data)
             } catch (error) {
                 console.log(error)
             }
@@ -82,6 +84,8 @@ export default function QuestionExam() {
 
     // Effect to fetch questions on mount
     useEffect(() => {
+        setStartedAt(new Date())
+
         const fetchQuestions = async () => {
             try {
                 const res = await fetch(`http://localhost:5000/exam/start/${id}`, {
@@ -95,7 +99,7 @@ export default function QuestionExam() {
                 }
 
                 const data = await res.json();
-                console.log("Fetched exam:", data);
+                //console.log("Fetched exam:", data);
 
                 if (data) {
                     setExamId(data._id);
@@ -134,7 +138,7 @@ export default function QuestionExam() {
     // Effect to handle auto-submission when time runs out
     useEffect(() => {
         if (timeLeft !== null && timeLeft <= 0 && !submitted) {
-            console.log("Time is up! Auto-submitting...");
+            //console.log("Time is up! Auto-submitting...");
             setSubmitted(true);
             submitExam(true);
         }

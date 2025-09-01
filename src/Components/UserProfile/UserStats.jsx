@@ -100,6 +100,7 @@ export default function UserStats() {
                             ) : (
                                 <div className="space-y-6">
                                     {userData.solvedExams.map((userExam, idx) => {
+                                        console.log(userExam)
                                         const examDetails = exams.find(e => e._id === userExam.examId);
                                         return (
                                             <div key={idx} className="p-4 border rounded shadow bg-white">
@@ -132,7 +133,7 @@ export default function UserStats() {
                                 Решени практически изпити ({userData.codeExamSolved.length})
                             </h2>
                             {userData.codeExamSolved.length === 0 ? (
-                                <p className="text-gray-500">Няма намерени Code Exams.</p>
+                                <p className="text-gray-500">Няма намерени практически изпити.</p>
                             ) : (
                                 <div className="space-y-6">
                                     {userData.codeExamSolved.map((codeExam, idx) => (

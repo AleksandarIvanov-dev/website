@@ -32,6 +32,15 @@ export default function ExamResults() {
     if (error) return <p className="text-center text-red-500">{error}</p>;
     if (!results) return null;
 
+    const calculateDuration = (startedAt, solvedAt) => {
+        const start = new Date(startedAt);
+        const end = new Date(solvedAt);
+        const diffMs = end - start;
+        const minutes = Math.floor(diffMs / 60000);
+        const seconds = Math.floor((diffMs % 60000) / 1000);
+        return `${minutes} минути ${seconds} секунди`;
+    };
+
     return (
         <div>
             <HomePageHeader />
@@ -44,6 +53,9 @@ export default function ExamResults() {
                 {/* Основна информация за изпита */}
                 <p className="mb-2 text-gray-600">
                     Време за изпълнение: {Math.round(results.time / 60 / 1000)} мин
+                </p>
+                <p className="mb-2 text-gray-600">
+                    Време за решаване на теста: {calculateDuration(results.startedAt, results.solvedAt)}
                 </p>
                 <p className="mb-2 text-gray-600">
                     Дата на предаване: {new Date(results.solvedAt).toLocaleString("bg-BG")}
