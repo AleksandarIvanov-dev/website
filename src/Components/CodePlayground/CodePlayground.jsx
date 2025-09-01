@@ -39,7 +39,7 @@ const CodePlayground = () => {
             });
 
             const data = await response.json();
-            console.log(data)
+            //console.log(data)
             setOutput(data.output);
             setCPUTime(data.cpuTime);
             setMemory(data.memory)

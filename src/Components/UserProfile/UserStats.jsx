@@ -63,7 +63,7 @@ export default function UserStats() {
 
                 <div className="mb-10">
                     <h2 className="text-3xl font-semibold text-blue-700 mb-3">
-                        Предизвикателства {/*({userData.solvedChallenges.length})*/}
+                        Предизвикателства
                     </h2>
                     {challenges.length === 0 ? (
                         <p className="text-gray-500">Няма намерени предизвикателства.</p>
@@ -72,7 +72,7 @@ export default function UserStats() {
                             {challenges.map((challenge, idx) => {
                                 const solvedInfo = userData.solvedChallenges.find(c => c.challengeId === challenge._id);
                                 return (
-                                    <div key={idx} className="p-5 border border-blue-100 rounded-lg bg-blue-50 shadow">
+                                    <div key={idx} className="p-5 border border-blue-100 rounded-lg bg-white shadow">
                                         <h3 className="text-xl font-bold text-blue-700">{challenge.title}</h3>
                                         <p><strong>Статус:</strong> {solvedInfo?.status}</p>
                                         <p>
@@ -156,8 +156,8 @@ export default function UserStats() {
                         </div>
                     </div>
                 </div>
-                <FooterHomePage />
             </div >
+            <FooterHomePage />
         </div>
     )
 }
