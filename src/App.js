@@ -8,6 +8,7 @@ import ChoseExam from './Components/Exams/ChooseExam'
 import CodeExam from './Components/Exams/CodeExam'
 import ChoseCodeExam from './Components/Exams/ChooseCodeExam';
 import ProgrammingVSCoding from './Components/Tutorials/ProgrammingVSCoding';
+import AllTutorials from './Components/Tutorials/AllTutorials'
 // User profile imports
 import UserDetails from './Components/UserProfile/UserDetails';
 import UserStats from './Components/UserProfile/UserStats';
@@ -61,6 +62,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/logIn" element={<LogInPage />} />
         <Route path="/signUp" element={<SignUpPage />} />
+        <Route path="/tutorials" Component={withAuth(AllTutorials)} />
         <Route path="/tutorials/programming-vs-coding" Component={withAuth(ProgrammingVSCoding)} />
         <Route path="/tutorials/python/intro" Component={withAuth(IntroPython)} />
         <Route path="/tutorials/python/io" Component={withAuth(InputAndOutput)} />
