@@ -7,6 +7,8 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
     const [loading, setLoading] = useState(false);
     const [customInput, setCustomInput] = useState('');
     const hasStartedRef = useRef(false);
+    // NEW: State to keep track of the error count
+    const [errorCount, setErrorCount] = useState(0);
 
 
     const startChallenge = async () => {
@@ -106,17 +108,24 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
 
             if (data.success) {
                 setResults(data.testResults);
-                
+
                 const allPassed = data.testResults.every(test => test.passed);
                 if (allPassed) {
                     await endChallenge();
+                } else {
+                    // NEW: Increment counter if not all tests passed
+                    setErrorCount(prevCount => prevCount + 1);
                 }
             } else {
                 //console.log("setResults in Else: ", data.testResults)
                 setResults(data.testResults);
+                // NEW: Increment counter on API error
+                setErrorCount(prevCount => prevCount + 1);
             }
         } catch (err) {
             setResults([{ output: "Execution error: " + err.message, passed: false }]);
+            // NEW: Increment counter on execution error
+            setErrorCount(prevCount => prevCount + 1);
         } finally {
             setLoading(false);
         }
@@ -127,7 +136,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
     useEffect(() => {
         saveProgress(code)
     }, [code, saveProgress]);
-    
+
     return (
         <div className="bg-white p-4 rounded shadow">
             <Editor
@@ -153,16 +162,24 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
                 />
             </div>
 
-            <button
-                onClick={runAllTestCases}
-                className="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-                disabled={loading}
-            >
-                {loading ? "Изпълняване..." : "Изпълни"}
-            </button>
+            {/* NEW: Wrapper to hold the button and the new counter */}
+            <div className="flex items-center mt-4 space-x-4">
+                <button
+                    onClick={runAllTestCases}
+                    className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                    disabled={loading}
+                >
+                    {loading ? "Изпълняване..." : "Изпълни"}
+                </button>
+
+                {/* NEW: Display for the error counter */}
+                <div className="p-2 border border-red-300 bg-red-50 rounded-md">
+                    <span className="font-medium text-red-600">Грешни опити: {errorCount}</span>
+                </div>
+            </div>
 
             {results.length > 0 && (
-                
+
                 <div className="mt-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-2">Резултати:</h3>
                     {results.map((res, index) => (
