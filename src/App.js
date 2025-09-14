@@ -38,9 +38,9 @@ import JavaStrings from './Components/Tutorials/JavaTutorials/Strings';
 import JavaOperators from './Components/Tutorials/JavaTutorials/Operators';
 import JavaIfStatement from './Components/Tutorials/JavaTutorials/IFStatement';
 import JavaLoops from './Components/Tutorials/JavaTutorials/Loops';
-import JavaFunctions from './Components/Tutorials/JavaTutorials/Functions';
 import JavaArrays from './Components/Tutorials/JavaTutorials/Arrays';
-
+import JavaMaps from './Components/Tutorials/JavaTutorials/Maps';
+import JavaFunctions from './Components/Tutorials/JavaTutorials/Functions';
 
 import CodePlayground from './Components/CodePlayground/CodePlayground';
 import ChallengeList from './Components/CodePlayground/ChallengeList';
@@ -85,8 +85,9 @@ function App() {
         <Route path="/tutorials/java/operators" Component={withAuth(JavaOperators)} />
         <Route path="/tutorials/java/conditions" Component={withAuth(JavaIfStatement)} />
         <Route path="/tutorials/java/cycles" Component={withAuth(JavaLoops)} />
-        <Route path="/tutorials/java/func" Component={withAuth(JavaFunctions)} />
         <Route path="/tutorials/java/arrays" Component={withAuth(JavaArrays)} />
+        <Route path="/tutorials/java/maps" Component={withAuth(JavaMaps)} />
+        <Route path="/tutorials/java/func" Component={withAuth(JavaFunctions)} />
         <Route path="/challenges" Component={withAuth(ChallengeList)} />
         <Route path="/playground/:challengeId" Component={withAuth(Playground)} />
         <Route path="/playground" Component={withAuth(CodePlayground)} />
