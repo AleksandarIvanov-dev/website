@@ -188,7 +188,7 @@ export default function JavaLoops() {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок <Link to={"/tutorials/java/func"} className="text-blue-600 underline">Създаване на Функции в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/maps"} className="text-blue-600 underline">Map в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/arrays-in-java/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
