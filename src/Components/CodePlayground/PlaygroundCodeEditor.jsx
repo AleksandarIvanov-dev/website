@@ -135,7 +135,7 @@ export default function CodeEditorForChallenge({ height, initialCode, programing
     // use UseEffect to pass up the code to the Parent node
     useEffect(() => {
         saveProgress(code)
-    }, [code, saveProgress]);
+    }, [, saveProgress]);
 
     return (
         <div className="bg-white p-4 rounded shadow">
