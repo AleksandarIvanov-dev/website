@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from "../CodeEditor"
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 
 export default function Introduction() {
+    useEffect(() => {
+        startTutorial("Оператори в Java", "Java");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -244,7 +248,7 @@ class TestingOperators
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/java/conditions"} className="text-blue-600 underline">Условни оператори в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/conditions"} onClick={() => endTutorial("Оператори в Java", "Java")} className="text-blue-600 underline">Условни оператори в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/operators-in-java/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

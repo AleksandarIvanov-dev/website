@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
+import { startTutorial, endTutorial } from "../CodeEditor";
 
 export default function Introduction() {
+    useEffect(() => {
+        startTutorial("Типове данни в Java", "Java");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -177,7 +181,7 @@ export default function Introduction() {
                     </div>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/java/variables"} className="text-blue-600 underline">Промелниви в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/variables"} onClick={() => endTutorial("Типове данни в Java", "Java")} className="text-blue-600 underline">Промелниви в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/java-data-types/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

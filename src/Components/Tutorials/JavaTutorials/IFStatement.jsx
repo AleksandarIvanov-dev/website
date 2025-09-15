@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from '../CodeEditor'
@@ -6,9 +6,13 @@ import IfStatement from '../Images/Java/If-statement.jpg'
 import IfBlock from '../Images/Java/if-block.png'
 import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
+import { startTutorial, endTutorial } from "../CodeEditor";
 
 
 export default function JavaIfStatement() {
+    useEffect(() => {
+        startTutorial("Условни оператори в Java", "Java");
+    }, []);
 
     return (
         <div>
@@ -150,7 +154,7 @@ if (number > 5) {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок <Link to={"/tutorials/java/cycles"} className="text-blue-600 underline">Цикли в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/cycles"} onClick={() => endTutorial("Условни оператори в Java", "Java")} className="text-blue-600 underline">Цикли в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/java-if-statement-with-examples/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

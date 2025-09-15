@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import JavaCodeExecution from "../Images/Java/How-java-code-Executes.webp";
 import CodeEditor from "../CodeEditor";
+import { startTutorial, endTutorial } from "../CodeEditor";
+
 
 export default function Introduction() {
+    useEffect(() => {
+        startTutorial("Въведение в Java", "Java");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -89,7 +94,7 @@ export default function Introduction() {
                     </ul>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/java/io"} className="text-blue-600 underline">Входни и изходни данни!</Link>
+                        Следващ урок <Link to={"/tutorials/java/io"} onClick={() => endTutorial("Въведение в Java", "Java")} className="text-blue-600 underline">Входни и изходни данни!</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/introduction-to-java/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

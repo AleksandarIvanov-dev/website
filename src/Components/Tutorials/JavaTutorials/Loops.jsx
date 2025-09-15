@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from '../CodeEditor'
@@ -7,9 +7,12 @@ import WhileBlock from '../Images/Java/WhileLoop.webp'
 import DoWhileBlock from '../Images/Java/Do-While-Loop.webp'
 import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
-
+import { startTutorial, endTutorial } from "../CodeEditor";
 
 export default function JavaLoops() {
+    useEffect(() => {
+        startTutorial("Цикли в Java", "Java");
+    }, []);
 
     return (
         <div>
@@ -189,7 +192,7 @@ class Geeks {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок <Link to={"/tutorials/java/arrays"} className="text-blue-600 underline">Масиви в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/arrays"} onClick={() => endTutorial("Цикли в Java", "Java")} className="text-blue-600 underline">Масиви в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/loops-in-java/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

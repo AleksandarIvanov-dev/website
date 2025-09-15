@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
+import { startTutorial, endTutorial } from "../CodeEditor";
 
 export default function Introduction() {
+    useEffect(() => {
+        startTutorial("Конвенции в Java", "Java");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -68,7 +72,7 @@ export default function Introduction() {
                     </p>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/java/data-types"} className="text-blue-600 underline">Типове данни в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/data-types"} onClick={() => endTutorial("Конвенции в Java", "Java")} className="text-blue-600 underline">Типове данни в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/java-naming-conventions/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

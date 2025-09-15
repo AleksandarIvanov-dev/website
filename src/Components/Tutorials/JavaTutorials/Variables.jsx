@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import VariableDeclaring from "../Images/Java/Variables-in-Java.webp"
 import CodeEditor from "../CodeEditor"
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 
-export default function Introduction() {
+export default function Variables() {
+    useEffect(() => {
+        startTutorial("Променливи в Java", "Java");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -136,7 +140,7 @@ class LocalVariable {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/java/strings"} className="text-blue-600 underline">Символни низове в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/strings"} onClick={() => endTutorial("Променливи в Java", "Java")} className="text-blue-600 underline">Символни низове в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/variables-in-java/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

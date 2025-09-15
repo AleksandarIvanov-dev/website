@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from "../CodeEditor";
+import { startTutorial, endTutorial } from "../CodeEditor";
 
 export default function Introduction() {
+    useEffect(() => {
+        startTutorial("Вход Изход", "Java");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -87,7 +91,7 @@ export default function Introduction() {
 
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/java/conventions"} className="text-blue-600 underline">Правила за писане в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/conventions"} onClick={() => endTutorial("Вход Изход", "Java")} className="text-blue-600 underline">Правила за писане в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/java-io-input-output-in-java-with-examples/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

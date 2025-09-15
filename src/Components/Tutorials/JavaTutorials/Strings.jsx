@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import JavaStrings from "../Images/Java/String-in-Java.png"
 import CodeEditor from "../CodeEditor"
 import Quiz from "../../Exams/Quiz";
+import { startTutorial, endTutorial } from "../CodeEditor";
 
-export default function Introduction() {
+export default function Strings() {
+    useEffect(() => {
+        startTutorial("Символни низове в Java", "Java");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -103,10 +107,10 @@ class Geeks
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/java/operators"} className="text-blue-600 underline">Оператори в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/operators"} onClick={() => endTutorial("Символни низове в Java", "Java")} className="text-blue-600 underline">Оператори в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
-                        Източник: <a href="https://www.geeksforgeeks.org/java/strings-in-java/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
+                        Източник: <a href="https://www.geeksforgeeks.org/java/strings-in-java/"  target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
                             Geeks for Geeks - Символни низове в Java
                         </a>
                     </p>

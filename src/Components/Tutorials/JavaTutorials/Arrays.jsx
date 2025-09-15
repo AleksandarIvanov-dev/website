@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePageHeader from "../../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../../HomePage/FooterHomePage";
 import CodeEditor from '../CodeEditor'
@@ -7,9 +7,13 @@ import UpdateArrayElement from '../Images/Java/update-array-element.webp'
 import TraverseArray from '../Images/Java/traverse-array.webp'
 import Quiz from "../../Exams/Quiz";
 import { Link } from "react-router-dom";
+import { startTutorial, endTutorial } from "../CodeEditor";
 
 
 export default function JavaLoops() {
+    useEffect(() => {
+        startTutorial("Масиви в Java", "Java");
+    }, []);
 
     return (
         <div>
@@ -188,7 +192,7 @@ export default function JavaLoops() {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок <Link to={"/tutorials/java/maps"} className="text-blue-600 underline">Map в Java</Link>
+                        Следващ урок <Link to={"/tutorials/java/maps"} onClick={() => endTutorial("Масиви в Java", "Java")} className="text-blue-600 underline">Map в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/arrays-in-java/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
