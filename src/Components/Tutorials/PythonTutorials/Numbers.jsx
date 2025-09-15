@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function NumbersPython() {
     useEffect(() => {
-        startTutorial("Python numbers", "Python");
+        startTutorial("Числа в Python", "Python");
     }, []);
     return (
         <div>
@@ -81,7 +81,7 @@ export default function NumbersPython() {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/string"} onClick={() => endTutorial("Python numbers", "Python")} className="text-blue-600 underline">String в Python!</Link>
+                        Следващ урок <Link to={"/tutorials/python/string"} onClick={() => endTutorial("Числа в Python", "Python")} className="text-blue-600 underline">String в Python!</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/python/python-numbers/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

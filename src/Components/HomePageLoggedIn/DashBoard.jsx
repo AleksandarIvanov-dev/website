@@ -8,6 +8,8 @@ export default function DashboardStats() {
         completedExams: 0
     });
     const [countChallenges, setCountChallenges] = useState(0);
+    const [countTutorials, setCountTutorials] = useState(0);
+    const [countExams, setCountExams] = useState(0);
 
     useEffect(() => {
         async function fetchUserProgress() {
@@ -17,29 +19,41 @@ export default function DashboardStats() {
                 });
 
                 const data = await response.json();
-                //console.log(data)
-
-
+                const userData = data.userData;
 
                 // Get the count of completed challenges
-                const completedChallengesCount = data.userData.solvedChallenges?.filter(c => c.status === "completed").length || 0;
+                const completedChallengesCount = userData.solvedChallenges?.filter(c => c.status === "completed").length || 0;
 
                 const allChallengesByUserLanguage = data?.allChallengesByLanguage?.filter(
-                    (c) => data?.userData?.languages?.includes(c.languageForDisplay)
+                    (c) => userData?.languages?.includes(c.languageForDisplay)
                 ) || [];
 
-                setCountChallenges(allChallengesByUserLanguage.length);
+                // Count completed exams
+                const completedExamsCount = userData.solvedExams?.length || 0;
 
-                const completedExams = data.exams.filter(exam => exam.isCompleted === true).length;
-
-                const completedTutorials = data.userData.progressTutorial.reduce((total, langEntry) => {
-                    // Count tutorials in this language with endedAt not null
+                // Count completed tutorials (endedAt not null)
+                const completedTutorials = userData.progressTutorial.reduce((total, langEntry) => {
                     const completedInLang = langEntry.tutorials.filter(t => t.endedAt !== null).length;
                     return total + completedInLang;
                 }, 0);
 
-                // Store the count directly in the state
-                setUserProgress({ completedChallenges: completedChallengesCount, completedExams, completedTutorials });
+                // Store the counts
+                setCountChallenges(allChallengesByUserLanguage.length);
+                setCountExams(data.exams?.length || 0); // Total exams available
+
+                // For tutorials, you might need to get total tutorials count from another API call
+                // or if you have it in the response, use it here
+                // For now, I'll assume you need to calculate total tutorials from progressTutorial
+                const totalTutorialsCount = userData.progressTutorial.reduce((total, langEntry) => {
+                    return total + langEntry.tutorials.length;
+                }, 0);
+                setCountTutorials(totalTutorialsCount);
+
+                setUserProgress({
+                    completedChallenges: completedChallengesCount,
+                    completedExams: completedExamsCount,
+                    completedTutorials
+                });
             } catch (err) {
                 console.error("Failed to fetch user progress:", err);
             }
@@ -47,10 +61,14 @@ export default function DashboardStats() {
 
         fetchUserProgress();
     }, []);
-
     // Calculate progress percentage, ensuring we don't divide by zero
-    const progressPercentage = countChallenges > 0
-        ? (userProgress.completedChallenges / countChallenges) * 100
+    const totalCompleted = userProgress.completedChallenges + userProgress.completedTutorials + userProgress.completedExams;
+
+    // Total items = challenges + tutorials + exams
+    const totalItems = countChallenges + countTutorials + countExams;
+
+    const progressPercentage = totalItems > 0
+        ? (totalCompleted / totalItems) * 100
         : 0;
 
     return (

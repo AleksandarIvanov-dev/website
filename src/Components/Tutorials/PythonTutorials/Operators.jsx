@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function OperatorsPython() {
     useEffect(() => {
-        startTutorial("Python operators", "Python");
+        startTutorial("Оператори в Python", "Python");
     }, []);
     return (
         <div>
@@ -175,7 +175,7 @@ export default function OperatorsPython() {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок <Link to={"/tutorials/python/conditions"} onClick={() => endTutorial("Python operators", "Python")} className="text-blue-600 underline">Условни оператори в Python!</Link>
+                        Следващ урок <Link to={"/tutorials/python/conditions"} onClick={() => endTutorial("Оператори в Python", "Python")} className="text-blue-600 underline">Условни оператори в Python!</Link>
                     </p>
 
                     <p className="text-sm text-gray-500 italic text-right mt-6">

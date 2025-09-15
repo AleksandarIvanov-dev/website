@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function VariablesPython() {
     useEffect(() => {
-        startTutorial("Python Variables", "Python");
+        startTutorial("Променливи в Python", "Python");
     }, []);
     return (
         <div>
@@ -115,7 +115,7 @@ export default function VariablesPython() {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/numbers"} onClick={() => endTutorial("Python Variables", "Python")} className="text-blue-600 underline">Числа в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/numbers"} onClick={() => endTutorial("Променливи в Python", "Python")} className="text-blue-600 underline">Числа в Python</Link>
 
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">

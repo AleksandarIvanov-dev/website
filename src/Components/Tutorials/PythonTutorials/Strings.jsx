@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function StringsPython() {
     useEffect(() => {
-        startTutorial("Python strings", "Python");
+        startTutorial("Низове в Python", "Python");
     }, []);
     return (
         <div>
@@ -106,7 +106,7 @@ export default function StringsPython() {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/operators"} onClick={() => endTutorial("Python strings", "Python")} className="text-blue-600 underline">Оператори в Python!</Link>
+                        Следващ урок <Link to={"/tutorials/python/operators"} onClick={() => endTutorial("Низове в Python", "Python")} className="text-blue-600 underline">Оператори в Python!</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/python/python-string/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

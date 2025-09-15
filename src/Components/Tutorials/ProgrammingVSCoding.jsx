@@ -1,8 +1,14 @@
 import React from "react";
 import HomePageHeader from "../HomePageLoggedIn/HomePageHeader";
 import FooterHomePage from "../HomePage/FooterHomePage";
+import { startTutorial, endTutorial } from "./CodeEditor";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function ProgrammingVSCoding() {
+    useEffect(() => {
+        startTutorial("Programming vs Coding", "");
+    }, []);
     return (
         <div>
             <HomePageHeader />
@@ -55,10 +61,16 @@ export default function ProgrammingVSCoding() {
                         Компютърните науки са обширна област, която постоянно се развива и няма да спре в определен момент; ще намерите много за изследване и наслада.
                     </p>
 
+
+
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/blogs/programming-vs-coding-a-short-comparison-between-both/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
                             Geeks for Geeks - Програмиране vs кодиране
                         </a>
+                    </p>
+
+                    <p className="text-gray-700 text-lg leading-relaxed">
+                        Обратно към <Link to={"/home"} onClick={() => endTutorial("Programming vs Coding", "")} className="text-blue-600 underline">началната страница</Link>
                     </p>
                 </div>
 

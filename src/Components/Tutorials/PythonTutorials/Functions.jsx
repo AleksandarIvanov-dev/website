@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function FunctionsPython() {
     useEffect(() => {
-        startTutorial("Python functions", "Python");
+        startTutorial("Създаване на функции в Python", "Python");
     }, []);
     return (
         <div>
@@ -130,7 +130,7 @@ print(evenOdd(7))`} programingLanguage="python" />
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/challenges"} onClick={() => endTutorial("Python functions", "Python")} className="text-blue-600 underline">Упражнения</Link>
+                        Следващ урок <Link to={"/challenges"} onClick={() => endTutorial("Създаване на функции в Python", "Python")} className="text-blue-600 underline">Упражнения</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/python/python-functions/"  target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function ConventionsPython() {
     useEffect(() => {
-        startTutorial("Python conventions", "Python");
+        startTutorial("Конвенции в Python", "Python");
     }, []);
     return (
         <div>
@@ -111,7 +111,7 @@ export default function ConventionsPython() {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                        Следващ урок <Link to={"/tutorials/python/variables"} onClick={() => endTutorial("Python conventions", "Python")} className="text-blue-600 underline">Променливи в Python</Link>.
+                        Следващ урок <Link to={"/tutorials/python/variables"} onClick={() => endTutorial("Конвенции в Python", "Python")} className="text-blue-600 underline">Променливи в Python</Link>.
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/python/python-naming-conventions/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">

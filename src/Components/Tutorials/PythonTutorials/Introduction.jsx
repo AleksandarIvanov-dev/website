@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function IntroPython() {
     useEffect(() => {
-        startTutorial("Python intro", "Python");
+        startTutorial("Въведение в Python", "Python");
     }, []);
     return (
         <div>
@@ -63,7 +63,7 @@ export default function IntroPython() {
                     </ul>
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/io"} onClick={() => endTutorial("Python intro", "Python")} className="text-blue-600 underline">Входни и изходни данни!</Link>
+                        Следващ урок <Link to={"/tutorials/python/io"} onClick={() => endTutorial("Въведение в Python", "Python")} className="text-blue-600 underline">Входни и изходни данни!</Link>
                     </p>
 
                     <p className="text-sm text-gray-500 italic text-right mt-6">

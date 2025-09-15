@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function LoopsPython() {
     useEffect(() => {
-        startTutorial("Python functions", "Python");
+        startTutorial("Цикли в Python", "Python");
     }, []);
     return (
         <div>
@@ -141,7 +141,7 @@ for i in range(0, counter):
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/lists"} onClick={() => endTutorial("Python loops", "Python")} className="text-blue-600 underline">Списъци в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/lists"} onClick={() => endTutorial("Цикли в Python", "Python")} className="text-blue-600 underline">Списъци в Python</Link>
                     </p>
 
                     <p className="text-sm text-gray-500 italic text-right mt-6">

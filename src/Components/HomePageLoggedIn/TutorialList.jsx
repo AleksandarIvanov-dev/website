@@ -21,8 +21,9 @@ export default function TutorialList() {
 
                 const data = await response.json();
                 setTutorials(data);
-                setSelectedLanguage(data[0].language)
-                //console.log("Data: ", data)
+                if (data.length > 0) {
+                    setSelectedLanguage(data[0].language);
+                }
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -31,15 +32,24 @@ export default function TutorialList() {
         }
 
         fetchTutorials();
-        //console.log(tutorials)
-    }, [selectedLanguage]); // refetch when language changes
+    }, [selectedLanguage]);
 
     if (loading) return <p>Loading tutorials...</p>;
     if (error) return <p>Error: {error}</p>;
+    if (tutorials.length === 0) return <p>No tutorials available.</p>;
+
+    // Determine the heading text based on the language
+    const getHeadingText = () => {
+        if (selectedLanguage.toLowerCase() === "other") {
+            return "Започни с тези уроци";
+        } else {
+            return `Продължи ${selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)}`;
+        }
+    };
 
     return (
         <section>
-            <h2 className="text-2xl font-bold mb-4">Уроци за {selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)}</h2>
+            <h2 className="text-2xl font-bold mb-4">{getHeadingText()}</h2>
             <div className="space-y-4">
                 {tutorials.map(tutorial => (
                     <TutorialCard key={tutorial._id} tutorial={tutorial} />

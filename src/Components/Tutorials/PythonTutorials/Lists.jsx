@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function ListsPython() {
     useEffect(() => {
-        startTutorial("Python lists", "Python");
+        startTutorial("Списъци в Python", "Python");
     }, []);
     return (
         <div>
@@ -155,7 +155,7 @@ c = temp_list.pop()`}
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        Следващ урок <Link to={"/tutorials/python/dict"} onClick={() => endTutorial("Python lists", "Python")} className="text-blue-600 underline">Създаване на речници в Python</Link>
+                        Следващ урок <Link to={"/tutorials/python/dict"} onClick={() => endTutorial("Списъци в Python", "Python")} className="text-blue-600 underline">Създаване на речници в Python</Link>
                     </p>
 
                     <p className="text-sm text-gray-500 italic text-right mt-6">
