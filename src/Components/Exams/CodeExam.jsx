@@ -7,8 +7,8 @@ export default function CodeExam() {
     const [submitted, setSubmitted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(null);
     const [code, setCode] = useState("");
-    const [examResult, setExamResult] = useState(null); // ✅ store exam result
-    const [running, setRunning] = useState(false); // New state to manage the running state of the exam
+    const [examResult, setExamResult] = useState(null);
+    const [running, setRunning] = useState(false);
     let navigate = useNavigate();
     const { id } = useParams();
 
@@ -38,13 +38,19 @@ export default function CodeExam() {
                 .then((data) => {
                     console.log(auto ? "Auto-submitted:" : "Manually submitted:", data);
                     if (data.examResult) {
-                        setExamResult(data); // ✅ store backend response
+                        setExamResult(data);
+                        // ✅ --- FIX: STOP TIMER ON PASS --- ✅
+                        // If the status is "passed", set submitted to true,
+                        // which will stop the timer's useEffect.
+                        if (data.status === "passed") {
+                            setSubmitted(true);
+                        }
                     }
-                    setRunning(false); // Stop the running state after submission
+                    setRunning(false);
                 })
                 .catch((err) => {
                     console.error("Error submitting exam:", err);
-                    setRunning(false); // Stop the running state in case of an error
+                    setRunning(false);
                 });
         },
         [exam, code]
@@ -123,9 +129,9 @@ export default function CodeExam() {
     };
 
     const handleRunCode = () => {
-        if (running) return; // Prevent running the code again while it's already running
+        if (running) return;
         setRunning(true);
-        submitExam(); // Trigger the exam submission logic to run the code and get results
+        submitExam();
     };
 
     if (!exam) {
@@ -134,7 +140,7 @@ export default function CodeExam() {
 
     return (
         <form
-            onSubmit={(e) => e.preventDefault()} // prevent full page reload
+            onSubmit={(e) => e.preventDefault()}
             className="bg-white text-gray-900 p-6 min-h-screen flex flex-col gap-6"
         >
             {timeLeft !== null && (
@@ -166,13 +172,13 @@ export default function CodeExam() {
                         value={code}
                         onChange={(val) => setCode(val || "")}
                         options={{ fontSize: 14, minimap: { enabled: false } }}
-                        theme="light" // switched to light theme for white style
+                        theme="light"
                     />
 
                     <button
                         type="button"
                         onClick={handleRunCode}
-                        disabled={running}
+                        disabled={running || submitted} // Also disable when submitted
                         className="mt-4 bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-md font-semibold text-white self-start disabled:opacity-50 transition"
                     >
                         {running ? "Running..." : "▶ Run Code"}
@@ -239,5 +245,4 @@ export default function CodeExam() {
             )}
         </form>
     );
-
 }
