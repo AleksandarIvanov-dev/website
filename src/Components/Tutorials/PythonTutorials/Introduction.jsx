@@ -47,7 +47,7 @@ export default function IntroPython() {
 
                     <div className="mt-12">
                         <h2 className="text-2xl font-semibold text-blue-600 mb-4">Опитайте сами!</h2>
-                        <CodeEditor height="80px" initialCode={`print("Hello, World!")`} />
+                        <CodeEditor height="80px" initialCode={`print("Hello, World!")`} programingLanguage="python" />
                     </div>
 
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
