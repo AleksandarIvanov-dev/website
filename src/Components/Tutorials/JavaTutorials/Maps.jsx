@@ -282,7 +282,7 @@ class Test {
                     />
 
                     <p className="text-gray-700 text-lg leading-relaxed">
-                       Следващ урок: <Link to={"/func"} onClick={() => endTutorial("Java Maps", "Java")} className="text-blue-600 underline">Функции в Java</Link>
+                        Следващ урок: <Link to={"/tutorials/java/func"} onClick={() => endTutorial("Java Maps", "Java")} className="text-blue-600 underline">Функции в Java</Link>
                     </p>
                     <p className="text-sm text-gray-500 italic text-right mt-6">
                         Източник: <a href="https://www.geeksforgeeks.org/java/map-interface-in-java/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">
